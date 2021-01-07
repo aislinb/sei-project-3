@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
 
 const eventSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true }, 
+  name: { type: String, required: true }, 
   date: { type: Date, required: true }, 
   venue: { type: mongoose.Schema.ObjectId, ref: 'Venue', required: true }, 
   description: { type: String, required: true, maxlength: 400 }, 
