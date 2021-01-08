@@ -419,7 +419,7 @@ export default [
   },
   {
     name: 'Australian Fashion Week', 
-    date: '2020-05 -12', 
+    date: '2020-05-12', 
     description: 'Ladies. Get your glam on at Australia’s biggest fashion event of the year. You may not be able to afford the clothes, but you can still look. Dress up and head down to the Circular Quay in Sydney.',
     eventImage: 'https://media1.popsugar-assets.com/files/thumbor/naGJctEHqycw21mL3T_VsUcBNSc/72x277:4726x3325/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2020/05/12/427/n/4981322/a7c350af5cd7e420d64584.45170803_/i/Aje-Runway-Pictures-Sydney-Fashion-Week-2020.jpg'
     // Carriageworks, Eveleigh, Australia
@@ -497,7 +497,7 @@ export default [
   {
     name: 'Chill-Out Festival Istanbul', 
     date: '2020-06-06', 
-    description: 'Istanbul’s Chill-Out Festival is 2 days long dance, electronic and pop festival, held at Garden Fiesta, located in the Sariyer district. Chill-Out festival is Turkey’s leading music festival, you can enjoy the the refined style of Lounge FM 96 to life with its lovely ambiance, elaborate musical selection of artists focusing on different genres, stages of various concepts, joyful activities, workshops and delicious catering alternatives. The Chill-Out Festival also take place in Bodrum and Cesme.',
+    description: 'Istanbul’s Chill-Out Festival is 2 days long dance, electronic and pop festival, held at Garden Fiesta, located in the Sariyer district. Chill-Out festival is Turkey’s leading music festival, you can enjoy the the refined style of Lounge FM 96 to life with its lovely ambiance.',
     eventImage: 'https://lh3.googleusercontent.com/proxy/r1NqhJl2CqKFlrPr0Hf-j4XjTtN-GM9wFkn_A3oee2mn8VsMjaycFZTW4b_AMTTUR70u3_Uvw73erVCGafj7Mr2KQdY1-Lr5N4E36tNVsDh_YNk5LR30ScolJG1mj-WkXsnGY3LdVgEQH5AbW_tgVKNWlAfo9l9q0eeGetIozHuc_g'
     // Istanbul, Turkey
   },
