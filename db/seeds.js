@@ -6,6 +6,8 @@ import Venue from '../models/venue.js'
 // // import venueData from './data/venues.js'
 import eventData from './data/dummyEvents.js'
 import venueData from './data/dummyVenues.js'
+import User from '../models/user.js'
+import userData from './data/users.js'
 
 async function seedDatabase() {
   try {
@@ -16,6 +18,10 @@ async function seedDatabase() {
     await mongoose.connection.db.dropDatabase()
 
     console.log('🤖 Database dropped')
+
+    const users = await User.create(userData)
+
+    console.log(`🤖 ${users.length} users created`)
 
     const venues = await Venue.create(venueData)
 

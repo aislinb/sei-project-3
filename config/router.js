@@ -1,25 +1,37 @@
 import express from 'express'
 import events from '../controllers/events.js'
 import venues from '../controllers/venues.js'
+import auth from '../controllers/auth.js'
+import users from '../controllers/users.js'
+import secureRoute from '../lib/secureRoute.js'
 
 const router = express.Router()
 
 router.route('/events')
   .get(events.index)
-  .post(events.create)
+  .post(secureRoute, events.create)
 
 router.route('/events/:id')
   .get(events.show)
-  .put(events.update)
-  .delete(events.delete)
+  .put(secureRoute, events.update)
+  .delete(secureRoute, events.delete)
 
 router.route('/venues')
   .get(venues.index)
-  .post(venues.create)
+  .post(secureRoute, venues.create)
 
 router.route('/venues/:id')
   .get(venues.show)
-  .put(venues.update)
-  .delete(venues.delete)
+  .put(secureRoute, venues.update)
+  .delete(secureRoute, venues.delete)
+
+router.route('/profile')
+  .get(secureRoute, users.userProfile)
+
+router.route('/register')
+  .post(auth.registerUser)
+
+router.route('/login')
+  .post(auth.loginUser)
 
 export default router
