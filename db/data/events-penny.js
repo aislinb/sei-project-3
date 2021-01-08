@@ -63,8 +63,8 @@ export default [
   {
     name: 'Alanis Morissette', 
     date: '2020-05-09', 
-    description: '',
-    eventImage: '',
+    description: 'Alanis was great.',
+    eventImage: 'https://static.timesofisrael.com/www/uploads/2018/07/D81_2684-640x400.jpg',
   },
   {
     name: 'Taylor Swift', 

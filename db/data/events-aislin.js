@@ -7,14 +7,14 @@ export default [
     // Melbourne, Australia
   },
   {
-    name: '2019 Ashes Series', 
+    name: '2020 Ashes Series', 
     date: '2020-06-22', 
     description: 'England take the cup! In an all too surprising turn of events the England team took a late comeback to throw the Aussies off what had been a comfortable lead. Slow and steady wins the race - except when Jofre Archer is your best spin bowler was on teh bench for the first two tests.',
     eventImage: 'https://cdn.dnaindia.com/sites/default/files/styles/full/public/2018/07/19/706725-633398-ashes-reuters.jpg'
     // Sydney Cricket Ground, Sydney, Australia
   },
   {
-    name: 'Australia Day 2019', 
+    name: 'Australia Day 2020', 
     date: '2020-01-26', 
     description: 'Australia Day is the official national day of Australia celebrated every year. Hugely popular with Aussies at home and aboard, the date has been an official public holiday since 1994. According to Australia Day Council: “Australia Day is the day to reflect on what it means to be Australian, to celebrate contemporary Australia and to acknowledge our history.',
     eventImage: 'https://visityarravalley.com.au/sites/default/files/images/main-image/australia_day_banner.jpg'
@@ -31,14 +31,14 @@ export default [
     name: 'Australian Fashion Week', 
     date: '2020-05 -12', 
     description: 'Ladies. Get your glam on at Australia’s biggest fashion event of the year. You may not be able to afford the clothes, but you can still look. Dress up and head down to the Circular Quay in Sydney.',
-    eventImage: 'https://media1.popsugar-assets.com/files/thumbor/naGJctEHqycw21mL3T_VsUcBNSc/72x277:4726x3325/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2019/05/12/427/n/4981322/a7c350af5cd7e420d64584.45170803_/i/Aje-Runway-Pictures-Sydney-Fashion-Week-2019.jpg'
+    eventImage: 'https://media1.popsugar-assets.com/files/thumbor/naGJctEHqycw21mL3T_VsUcBNSc/72x277:4726x3325/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2020/05/12/427/n/4981322/a7c350af5cd7e420d64584.45170803_/i/Aje-Runway-Pictures-Sydney-Fashion-Week-2020.jpg'
     // Carriageworks, Eveleigh, Australia
   },
   {
     name: 'NYE Fireworks', 
     date: '2020-12-31', 
     description: 'Sydney Harbour does one of the best New Year’s Eve fireworks displays and can challenge even ‘Times Square’ in New York for popularity. ‘The Rocks’ is the place to be for this one. Just one word: epic.',
-    eventImage: 'https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F191229094719-sydney-nye-fireworks-2019.jpg'
+    eventImage: 'https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F191229094719-sydney-nye-fireworks-2020.jpg'
     // Sydney Harbour, Sydney, Australia
   },
   {
@@ -66,7 +66,7 @@ export default [
     name: 'Chinese New Year', 
     date: '2020-01-25', 
     description: '2020: Year of the Rat. Those born under the Year of the Rat are believed to be quick-witted and resourceful, and they get along best with Oxes, Rabbits and Dragons, and the worst with Roosters and Horses.',
-    eventImage: 'https://www.nationalgeographic.com/content/dam/travel/2019-digital/chinese-new-year/chinese-new-year-1.jpg'
+    eventImage: 'https://www.nationalgeographic.com/content/dam/travel/2020-digital/chinese-new-year/chinese-new-year-1.jpg'
     // Beijing, China
   },
   {
@@ -87,14 +87,14 @@ export default [
     name: 'Groove on the Grass', 
     date: '2020-02-08', 
     description: 'Taking place a handful of times each season at the Emirates Golf Club, this thumping festival brings in the electronic greats - and there are few better examples of that than in the upcoming February edition, which features dance-pioneers Underworld. Along with art, a marketplace, food trucks and activities, its a holistic experience in a verdant setting',
-    eventImage: 'https://www.timeoutdubai.com/public/images/2019/09/08/Groove-on-the-Grass.jpg'
+    eventImage: 'https://www.timeoutdubai.com/public/images/2020/09/08/Groove-on-the-Grass.jpg'
     // Dubai, UAE
   },
   {
     name: 'Winter at Tantora', 
     date: '2020-12-20', 
     description: 'There is still time to catch this brand-new festival in one of Saudi Arabias most stunning sites, a sandstone landscape that was once inhabited by the Nabateans. Each weekend over the multi-week festival features Arabian musicians alongside arts and cultural activities.',
-    eventImage: 'https://www.abouther.com/sites/default/files/2019/10/01/winter_at_tantora.jpg'
+    eventImage: 'https://www.abouther.com/sites/default/files/2020/10/01/winter_at_tantora.jpg'
     // Al-Ula County, Saudi Arabia
   },
   {
@@ -115,28 +115,28 @@ export default [
     name: 'Umhlanga Reed Dance', 
     date: '2020-08-22', 
     description: 'Each year, more than 40,000 Swazi maidens unite for a spectacular dance extravaganza called the Umhlanga Reed Dance, a centuries-old tribute to the Queen Mother. The gorgeous spectacle sees the female participants don vibrant costumes and perform songs and dances as they deliver reed to the Royal Residence.',
-    eventImage: 'https://whileinafrica.com/wp-content/uploads/2019/06/Umhlanga-Reed-Dance-whileinafrica.jpg'
+    eventImage: 'https://whileinafrica.com/wp-content/uploads/2020/06/Umhlanga-Reed-Dance-whileinafrica.jpg'
     // Eludzidzini, Swaziland
   },
   {
     name: 'Amani Festival', 
     date: '2020-02-05', 
     description: 'Just $1 gains you entry to Amani, a festival that combines the old and the new of Congolese music and culture. As well as traditional dance, theatre and craft, the latest stars of African music can be found strutting their stuff. Added to that, you’re in the prime location to go trekking in search of mountain gorillas. What’s not to like?',
-    eventImage: 'https://africanmusicguide.co.uk/wp-content/uploads/2019/01/amaini-fest-2018-creedit-amani-fest.jpg'
+    eventImage: 'https://africanmusicguide.co.uk/wp-content/uploads/2020/01/amaini-fest-2018-creedit-amani-fest.jpg'
     // Goma, DR Congo
   },
   {
     name: 'Cape Town International Jazz Festival', 
     date: '2020-03-30', 
     description: 'With one of the world’s great cities, Cape Town, as a backdrop, the International Jazz Festival proclaims itself “Africa’s grandest gathering”. As well as performers from the jazz world, you can also catch exponents of soul, funk, hip-hop and Afropop, among others.',
-    eventImage: 'https://africanmusicguide.co.uk/wp-content/uploads/2019/01/Cape-Town-Jazz-credit-JS-Photoworx-Courtesy-of-Espafrika-1024x683.jpg'
+    eventImage: 'https://africanmusicguide.co.uk/wp-content/uploads/2020/01/Cape-Town-Jazz-credit-JS-Photoworx-Courtesy-of-Espafrika-1024x683.jpg'
     // Cape Town, South Africa 
   },
   {
     name: 'G20 Riyadh Summit', 
     date: '2020-11-21', 
     description: 'The 15th meeting of Group of Twenty (G20) convened from 21-22 November 2020 in Riyadh, Saudi Arabia. This event marked the first time that Saudi Arabia held the Presidency of the G20. The Saudi Arabian Presidency has selected the theme, ‘Realizing Opportunities of the 21st Century For All',
-    eventImage: 'https://www.aljazeera.com/wp-content/uploads/2019/06/e50d7f8e6bc2446aa8726cda85fc94b4_18.jpeg'
+    eventImage: 'https://www.aljazeera.com/wp-content/uploads/2020/06/e50d7f8e6bc2446aa8726cda85fc94b4_18.jpeg'
     // Riyadh, Saudi Arabia
   },
   {
