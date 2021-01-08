@@ -1,18 +1,26 @@
 import React from 'react'
-// import axios from 'axios'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
+import Nav from './components/common/Nav'
+import Home from './components/common/Home'
+import Register from './components/auth/Register'
+import EventIndex from './components/events/EventIndex'
+import EventShow from './components/events/EventShow'
 
 function App() {
 
-  // React.useEffect(() => {
-  //   const getData = async () => {
-  //     const { data } = await axios.get('/events')
-  //     console.log(data)
-  //   }
-  //   getData()
-  // }, [])
+  // axios get moved to api.js and EventIndex.js
 
   return (
-    <h1>hello</h1>
+    <BrowserRouter>
+      <Nav />
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route path="/events/:id" component={EventShow} />
+        <Route path="/events" component={EventIndex} />
+        <Route path="/register" component={Register} />
+      </Switch>
+    </BrowserRouter>
   )
 
 }
