@@ -10,8 +10,16 @@ router.route('/events')
 
 router.route('/events/:id')
   .get(events.show)
+  .put(events.update)
+  .delete(events.delete)
 
 router.route('/venues')
   .get(venues.index)
+  .post(venues.create)
+
+router.route('/venues/:id')
+  .get(venues.show)
+  .put(venues.update)
+  .delete(venues.delete)
 
 export default router

@@ -21,20 +21,6 @@ async function seedDatabase() {
 
     console.log(`🤖 ${venues.length} venues created`)
 
-    // // const eventDataWithVenues = eventData.map(item => {
-    // //   if (item.venueRef === venues[venues.map(item2 => {
-    // //     if (item2.name === item.venueRef) {
-    // //       console.log(venues.indexOf(item2))
-    // //     }
-    // //   })]) {
-    // //     console.log(item)
-    // //   }
-    // // })
-    // // const eventDataWithVenues = eventData.map(item => {
-    // //   item.venue = venues[0]._id
-    // //   return item
-    // // })
-
     const eventDataWithVenues = eventData.map(event => {
       event.venue = venues.find(venue => venue.name === event.venueRef)._id
       delete event.venueRef

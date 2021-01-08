@@ -31,11 +31,37 @@ async function eventShow(req, res, next) {
   }
 }
 
+async function eventUpdate(req, res, next) {
+  const { id } = req.params
+  try {
+    const eventToEdit = await Event.findById(id)
+    if (!eventToEdit) throw new Error(notFound)
+    Object.assign(eventToEdit, req.body)
+    await eventToEdit.save()
+    return res.status(202).json(eventToEdit)
+  } catch (err) {
+    next(err)
+  }
+}
+
+async function eventDelete(req, res, next) {
+  const { id } = req.params
+  try {
+    const eventToDelete = await Event.findById(id)
+    if (!eventToDelete) throw new Error(notFound)
+    await eventToDelete.remove()
+    return res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+}
 
 
 
 export default {
   index: eventIndex,
   create: eventCreate,
-  show: eventShow
+  show: eventShow, 
+  update: eventUpdate, 
+  delete: eventDelete
 }
