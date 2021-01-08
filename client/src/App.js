@@ -1,19 +1,20 @@
 import React from 'react'
+// import axios from 'axios'
 
-class App extends React.Component {
-  async componentDidMount() {
-    try {
-      const response = await fetch('/api/2020-reimagined')
-      const data = await response.json()
-      console.log(data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+function App() {
 
-  render() {
-    return null
-  }
+  // React.useEffect(() => {
+  //   const getData = async () => {
+  //     const { data } = await axios.get('/events')
+  //     console.log(data)
+  //   }
+  //   getData()
+  // }, [])
+
+  return (
+    <h1>hello</h1>
+  )
+
 }
 
 export default App

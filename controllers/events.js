@@ -3,7 +3,7 @@ import { notFound } from './../lib/errorHandler.js'
 
 async function eventIndex(_req, res, next) {
   try {
-    const events = await Event.find()
+    const events = await Event.find().populate('venue')
     //.populate('venue')
     return res.status(200).json(events)
   } catch (err) {
