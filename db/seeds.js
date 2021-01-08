@@ -6,6 +6,8 @@ import Venue from '../models/venue.js'
 // // import venueData from './data/venues.js'
 import eventData from './data/dummyEvents.js'
 import venueData from './data/dummyVenues.js'
+import User from '../models/user.js'
+import userData from './data/users.js'
 
 async function seedDatabase() {
   try {
@@ -17,29 +19,21 @@ async function seedDatabase() {
 
     console.log('🤖 Database dropped')
 
+    const users = await User.create(userData)
+
+    console.log(`🤖 ${users.length} users created`)
+
     const venues = await Venue.create(venueData)
 
     console.log(`🤖 ${venues.length} venues created`)
-
-    // // const eventDataWithVenues = eventData.map(item => {
-    // //   if (item.venueRef === venues[venues.map(item2 => {
-    // //     if (item2.name === item.venueRef) {
-    // //       console.log(venues.indexOf(item2))
-    // //     }
-    // //   })]) {
-    // //     console.log(item)
-    // //   }
-    // // })
-    // // const eventDataWithVenues = eventData.map(item => {
-    // //   item.venue = venues[0]._id
-    // //   return item
-    // // })
 
     const eventDataWithVenues = eventData.map(event => {
       event.venue = venues.find(venue => venue.name === event.venueRef)._id
       delete event.venueRef
       return event
     })
+
+    // const eventDataWithVenuesAndOwners
 
     const events = await Event.create(eventDataWithVenues)
 
