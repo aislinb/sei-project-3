@@ -33,6 +33,8 @@ async function seedDatabase() {
       return event
     })
 
+    // const eventDataWithVenuesAndOwners
+
     const events = await Event.create(eventDataWithVenues)
 
     console.log(`🤖 ${events.length} events created`)
