@@ -33,8 +33,9 @@ async function eventShow(req, res, next) {
 
 
 
+
 export default {
   index: eventIndex,
   create: eventCreate,
-  show: eventShow,
+  show: eventShow
 }

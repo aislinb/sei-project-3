@@ -3,7 +3,7 @@ import React from 'react'
 class App extends React.Component {
   async componentDidMount() {
     try {
-      const response = await fetch('/api/resource-name')
+      const response = await fetch('/api/2020-reimagined')
       const data = await response.json()
       console.log(data)
     } catch (err) {

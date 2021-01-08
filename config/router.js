@@ -7,4 +7,7 @@ router.route('/events')
   .get(events.index)
   .post(events.create)
 
+router.route('/events/:id')
+  .get(events.show)
+
 export default router
