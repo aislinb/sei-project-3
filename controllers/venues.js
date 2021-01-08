@@ -56,6 +56,36 @@ async function venueDelete(req, res, next) {
   }
 }
 
+async function eventCommentCreate(req, res, next) {
+  const { id } = req.params
+  try {
+    const event = await Event.findById(id)
+    if (!event) throw new Error(notFound)
+    const newComment = { ...req.body, owner: req.currentUser._id }
+    event.comments.push(newComment)
+    await event.save()
+    return res.status(201).json(event)
+  } catch (err) {
+    next(err)
+  }
+}
+
+async function eventCommentDelete(req, res, next) {
+  const { id, commentId } = req.params
+  try {
+    const event = await event.findById(id) //look up event
+    if (!event) throw new Error(notFound) // check existed
+    const commentToDelete = Event.comments.id(commentId) // look up comment
+    if (!commentToDelete) throw new Error(notFound) // look up exist
+    if (!commentToDelete.owner.equals(req.currentUser._id)) throw new Error(forbidden) // checking if person making request is the owner of the comment
+    await commentToDelete.remove()
+    await event.save()
+    return res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+}
+
 export default {
   index: venueIndex,
   create: venueCreate,
