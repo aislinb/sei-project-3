@@ -39,7 +39,7 @@ function EventIndex() {
                 <Link to={`/events/${_id}`}>
                   <h3>{name}</h3>
                   <h5>{day}/{month}/{year}</h5>
-                  {/* <h6>{item.venue.name}, {item.venue.city}, {item.venue.country}</h6> */}
+                  <h6>{item.venue.name}, {item.venue.city}, {item.venue.country}</h6>
                   <p>{description}</p>
                   <figure>
                     <img src={eventImage} alt={name} />

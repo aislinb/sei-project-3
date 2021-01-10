@@ -9,28 +9,28 @@ function Register() {
           <label>Username</label>
         </div>
         <div>
-          <input placeholder="Username"/>
+          <input type="text" placeholder="Username"/>
         </div>
         <br />
         <div>
           <label>Email</label>
         </div>
         <div>
-          <input placeholder="Email"/>
+          <input  type="text" placeholder="Email"/>
         </div>
         <br />
         <div>
           <label>Password</label>
         </div>
         <div>
-          <input placeholder="Password"/>
+          <input  type="password" placeholder="Password"/>
         </div>
         <br />
         <div>
           <label>Password Confirmation</label>
         </div>
         <div>
-          <input placeholder="Password Confirmation"/>
+          <input  type="password" placeholder="Password Confirmation"/>
         </div>
       </form>
     </main>
