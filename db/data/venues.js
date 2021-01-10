@@ -15,7 +15,7 @@ export default [
   },
   {
     name: 'Fenway Park', 
-    city: 'Boston', 
+    city: 'Boston',
     country: 'United States', 
     continent: 'North America', 
     venueImage: 'https://www.bostonherald.com/wp-content/uploads/2020/07/soxms022.jpg?w=863',
