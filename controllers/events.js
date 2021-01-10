@@ -23,7 +23,7 @@ async function eventCreate(req, res, next) {
 async function eventShow(req, res, next) {
   const { id } = req.params
   try {
-    const event = await Event.findById(id)
+    const event = await Event.findById(id).populate('venue').populate('owner').populate('comments.owner')
     if (!event) throw new Error(notFound)
     return res.status(200).json(event)
   } catch (err) {
