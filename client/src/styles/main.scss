@@ -1,0 +1,135 @@
+// A signature light grey that can be used throughout the site
+$sig-grey: rgb(235, 235, 235);
+
+// Universal styles
+body {
+  height: 100%;
+  min-height: 100%;
+  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+
+}
+
+main {
+  min-height: 80vh;
+  width: 90vw;
+  margin: 0 auto;
+
+}
+
+// Nav Bar
+nav {
+  display: flex;
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    width: 70%;
+
+    a {
+      text-decoration: none;
+      color: black;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    a:hover {
+      background-color: $sig-grey;
+    }
+  }
+}
+
+// Home page
+.hero {
+  background-image: url('../images/burning-man.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 0;
+  font-size: 2rem;
+}
+
+// Events index
+.index-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-width: 600px;
+
+  li {
+    border: 1px solid $sig-grey;
+    padding: 15px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    width: 28%;
+
+    h3, h5, h6 {
+      margin: 10px 0;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    h5 {
+      font-size: 1rem;
+    }
+
+    h6 {
+      font-size: 0.8rem;
+    }
+
+  }
+
+  figure {
+    width: 100%;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+// Event Show
+.event-detail {
+
+  figure {
+    max-width: 1000px;
+    min-width: 600px;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+    }
+  }
+  
+}
+
+
+// Footer
+footer {
+  position: relative;
+  margin-bottom: 0;
+  display: flex;
+  bottom: 0;
+  justify-content: center;
+  width: 100%;
+  height: 20%;
+  align-items: flex-end;
+}

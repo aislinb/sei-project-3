@@ -1,0 +1,11 @@
+{
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#48194f",
+    "titleBar.activeBackground": "#48194f",
+    "titleBar.inactiveBackground": "#48194f",
+    "statusBar.foreground": "#FFF",
+    "titleBar.inactiveForeground": "#FFF",
+    "titleBar.activeForeground": "#FFF",
+  },
+  "window.title": "🎉 2020 Reimagined 🎉"
+}

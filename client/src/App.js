@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Nav from './components/common/Nav'
+import Footer from './components/common/Footer'
 import Home from './components/common/Home'
 import Register from './components/auth/Register'
 import EventIndex from './components/events/EventIndex'
@@ -20,6 +21,7 @@ function App() {
         <Route path="/events" component={EventIndex} />
         <Route path="/register" component={Register} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   )
 
