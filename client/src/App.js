@@ -7,6 +7,7 @@ import Home from './components/common/Home'
 import Register from './components/auth/Register'
 import EventIndex from './components/events/EventIndex'
 import EventShow from './components/events/EventShow'
+import EventNew from './components/events/EventNew'
 import VenueIndex from './components/venues/VenueIndex'
 import VenueShow from './components/venues/VenueShow'
 import Login from './components/auth/Login'
@@ -20,6 +21,7 @@ function App() {
       <Nav />
       <Switch>
         <Route exact path="/" component={Home}/>
+        <Route path="/events/new" component={EventNew} />
         <Route path="/events/:id" component={EventShow} />
         <Route path="/events" component={EventIndex} />
         <Route path="/venues/:id" component={VenueShow} />

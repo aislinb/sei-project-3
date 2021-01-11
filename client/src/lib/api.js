@@ -11,6 +11,10 @@ export function getSingleEvent(id) {
   return axios.get(`${baseUrl}/events/${id}`)
 }
 
+export function createEvent(formdata) {
+  return axios.post(`${baseUrl}/events`, formdata)
+}
+
 // * Venues requests:
 export function getAllVenues() {
   return axios.get(`${baseUrl}/venues`)
