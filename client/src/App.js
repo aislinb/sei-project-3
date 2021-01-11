@@ -7,6 +7,9 @@ import Home from './components/common/Home'
 import Register from './components/auth/Register'
 import EventIndex from './components/events/EventIndex'
 import EventShow from './components/events/EventShow'
+import VenueIndex from './components/venues/VenueIndex'
+import VenueShow from './components/venues/VenueShow'
+import Login from './components/auth/Login'
 
 function App() {
 
@@ -19,7 +22,10 @@ function App() {
         <Route exact path="/" component={Home}/>
         <Route path="/events/:id" component={EventShow} />
         <Route path="/events" component={EventIndex} />
+        <Route path="/venues/:id" component={VenueShow} />
+        <Route path="/venues" component={VenueIndex} />
         <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
       </Switch>
       <Footer />
     </BrowserRouter>
