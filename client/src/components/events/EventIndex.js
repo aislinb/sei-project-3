@@ -25,7 +25,7 @@ function EventIndex() {
         <ul className="index-list">
           {events.map(item => {
             // De-structured fields from the event object
-            const { _id, name, date, description, eventImage } = item
+            const { _id, name, date, eventImage } = item
             // Convert ISO date into JS format date
             const jsDate = new Date(date)
             // Get the day of the month
@@ -39,8 +39,12 @@ function EventIndex() {
                 <Link to={`/events/${_id}`}>
                   <h3>{name}</h3>
                   <h5>{day}/{month}/{year}</h5>
-                  <h6>{item.venue.name}, {item.venue.city}, {item.venue.country}</h6>
-                  <p>{description}</p>
+                  {item.venue ? 
+                    <h6>{item.venue.name}, {item.venue.city}, {item.venue.country}</h6>
+                    : 
+                    <div>Loading events...</div>
+                  }
+                  {/* <p>{description}</p> */}
                   <figure>
                     <img src={eventImage} alt={name} />
                   </figure>

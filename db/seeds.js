@@ -2,10 +2,10 @@ import mongoose from 'mongoose'
 import connectToDatabase from '../lib/connectToDb.js'
 import Event from '../models/event.js'
 import Venue from '../models/venue.js'
-// // import eventData from './data/events.js'
-// // import venueData from './data/venues.js'
-import eventData from './data/dummyEvents.js'
-import venueData from './data/dummyVenues.js'
+import eventData from './data/events.js'
+import venueData from './data/venues.js'
+// import eventData from './data/dummyEvents.js'
+// import venueData from './data/dummyVenues.js'
 import User from '../models/user.js'
 import userData from './data/users.js'
 
@@ -23,7 +23,12 @@ async function seedDatabase() {
 
     console.log(`🤖 ${users.length} users created`)
 
-    const venues = await Venue.create(venueData)
+    const venueDataWithOwners = venueData.map(venue => {
+      venue.owner = users[0]._id
+      return venue
+    })
+
+    const venues = await Venue.create(venueDataWithOwners)
 
     console.log(`🤖 ${venues.length} venues created`)
 
@@ -33,9 +38,12 @@ async function seedDatabase() {
       return event
     })
 
-    // const eventDataWithVenuesAndOwners
+    const eventDataWithVenuesAndOwners = eventDataWithVenues.map(item => {
+      item.owner = users[0]._id
+      return item
+    })
 
-    const events = await Event.create(eventDataWithVenues)
+    const events = await Event.create(eventDataWithVenuesAndOwners)
 
     console.log(`🤖 ${events.length} events created`)
 

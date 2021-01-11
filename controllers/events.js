@@ -13,7 +13,8 @@ async function eventIndex(_req, res, next) {
 
 async function eventCreate(req, res, next) {
   try {
-    const newEvent = await Event.create(req.body)
+    const newEventData = { ...req.body, owner: req.currentUser._id }
+    const newEvent = await Event.create(newEventData)
     return res.status(201).json(newEvent)
   } catch (err) {
     next(err)
@@ -36,6 +37,7 @@ async function eventUpdate(req, res, next) {
   try {
     const eventToEdit = await Event.findById(id)
     if (!eventToEdit) throw new Error(notFound)
+    if (!eventToEdit.owner.equals(req.currentUser._id)) throw new Error(forbidden)
     Object.assign(eventToEdit, req.body)
     await eventToEdit.save()
     return res.status(202).json(eventToEdit)
@@ -49,6 +51,7 @@ async function eventDelete(req, res, next) {
   try {
     const eventToDelete = await Event.findById(id)
     if (!eventToDelete) throw new Error(notFound)
+    if (!eventToDelete.owner.equals(req.currentUser._id)) throw new Error(forbidden)
     await eventToDelete.remove()
     return res.sendStatus(204)
   } catch (err) {

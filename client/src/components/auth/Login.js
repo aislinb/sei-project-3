@@ -30,37 +30,39 @@ function Login() {
   }
 
   return (
-    <section className="section">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <div className="field">
-          <label className="label">Email</label>
-          <input
-            className="input-field"
-            placeholder="Email"
-            onChange={handleChange}
-            name="email"
-            value={formdata.email}
-            onFocus={handleFocus}
-          />
-        </div>
-        <div className="field">
-          <label className="label">Password</label>
-          <input
-            type="password"
-            className="input-field"
-            placeholder="Password"
-            onChange={handleChange}
-            name="password"
-            value={formdata.password}
-            onFocus={handleFocus}
-          />
-          {error && <p className="login-error">Sorry, your username or password are incorrect</p>}
-        </div>
-        <div className="field">
-          <button type="submit" className="form-submit-button">Log In</button>
-        </div>
-      </form>
-    </section>
+    <main>
+      <section className="section">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="field">
+            <label className="label">Email</label>
+            <input
+              className="input-field"
+              placeholder="Email"
+              onChange={handleChange}
+              name="email"
+              value={formdata.email}
+              onFocus={handleFocus}
+            />
+          </div>
+          <div className="field">
+            <label className="label">Password</label>
+            <input
+              type="password"
+              className="input-field"
+              placeholder="Password"
+              onChange={handleChange}
+              name="password"
+              value={formdata.password}
+              onFocus={handleFocus}
+            />
+            {error && <p className="login-error">Sorry, your username or password are incorrect</p>}
+          </div>
+          <div className="field">
+            <button type="submit" className="form-submit-button">Log In</button>
+          </div>
+        </form>
+      </section>
+    </main>
   )
 }
 

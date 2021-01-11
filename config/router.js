@@ -25,6 +25,18 @@ router.route('/venues/:id')
   .put(secureRoute, venues.update)
   .delete(secureRoute, venues.delete)
 
+router.route('/events/:id/comments')
+  .post(secureRoute, events.commentCreate)
+
+router.route('/events/:id/comments/:commentId')
+  .delete(secureRoute, events.commentDelete)
+
+router.route('/venues/:id/comments')
+  .post(secureRoute, venues.commentCreate)
+
+router.route('/venues/:id/comments/:commentId')
+  .delete(secureRoute, venues.commentDelete)
+
 router.route('/profile')
   .get(secureRoute, users.userProfile)
 

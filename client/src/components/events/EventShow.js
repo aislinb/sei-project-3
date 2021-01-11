@@ -41,10 +41,10 @@ function EventShow() {
           :
           <h6></h6>
         }
-        <p>{description}</p>
         <figure>
           <img src={eventImage} alt={name} />
         </figure>
+        <p>{description}</p>
         
       </section>
       <hr />
