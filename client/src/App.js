@@ -10,6 +10,7 @@ import EventShow from './components/events/EventShow'
 import VenueIndex from './components/venues/VenueIndex'
 import VenueShow from './components/venues/VenueShow'
 import Login from './components/auth/Login'
+import eventsMapbox from './components/events/MapboxEventIndex'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/events" component={EventIndex} />
         <Route path="/venues/:id" component={VenueShow} />
         <Route path="/venues" component={VenueIndex} />
+        <Route path="/map" component={eventsMapbox} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
       </Switch>

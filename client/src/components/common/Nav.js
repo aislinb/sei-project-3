@@ -29,6 +29,9 @@ function Nav() {
           <Link to="/venues">Venues</Link>
         </li>
         <li> 
+          <Link to="/map">Map</Link>
+        </li>
+        <li> 
           <div className="buttons">
             {!isLoggedIn ?
               <>
