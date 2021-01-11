@@ -604,8 +604,8 @@ export default [
     name: 'Cape Town International Jazz Festival', 
     date: '2020-03-30', 
     description: 'With one of the world’s great cities, Cape Town, as a backdrop, the International Jazz Festival proclaims itself “Africa’s grandest gathering”. As well as performers from the jazz world, you can also catch exponents of soul, funk, hip-hop and Afropop, among others.',
-    eventImage: 'https://africanmusicguide.co.uk/wp-content/uploads/2020/01/Cape-Town-Jazz-credit-JS-Photoworx-Courtesy-of-Espafrika-1024x683.jpg',
-    venueRef: 'Cape Town International Convention Centre',
+    eventImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy6rSG2fz1gbjWhv60higPCONm2YcGo4ierQ&usqp=CAU',
+    venueRef: 'Cape Town Stadium',
     // Cape Town, South Africa 
   },
   {

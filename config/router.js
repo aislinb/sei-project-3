@@ -9,7 +9,8 @@ const router = express.Router()
 
 router.route('/events')
   .get(events.index)
-  .post(secureRoute, events.create)
+  .post(events.create)
+  // temp removed 'secureRoute,' from post method
 
 router.route('/events/:id')
   .get(events.show)

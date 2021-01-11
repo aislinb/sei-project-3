@@ -616,7 +616,7 @@ export default [
     city: 'Seoul', 
     country: 'North Korea', 
     continent: 'Asia',
-    venueImage: 'https://www.austinmonitor.com/wp-content/uploads/2019/12/3377390927_fd882ca9ed_o-1.jpg',
+    venueImage: 'https://afar-production.imgix.net/uploads/images/post_images/images/P8AVsTSVBP/original_e30a5e10058c7167cd5e9cdcd65cc706.jpg?1464314013?ixlib=rails-0.3.0&auto=format%2Ccompress&crop=entropy&fit=crop&h=719&q=80&w=954',
     latitude: 37.579617,
     longitude: 126.977041
   },
@@ -625,7 +625,7 @@ export default [
     city: 'Dubai', 
     country: 'UAE', 
     continent: 'Asia',
-    venueImage: 'https://www.austinmonitor.com/wp-content/uploads/2019/12/3377390927_fd882ca9ed_o-1.jpg',
+    venueImage: 'https://www.dubaigolf.com/media/1419/00000000_xx_8200_701634f9c4a2a6a0abbedf43f67c5f72.jpg?crop=0,0.33925925925925909,0.0000000000000006315935428979,0.2703063825172175&cropmode=percentage&width=1366&height=800&rnd=132351691430000000',
     latitude: 25.085315,
     longitude: 55.159838
   },
@@ -634,7 +634,7 @@ export default [
     city: 'Al-Ula County', 
     country: 'Saudi Arabia', 
     continent: 'Asia',
-    venueImage: 'https://www.austinmonitor.com/wp-content/uploads/2019/12/3377390927_fd882ca9ed_o-1.jpg',
+    venueImage: 'https://imagevars.gulfnews.com/2020/02/02/Al-Ula-Saudi--Arabia_17005905aa9_original-ratio.jpg',
     latitude: 34.751227,
     longitude: -92.437724
   },
@@ -643,7 +643,7 @@ export default [
     city: 'Dubai', 
     country: 'UAE', 
     continent: 'Asia',
-    venueImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Gyeonghoeru_%28Royal_Banquet_Hall%29_at_Gyeongbokgung_Palace%2C_Seoul.jpg/1024px-Gyeonghoeru_%28Royal_Banquet_Hall%29_at_Gyeongbokgung_Palace%2C_Seoul.jpg',
+    venueImage: 'https://amp.thenationalnews.com/image/policy:1.640950:1506084664/image/jpeg.jpg?f=16x9&w=1200&$p$f$w=dfa40e8',
     latitude: 25.092297,
     longitude: 55.152868
   },
@@ -652,7 +652,7 @@ export default [
     city: 'Istanbul', 
     country: 'Turkey', 
     continent: 'Asia',
-    venueImage: 'https://www.austinmonitor.com/wp-content/uploads/2019/12/3377390927_fd882ca9ed_o-1.jpg',
+    venueImage: 'https://www.goturkeytourism.com/assets-3/hero/music-festivals-istanbul.jpg',
     latitude: 41.185556,
     longitude: 29.014722
   },
@@ -661,7 +661,7 @@ export default [
     city: 'Eludzidzini', 
     country: 'Swaziland', 
     continent: 'Africa',
-    venueImage: 'https://www.austinmonitor.com/wp-content/uploads/2019/12/3377390927_fd882ca9ed_o-1.jpg',
+    venueImage: 'https://www.dispatch.ug/wp-content/uploads/2018/01/swazi-girls.jpg',
     latitude: -26.416278,
     longitude: 31.172332
   },
@@ -670,16 +670,16 @@ export default [
     city: 'Goma', 
     country: 'Democratic Republic of Congo', 
     continent: 'Africa',
-    venueImage: 'https://www.austinmonitor.com/wp-content/uploads/2019/12/3377390927_fd882ca9ed_o-1.jpg',
+    venueImage: 'https://amanifestival.com/media/cache/facebookShare/imagebundle/gallery/cropped/d704ed1ff19e089811c667ab10fd0eef33c138c3.jpg',
     latitude: -1.678236,
     longitude: 29.236074
   },
   {
-    name: 'Cape Town International Convention Centre',
+    name: 'Cape Town Stadium',
     city: 'Cape Town', 
     country: 'South Africa', 
     continent: 'Africa',
-    venueImage: 'https://www.residentadvisor.net/images/events/flyer/2019/6/tk-0615-1231343-1382944-front.jpg',
+    venueImage: 'https://lh3.googleusercontent.com/Xyc855StzdXBMYfOktV7MX1xiHRZmKUhJHii1aOdar0U3tAlkYGwB3Vf8slLXZQ7SKP1XpchI6OOPc8fKWB_y6um8zF00Cm5ng=s1000',
     latitude: -33.915470,
     longitude: 18.427130
   },
