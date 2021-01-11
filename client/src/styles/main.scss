@@ -1,5 +1,10 @@
 // A signature light grey that can be used throughout the site
 $sig-grey: rgb(235, 235, 235);
+$sig-purple: #48194f;
+$sig-light-purple: rgb(221, 199, 255);
+$sig-very-light-purple: rgb(238, 230, 250);
+$sig-pink: #ffeded;
+
 
 // Universal styles
 body {
@@ -8,6 +13,7 @@ body {
   line-height: 1.5;
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
+  color: $sig-purple;
 
 }
 
@@ -21,7 +27,7 @@ main {
 // Nav Bar
 nav {
   display: flex;
-  background-color: white;
+  background-color: $sig-purple;
   box-shadow: 0 0 7px 3px rgba(150, 150, 150, 0.2);
   align-items: center;
   justify-content: space-around;
@@ -43,6 +49,18 @@ nav {
     margin-bottom: 3px;
   }
 
+  a {
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  a:hover {
+    background-color: $sig-light-purple;
+  }
+
   ul {
     display: flex;
     justify-content: space-between;
@@ -50,23 +68,12 @@ nav {
     width: 70%;
     align-items: center;
 
-    a {
-      text-decoration: none;
-      color: black;
-      padding: 5px;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-
-    a:hover {
-      background-color: $sig-grey;
-    }
   }
 }
 
 // Home page
 .hero {
-  background-image: url('../images/burning-man.jpg');
+  background-image: url('../images/astronaut.jpeg');
   background-size: cover;
   background-position: center;
   height: 50vh;
@@ -76,6 +83,7 @@ nav {
   align-items: flex-end;
   margin: 0;
   font-size: 2rem;
+  //text-shadow: 1px 5px 1px$sig-purple;
 }
 
 // Events index
@@ -88,7 +96,9 @@ nav {
   justify-content: space-between;
 
   li {
-    border: 1px solid $sig-grey;
+    color: rgb(238, 230, 250);
+    background: linear-gradient(to bottom right, white, rgb(221, 199, 255),white, rgb(238, 230, 250));
+    border: 1px solid $sig-purple;
     padding: 15px;
     border-radius: 7px;
     margin-bottom: 15px;
@@ -100,6 +110,7 @@ nav {
 
     h3 {
       font-size: 1.5rem;
+      color: $sig-purple;
     }
 
     h5 {
@@ -119,6 +130,8 @@ nav {
     img {
       width: 100%;
       height: auto;
+      border-radius: 7px;
+      border: 2px solid black;
     }
   }
 
