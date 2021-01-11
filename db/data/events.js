@@ -335,6 +335,7 @@ export default [
     eventImage: 'https://s.hdnux.com/photos/01/05/40/04/18219291/3/1600x0.jpg',
     venueRef: 'Black Rock City',
     // Reno, NV
+  },
   {
     name: 'My Chemical Romance', 
     date: '2020-06-16', 

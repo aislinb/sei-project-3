@@ -14,25 +14,48 @@ body {
 main {
   min-height: 80vh;
   width: 90vw;
-  margin: 0 auto;
+  margin: 4rem auto 0 auto;
 
 }
 
 // Nav Bar
 nav {
   display: flex;
+  background-color: white;
+  box-shadow: 0 0 7px 3px rgba(150, 150, 150, 0.2);
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  .logo {
+    display: flex;
+  }
+
+  .logo-img {
+    font-size: 2rem;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 3px;
+  }
 
   ul {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
     width: 70%;
+    align-items: center;
 
     a {
       text-decoration: none;
       color: black;
       padding: 5px;
       border-radius: 5px;
+      font-weight: bold;
     }
 
     a:hover {
@@ -46,7 +69,7 @@ nav {
   background-image: url('../images/burning-man.jpg');
   background-size: cover;
   background-position: center;
-  height: 40vh;
+  height: 50vh;
   color: white;
   display: flex;
   justify-content: center;
@@ -63,7 +86,6 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  min-width: 600px;
 
   li {
     border: 1px solid $sig-grey;
@@ -106,8 +128,33 @@ nav {
   }
 }
 
+@media only screen and (max-width: 800px) {
+  .index-list li {
+    width: 44%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .index-list li {
+    width: 100%;
+  }
+}
+
 // Event Show
 .event-detail {
+
+  h1 {
+    text-align: center;
+  }
+
+  h5 {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  h6 {
+    font-size: 1rem;
+    text-align: center;
+  }
 
   figure {
     max-width: 1000px;
