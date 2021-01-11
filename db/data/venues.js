@@ -679,7 +679,7 @@ export default [
     city: 'Cape Town', 
     country: 'South Africa', 
     continent: 'Africa',
-    venueImage: 'https://lh3.googleusercontent.com/Xyc855StzdXBMYfOktV7MX1xiHRZmKUhJHii1aOdar0U3tAlkYGwB3Vf8slLXZQ7SKP1XpchI6OOPc8fKWB_y6um8zF00Cm5ng=s1000',
+    venueImage: 'https://upload.wikimedia.org/wikipedia/en/7/7c/Cape_Town_Stadium_Aerial_View.jpg',
     latitude: -33.915470,
     longitude: 18.427130
   },
