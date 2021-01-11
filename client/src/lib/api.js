@@ -1,4 +1,11 @@
 import axios from 'axios'
+import { getToken } from './auth'
+
+function headers() {
+  return {
+    headers: { Authorization: `Bearer ${getToken()}` }
+  }
+}
 
 const baseUrl = '/api'
 
@@ -12,7 +19,7 @@ export function getSingleEvent(id) {
 }
 
 export function createEvent(formdata) {
-  return axios.post(`${baseUrl}/events`, formdata)
+  return axios.post(`${baseUrl}/events`, formdata, headers())
 }
 
 // * Venues requests:
@@ -22,6 +29,10 @@ export function getAllVenues() {
 
 export function getSingleVenue(id) {
   return axios.get(`${baseUrl}/venues/${id}`)
+}
+
+export function createVenue(formdata) {
+  return axios.post(`${baseUrl}/venues`, formdata, headers())
 }
 
 // * Auth Requests

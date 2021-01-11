@@ -18,6 +18,7 @@ function getPayload() {
   return JSON.parse(atob(parts[1]))
 }
 
+
 export function isAuthenticated() {
   const payload = getPayload()
   if (!payload) return false
