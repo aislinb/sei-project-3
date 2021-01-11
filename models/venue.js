@@ -15,6 +15,8 @@ const venueSchema = new mongoose.Schema({
   country: { type: String, required: true }, 
   continent: { type: String, required: true },
   venueImage: { type: String, required: true },
+  latitude: { type: Number, required: true },
+  longitude: { type: Number, required: true },
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   // the user model is register as User so we must ref User here. Relationship now established.
   comments: [commentSchema]
