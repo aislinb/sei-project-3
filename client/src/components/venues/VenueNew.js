@@ -1,7 +1,7 @@
 import React from 'react'
-import EventForm from './EventForm'
+import VenueForm from './VenueForm'
 import useForm from '../../utils/useForm'
-import { createEvent } from '../../lib/api'
+import { createVenue } from '../../lib/api'
 import { useHistory } from 'react-router-dom'
 
 
@@ -9,19 +9,17 @@ function eventNew() {
   const history = useHistory()
   const { formdata, handleChange } = useForm({
     name: '', 
-    // Get ISO formatted dated from user selection. need to restrict date to only 2020
-    date: '0000-00-00', 
-    description: '',
-    eventImage: '',
-    // ACTUAL venue OBJECT will go here, found by its mongo id
-    venue: {}
+    city: '', 
+    country: '', 
+    continent: '', 
+    venueImage: ''
   })
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await createEvent(formdata)
-      history.push(`/events/${data._id}`)
+      const { data } = await createVenue(formdata)
+      history.push(`/venues/${data._id}`)
       // un-comment below to test data you are submitting
       //window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
@@ -32,8 +30,8 @@ function eventNew() {
 
   return (
     <main>
-      <h1>Add a 2020 Event</h1>
-      <EventForm 
+      <h1>Add a New Venue</h1>
+      <VenueForm 
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         formdata={formdata}

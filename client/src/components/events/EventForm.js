@@ -16,9 +16,8 @@ function EventForm({ handleChange, handleSubmit, formdata }) {
     getData()
   }, [])
 
-  
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="add-form" onSubmit={handleSubmit}>
       <label className="block-form">Event Name</label>
       <input 
         className="block-form"
@@ -37,6 +36,10 @@ function EventForm({ handleChange, handleSubmit, formdata }) {
         value={formdata.date}
       />
       <label className="block-form">Event Venue</label>
+      <div className="side-note">
+        <p>Don&apos;t see your venue on this list?</p>
+        <button>Add Venue</button>
+      </div>
       <select className="block-form"
         onChange={handleChange} 
         name="venue"
@@ -46,7 +49,7 @@ function EventForm({ handleChange, handleSubmit, formdata }) {
         {venues ?
           venues.map(venue => {
             return (
-              <option key={venue._id} value={venue}>{venue.name}</option>
+              <option key={venue._id} value={venue._id}>{venue.name}</option>
             )
           })
           :
