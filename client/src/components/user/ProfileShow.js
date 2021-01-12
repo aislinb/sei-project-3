@@ -60,6 +60,10 @@ function profileShow() {
               <p>{user.userBio}</p>
             }
           </div>
+          <div>
+            <h4>Events you have rated:</h4>
+            <p>{user.events}</p>
+          </div>
           <div className="field">
             <button type="submit" className="form-submit-button">
               <Link to={'/profile/update-profile'} className="edit-button">Edit my profile</Link>
