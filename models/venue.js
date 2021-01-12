@@ -25,7 +25,7 @@ const venueSchema = new mongoose.Schema({
 venueSchema.virtual('avgRating').get(function() {
   if (!this.comments.length) return 'Not rated yet'
   const avg = this.comments.reduce((sum, curr) => {
-    return sum = curr.rating
+    return sum + curr.rating
   }, 0)
   return Math.round(avg / this.comments.length)
 })

@@ -13,7 +13,7 @@ function Home() {
         const { data } = await getAllEvents()
         const filteredEvents = data.filter(event => {
           const topThree = event.avgRating > 4
-          return topThree.slice[0, 2]
+          return topThree
         })
         console.log(data)
         setEvents(filteredEvents)
@@ -47,9 +47,9 @@ function Home() {
           <h2>Highest Rated Events</h2>
           {events ?
             <ul className="index-list">
-              <li>Glastonbury Festival</li>
+              {/* <li>Glastonbury Festival</li>
               <li>Tokyo Summer Olympics 2020</li>
-              <li>Burning Man</li>
+              <li>Burning Man</li> */}
               {events.map(item => {
                 // De-structured fields from the event object
                 const { _id, name, date, eventImage } = item
