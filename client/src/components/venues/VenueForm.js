@@ -4,6 +4,7 @@ function VenueForm({ handleChange, handleSubmit, formdata }) {
 
   return (
     <form className="add-form" onSubmit={handleSubmit}>
+      <h1>Add a New Venue</h1>
       <label className="block-form">Venue Name</label>
       <input 
         className="block-form"
@@ -17,7 +18,7 @@ function VenueForm({ handleChange, handleSubmit, formdata }) {
       <input 
         className="block-form"
         type="text" 
-        name="name"  
+        name="city"  
         placeholder="Venue City" 
         onChange={handleChange} 
         value={formdata.city}
@@ -26,7 +27,7 @@ function VenueForm({ handleChange, handleSubmit, formdata }) {
       <input 
         className="block-form"
         type="text" 
-        name="name"  
+        name="country"  
         placeholder="Venue Country" 
         onChange={handleChange} 
         value={formdata.country}
@@ -35,7 +36,7 @@ function VenueForm({ handleChange, handleSubmit, formdata }) {
       <input 
         className="block-form"
         type="text" 
-        name="name"  
+        name="continent"  
         placeholder="Venue Continent" 
         onChange={handleChange} 
         value={formdata.continent}
@@ -47,9 +48,27 @@ function VenueForm({ handleChange, handleSubmit, formdata }) {
         name="venueImage" 
         placeholder="E.g. https://www.wembleystadium.com/-/media/Project/WembleyStadium/venue-hire/wembley-stadium-seating_800.ashx" 
         onChange={handleChange} 
-        value={formdata.image}
+        value={formdata.venueImage}
       />
-      <button type="submit">Submit</button>
+      <label className="block-form">Latitude</label>
+      <input 
+        className="block-form"
+        type="text" 
+        name="latitude" 
+        placeholder="E.g. 51.5014" 
+        onChange={handleChange} 
+        value={formdata.latitude}
+      />
+      <label className="block-form">Longitude</label>
+      <input 
+        className="block-form"
+        type="text" 
+        name="longitude" 
+        placeholder="E.g. 0.1419" 
+        onChange={handleChange} 
+        value={formdata.longitude}
+      />
+      <button type="submit" className="submit-btn">Submit</button>
     </form>
   )
 }

@@ -30,7 +30,6 @@ function eventNew() {
 
   return (
     <main>
-      <h1>Add a New Venue</h1>
       <VenueForm 
         handleChange={handleChange}
         handleSubmit={handleSubmit}

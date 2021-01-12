@@ -1,5 +1,6 @@
 import React from 'react'
 import { getAllVenues } from '../../lib/api'
+import { Link } from 'react-router-dom'
 
 function EventForm({ handleChange, handleSubmit, formdata }) {
   const [venues, setVenues] = React.useState([])
@@ -18,6 +19,7 @@ function EventForm({ handleChange, handleSubmit, formdata }) {
 
   return (
     <form className="add-form" onSubmit={handleSubmit}>
+      <h1>Add a 2020 Event</h1>
       <label className="block-form">Event Name</label>
       <input 
         className="block-form"
@@ -35,11 +37,16 @@ function EventForm({ handleChange, handleSubmit, formdata }) {
         onChange={handleChange} 
         value={formdata.date}
       />
-      <label className="block-form">Event Venue</label>
       <div className="side-note">
-        <p>Don&apos;t see your venue on this list?</p>
-        <button>Add Venue</button>
+        <label className="block-form">Event Venue</label>
+        <div className="index-header venue-not-on-list">
+          <p>Don&apos;t see your venue on this list?</p>
+          <button>
+            <Link to="/venues/new">Add Venue</Link>
+          </button>
+        </div>
       </div>
+      
       <select className="block-form"
         onChange={handleChange} 
         name="venue"
@@ -74,7 +81,7 @@ function EventForm({ handleChange, handleSubmit, formdata }) {
         onChange={handleChange} 
         value={formdata.image}
       />
-      <button type="submit">Submit</button>
+      <button type="submit" className="submit-btn">Submit</button>
     </form>
   )
 }

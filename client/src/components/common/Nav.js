@@ -10,6 +10,7 @@ function Nav() {
   const handleLogout = () => {
     logout()
     history.push('/') // logs out & returns user to homepage
+    window.location.reload()
   }
 
   return (
