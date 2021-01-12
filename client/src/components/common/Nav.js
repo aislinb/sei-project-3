@@ -45,10 +45,10 @@ function Nav() {
               </>
               :
               <>
-                <Link className="nav-button" to="/profile">
-                        My Profile
-                </Link>
-                <button className="nav-button" onClick={handleLogout}>Log Out </button>
+                <button className="nav-button">
+                  <Link to="/profile">My Profile</Link>
+                </button>
+                <button className="nav-button" onClick={handleLogout}>Log Out</button>
               </>
             }
           </div>

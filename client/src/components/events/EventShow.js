@@ -17,6 +17,12 @@ function EventShow() {
     owner: {}
   })
 
+  const stars = []
+
+  for (let i = 0; i < event.avgRating; i++) {
+    stars.push('★')
+  }
+
   const history = useHistory()
   const { id } = useParams()
 
@@ -58,8 +64,8 @@ function EventShow() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await createEventComment(formdata, event._id)
-      console.log(data)
+      await createEventComment(formdata, event._id)
+      window.location.reload()
       // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
       console.log(err)
@@ -90,7 +96,7 @@ function EventShow() {
       </section>
       <hr />
 
-      <section className="reviews">
+      <section className="add-review">
         <h3>Review {event.name}</h3>
         {isLoggedIn ? 
           <form onSubmit={handleSubmit}>
@@ -111,16 +117,6 @@ function EventShow() {
                 <label htmlFor="star1" title="text">1</label>
               </div>
             </section>
-            <br />
-            <br />
-            <section className="avgRating">
-              <div>
-                <label>Average Rating:</label>
-                <div>{event.avgRating}</div>
-              </div>
-            </section>
-            <br />
-            <br />
             <section className="text-review">
               <div>
                 <label>Write Your Review</label>
@@ -139,23 +135,41 @@ function EventShow() {
           <h2><Link to='/register'>Register</Link> or <Link to='/login'>Login</Link> to leave a review!</h2>
                 
         }
-        {event && event.comments ?
-          <div>
-            <h1>Reviews:</h1>
-            {event.comments.map(comment => {
-              return (
-                <div key={comment._id}>
-                  <h3>{comment.owner.username}</h3>
-                  <h5>{comment.text}</h5>
-                  <h5>{comment.rating} ⭐️</h5>
-                </div>
-              )
+        <div className="reviews-and-ratings-wrapper">
+          <section className="reviews">
+            {event && event.comments && event.comments.length > 0 ?
+              <div>
+                <h3>Reviews:</h3>
+                {event.comments.map(comment => {
+                  console.log(comment)
+                  return (
+                    <div key={comment._id} className="review">
+                      <h5>{comment.owner.username}</h5>
+                      <p><small>{comment.updatedAt}</small></p>
+                      <p>{comment.text}</p>
+                      <h5>{comment.rating} ⭐️</h5>
+                    </div>
+                  )
+                }
+                )}
+              </div>
+              :
+              <div>
+                <h3>Reviews:</h3>
+                <p>Be the first to review this event!</p>
+              </div>
             }
-            )}
-          </div>
-          :
-          <h6>No comments</h6>
-        }
+          </section>
+          
+          <section className="avgRating">
+            <h3>Average Rating:</h3>
+            {stars.length > 0 ?
+              <div>{stars.map(star => star)}</div>
+              :
+              <div>Be the first to rate this event!</div>
+            }
+          </section>
+        </div>
       </section>
     </main>
     

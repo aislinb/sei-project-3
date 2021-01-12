@@ -51,8 +51,8 @@ function venueShow() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await createVenueComment(formdata, venue._id)
-      console.log(data)
+      await createVenueComment(formdata, venue._id)
+      window.location.reload()
       // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
       console.log(err)
@@ -101,7 +101,7 @@ function venueShow() {
             <section className="avgRating">
               <div>
                 <label>Average Rating:</label>
-                <div>{event.avgRating}</div>
+                <div>{venue.avgRating}</div>
               </div>
             </section>
             <br />
