@@ -34,6 +34,7 @@ nav {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 2;
 
   .logo {
     display: flex;
@@ -72,11 +73,23 @@ nav {
 }
 
 // Home page
+// .hero {
+//   background-image: url('../images/astronaut.jpeg');
+//   background-size: cover;
+//   background-position: center;
+//   height: 50vh;
+//   color: white;
+//   display: flex;
+//   justify-content: center;
+//   align-items: flex-end;
+//   margin: 0;
+//   font-size: 2rem;
+//   //text-shadow: 1px 5px 1px$sig-purple;
+// }
+
+// * hugo edit
 .hero {
-  background-image: url('../images/astronaut.jpeg');
   background-size: cover;
-  background-position: center;
-  height: 50vh;
   color: white;
   display: flex;
   justify-content: center;
