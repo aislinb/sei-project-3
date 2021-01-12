@@ -1,15 +1,19 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { deleteEvent, getSingleEvent, createComment } from '../../lib/api'
+import { deleteEvent, getSingleEvent, createEventComment } from '../../lib/api'
 import { isOwner } from '../../lib/auth'
 import useForm from '../../utils/useForm'
+import { isAuthenticated } from '../../lib/auth'
+import { Link } from 'react-router-dom'
 
 function EventShow() {
   const [event, setEvent] = React.useState([])
 
+  const isLoggedIn = isAuthenticated()
+
   const { formdata, handleChange } = useForm({
     text: '', 
-    rating: 1,
+    rating: '',
     owner: {}
   })
 
@@ -27,7 +31,7 @@ function EventShow() {
       }
     }
     getData()
-  }, [id, event.owner])
+  }, [id])
 
   // De-structured fields from the event object
   const { name, date, description, eventImage } = event
@@ -51,22 +55,15 @@ function EventShow() {
   }
 
   // * Submit Reviews
-  const handleSubmit = async (event) => {
-    event.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     try {
-      const { data } = await createComment(formdata)
-      alert(data)
+      const { data } = await createEventComment(formdata, event._id)
+      console.log(data)
+      // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
       console.log(err)
     }
-  }
-
-  function handleRating(e) {
-    e.preventDefault()
-    const rating = e.target.value
-    console.log(rating)
-    return rating
-    // event.preventDefault()
   }
 
   return (
@@ -79,6 +76,7 @@ function EventShow() {
           :
           <h6></h6>
         }
+        
         <figure>
           <img src={eventImage} alt={name} />
         </figure>
@@ -94,46 +92,70 @@ function EventShow() {
 
       <section className="reviews">
         <h3>Review {event.name}</h3>
-        <form onSubmit={handleSubmit}>
-          <section className="rate-event">
-            <div>
-              <label>Rate Event (1 to 5) 💉 :</label>
-            </div>
-            <div className="rate">
-              <input onClick={handleRating} type="radio" id="star5" name="rate" value="5" />
-              <label htmlFor="star5" title="text">5</label>
-              <input onClick={handleRating} type="radio" id="star4" name="rate" value="4" />
-              <label htmlFor="star4" title="text">4</label>
-              <input onClick={handleRating} type="radio" id="star3" name="rate" value="3" />
-              <label htmlFor="star3" title="text">3</label>
-              <input onClick={handleRating} type="radio" id="star2" name="rate" value="2" />
-              <label htmlFor="star2" title="text">2</label>
-              <input onClick={handleRating} type="radio" id="star1" name="rate" value="1" />
-              <label htmlFor="star1" title="text">1</label>
-            </div>
-          </section>
-          <br />
-          <br />
-          <section className="avgRating">
-            <div>
-              <label>Average Rating:</label>
-              <div>{event.avgRating}</div>
-            </div>
-          </section>
-          <br />
-          <br />
-          <section className="text-review">
-            <div>
-              <label>Write Your Review</label>
-            </div>
-            <textarea 
-              placeholder="Tell us what you thought..."
-              onChange={handleChange}
-              value={formdata.text}
-            />
-            <button type="submit" className="submit-btn">Submit</button>
-          </section>
-        </form>
+        {isLoggedIn ? 
+          <form onSubmit={handleSubmit}>
+            <section className="rate-event">
+              <div>
+                <label>Rate Event (1 to 5) 💉 :</label>
+              </div>
+              <div className="rate">
+                <input onClick={handleChange} type="radio" id="star5" name="rating" value="5" />
+                <label htmlFor="star5" title="text">5</label>
+                <input onClick={handleChange} type="radio" id="star4" name="rating" value="4" />
+                <label htmlFor="star4" title="text">4</label>
+                <input onClick={handleChange} type="radio" id="star3" name="rating" value="3" />
+                <label htmlFor="star3" title="text">3</label>
+                <input onClick={handleChange} type="radio" id="star2" name="rating" value="2" />
+                <label htmlFor="star2" title="text">2</label>
+                <input onClick={handleChange} type="radio" id="star1" name="rating" value="1" />
+                <label htmlFor="star1" title="text">1</label>
+              </div>
+            </section>
+            <br />
+            <br />
+            <section className="avgRating">
+              <div>
+                <label>Average Rating:</label>
+                <div>{event.avgRating}</div>
+              </div>
+            </section>
+            <br />
+            <br />
+            <section className="text-review">
+              <div>
+                <label>Write Your Review</label>
+              </div>
+              <textarea 
+                name="text"
+                placeholder="Tell us what you thought..."
+                onChange={handleChange}
+                value={formdata.text}
+              />
+              <button type="submit" className="submit-btn">Submit</button>
+            </section>
+          </form>
+          : 
+          
+          <h2><Link to='/register'>Register</Link> or <Link to='/login'>Login</Link> to leave a review!</h2>
+                
+        }
+        {event && event.comments ?
+          <div>
+            <h1>Reviews:</h1>
+            {event.comments.map(comment => {
+              return (
+                <div key={comment._id}>
+                  <h3>{comment.owner.username}</h3>
+                  <h5>{comment.text}</h5>
+                  <h5>{comment.rating} ⭐️</h5>
+                </div>
+              )
+            }
+            )}
+          </div>
+          :
+          <h6>No comments</h6>
+        }
       </section>
     </main>
     

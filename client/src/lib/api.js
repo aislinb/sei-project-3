@@ -52,8 +52,12 @@ export function getSingleComment(id) {
   return axios.get(`${baseUrl}/comments/${id}`)
 }
 
-export function createComment(formdata) {
-  return axios.post(`${baseUrl}/comments`, formdata, headers())
+export function createEventComment(formdata, id) {
+  return axios.post(`${baseUrl}/events/${id}/comments`, formdata, headers())
+}
+
+export function createVenueComment(formdata, id) {
+  return axios.post(`${baseUrl}/venues/${id}/comments`, formdata, headers())
 }
 
 export function deleteComment(id) {

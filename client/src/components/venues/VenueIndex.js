@@ -36,6 +36,9 @@ function venueIndex() {
       <div className="index-header">
         <h1>Browse Venues</h1>
         <button>
+          <Link to="/map">Map View</Link>
+        </button>
+        <button>
           <Link to="/venues/new">Add Venue</Link>
         </button>
       </div>

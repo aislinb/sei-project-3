@@ -37,6 +37,9 @@ function EventIndex() {
       <div className="index-header">
         <h1>Highlights of 2020</h1>
         <button>
+          <Link to="/map">Map View</Link>
+        </button>
+        <button>
           <Link to="/events/new">Add Event</Link>
         </button>
       </div>
