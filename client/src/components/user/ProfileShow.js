@@ -6,7 +6,7 @@ import { showUserProfile } from '../../lib/api'
 
 function profileShow() {
   const isLoggedIn = isAuthenticated()
-  const [user, setUser] = React.useState(null)
+  const [user, setUser] = React.useState('')
 
   const { id } = useParams()
 
@@ -23,11 +23,15 @@ function profileShow() {
     getData()
   }, [id])
   console.log(user)
+
+  // // De-structured fields from the event object
+  // const { username, email } = user
+
   return (
     <main>
       {isLoggedIn ?
         <>
-          <h1>Welcome, {id}</h1>
+          <h1>Welcome, {user.username}</h1>
           <div>
             <h1>this is the users profile page when they are logged in</h1>
             <form className="profile-page-form">
@@ -40,7 +44,7 @@ function profileShow() {
                 />
               </div>
               <div className="field">
-                <label className="label">Email</label>
+                <label className="label">Email: {user.email}</label>
                 <input
                   className="input-field"
                   placeholder="Email"

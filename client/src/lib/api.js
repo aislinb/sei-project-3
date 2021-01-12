@@ -45,6 +45,6 @@ export function loginUser(formdata) {
   return axios.post(`${baseUrl}/login`, formdata)
 }
 
-export function showUserProfile(id) {
-  return axios.get(`${baseUrl}/profile/${id}`)
+export function showUserProfile() {
+  return axios.get(`${baseUrl}/profile/`, headers())
 }
