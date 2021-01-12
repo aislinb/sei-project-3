@@ -53,6 +53,7 @@ function EventForm({ handleChange, handleSubmit, formdata }) {
         value={formdata.venue}
       //Need to add a function onselect to add the entire venue object to the event object
       >
+        <option>Select a venue</option>
         {venues ?
           venues.map(venue => {
             return (
