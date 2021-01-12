@@ -1,12 +1,11 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { isAuthenticated } from '../../lib/auth'
 import { showUserProfile } from '../../lib/api'
 
 function profileShow() {
   const isLoggedIn = isAuthenticated()
-  const [user, setUser] = React.useState(null)
+  const [user, setUser] = React.useState('')
 
   const { id } = useParams()
 
@@ -23,55 +22,59 @@ function profileShow() {
     getData()
   }, [id])
   console.log(user)
+
+  // // De-structured fields from the event object
+  // const { username, email } = user
+
   return (
     <main>
       {isLoggedIn ?
         <>
-          <h1>Welcome, {id}</h1>
+          <h1>Welcome, {user.username}!</h1>
           <div>
-            <h1>this is the users profile page when they are logged in</h1>
-            <form className="profile-page-form">
-              <div className="field">
-                <label className="label">Username</label>
-                <input
-                  className="input-field"
-                  placeholder="Username"
-                  name="username"
-                />
-              </div>
-              <div className="field">
-                <label className="label">Email</label>
-                <input
-                  className="input-field"
-                  placeholder="Email"
-                  name="email"
-                />
-              </div>
-              <div className="field">
-                <label className="label">Password</label>
-                <input
-                  type="password"
-                  className="input-field"
-                  placeholder="Password"
-                  name="password"
-                />
-              </div>
-              <div className="field">
-                <label className="label">Password Confirmation</label>
-                <div className="control">
-                  <input
-                    type="password"
-                    placeholder="Password Confirmation"
-                    name="passwordConfirmation"
-                  />
-                </div>
-              </div>
-            </form>
+            <h1>Please click below to update your details:</h1>
+          </div>
+          <div>
+            <h4>Username:</h4>
+            <span>{user.username}</span>
+          </div>
+          <div>
+            <h4>Email address:</h4>
+            <p>{user.email}</p>
+          </div>
+          <div>
+            <h4>Profile Picture:</h4>
+            {!user.userImage ? 
+              <div>You have not added a profile image yet!</div>
+              :
+              <figure className="image">
+                <img src={user.userImage} alt={user.name}/>
+              </figure>
+            }
+          </div>
+          <div>
+            <h4>About Me:</h4>
+            {!user.userBio ? 
+              <div>You have not added anything about yourself yet!</div>
+              :
+              <p>{user.userBio}</p>
+            }
+          </div>
+          <div>
+            <h4>Events you have rated:</h4>
+            <p>{user.events}</p>
+          </div>
+          <div className="field">
+            <button type="submit" className="form-submit-button">
+              <Link to={'/profile/update-profile'} className="edit-button">Edit my profile</Link>
+            </button>
           </div>
         </>
         :
-        <div>
-        You must visit the <Link to="/login">Log in</Link> page first
+        <div className="submit-btn">
+          <button type="submit" className="form-submit-button">
+          Please <Link to="/login">Log in</Link> to access this page
+          </button>
         </div>
       }
     </main>

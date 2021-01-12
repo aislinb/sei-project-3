@@ -89,7 +89,7 @@ function EventShow() {
         }
       </section>
       <hr />
-      
+
       <section className="reviews">
         <h3>Review {event.name}</h3>
         {isLoggedIn ? 
