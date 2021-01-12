@@ -22,6 +22,12 @@ function venueIndex() {
       <h2> - Map of venues will go here - </h2>
       <h3> - Add filter buttons to browse by continent/country here -</h3>
       <h3> Browse an event that took place at your chosen venue: </h3>
+      <div className="index-header">
+        <h1>Browse Venues</h1>
+        <button>
+          <Link to="/venues/new">Add Venue</Link>
+        </button>
+      </div>
       {venues ?
         <ul className="index-list">
           {venues.map(item => {
