@@ -90,7 +90,6 @@ function EventShow() {
         }
       </section>
       <hr />
-<<<<<<< HEAD
       <section>
         <h3>Review This Event</h3>
         <form onSubmit={handleSubmit}>
@@ -117,7 +116,6 @@ function EventShow() {
             value={formdata.text}
           />
           <button type="submit" className="submit-btn">Submit</button>
-=======
       <section className="reviews">
         <h3>Review {event.name}</h3>
         <form>
@@ -156,7 +154,6 @@ function EventShow() {
               <textarea placeholder="Tell us what you thought..."/>
             </div>
           </section>
->>>>>>> development
         </form>
       </section>
     </main>
