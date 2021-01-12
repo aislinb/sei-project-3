@@ -29,7 +29,6 @@ function Home() {
       <main>
         <section className="hero">
           <HeroCarousel interval={3000}>
-            {/* <h1>2020 Reimagined</h1> */}
             <img
               src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi1.wp.com%2Fwww.adobomagazine.com%2Fwp-content%2Fuploads%2F2020%2F01%2Fcoachella-hero2.jpg%3Ffit%3D1440%252C757%26ssl%3D1"
 
@@ -42,13 +41,15 @@ function Home() {
             />
           </HeroCarousel>
         </section>
-      </main>
-      <main>
+        <h1>2020 Reimagined</h1>
         <p>Reimagining the events we missed in 2020 as if COVID were non-existent. In an alternate reality, thousands of people attended events across the world in 2020 living their best lives. Let us know what your 2020 self thought as you partied, supported and travelled to these incredible events.</p>
         <div>
           <h2>Highest Rated Events</h2>
           {events ?
             <ul className="index-list">
+              <li>Glastonbury Festival</li>
+              <li>Tokyo Summer Olympics 2020</li>
+              <li>Burning Man</li>
               {events.map(item => {
                 // De-structured fields from the event object
                 const { _id, name, date, eventImage } = item
