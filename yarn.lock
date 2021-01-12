@@ -1306,6 +1306,11 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-hero-carousel@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-hero-carousel/-/react-hero-carousel-1.0.3.tgz#8288c065938a7c099579546f3b52c0e44f5f4aee"
+  integrity sha512-QukDtxoFvkszYA4MAv11lCSJehdKf4/Yz1/WgAg7P79hIp9DeAv/CoZhu8nltEE1rSJGAzU92LS1hShevxJvCg==
+
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"

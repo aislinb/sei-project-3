@@ -17,6 +17,24 @@ function EventIndex() {
     getData()
   }, [])
 
+<<<<<<< HEAD
+=======
+  // sorting events into alphabetical order
+  function compare( a, b ) {
+    if ( a.name < b.name ){
+      return -1
+    }
+    if ( a.name > b.name ){
+      return 1
+    }
+    return 0
+  }
+  events.sort( compare )
+  
+  
+
+
+>>>>>>> development
   return (
     <main>
       <div className="index-header">
