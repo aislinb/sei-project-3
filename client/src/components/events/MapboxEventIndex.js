@@ -35,11 +35,11 @@ function eventsMapbox() {
           {viewport ? 
             <ReactMapGL
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-              height="80%"
-              width="80%"
+              height="100%"
+              width="100%"
               mapStyle='mapbox://styles/mapbox/streets-v11'
               onViewportChange={viewport => setViewport(viewport)}
-              
+              {...viewport}
             >
               {events ?
                 events.map(event => (
@@ -47,7 +47,6 @@ function eventsMapbox() {
                     key={event.id}
                     latitude={event.venue.latitude}
                     longitude={event.venue.longitude}
-                    {...viewport}
                   >
                     {/* <img src={event.eventImage} alt={event.name}/> */}
                     🏟
