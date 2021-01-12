@@ -29,3 +29,7 @@ export function registerUser(formdata) {
 export function loginUser(formdata) {
   return axios.post(`${baseUrl}/login`, formdata)
 }
+
+export function showUserProfile(id) {
+  return axios.get(`${baseUrl}/profile/${id}`)
+}

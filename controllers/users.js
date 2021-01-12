@@ -11,6 +11,20 @@ async function userProfile(req, res, next){
   }
 }
 
+async function userProfileShow(req, res, next) {
+  const { id } = req.params
+  try {
+    console.log(id)
+    const user = await User.findById(req.currentUser._id)
+    if (!user) throw new Error(notFound)
+    return res.status(200).json(user)
+    
+  } catch (err) {
+    next(err)
+  }
+}
+
 export default {
-  userProfile
+  userProfile,
+  userProfileShow
 }

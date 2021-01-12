@@ -9,6 +9,7 @@ import EventIndex from './components/events/EventIndex'
 import EventShow from './components/events/EventShow'
 import VenueIndex from './components/venues/VenueIndex'
 import VenueShow from './components/venues/VenueShow'
+import ProfileShow from './components/user/ProfileShow'
 import Login from './components/auth/Login'
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/venues" component={VenueIndex} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+        <Route path="/profile" component={ProfileShow} />
       </Switch>
       <Footer />
     </BrowserRouter>
