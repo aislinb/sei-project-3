@@ -1,10 +1,12 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
-import { getSingleVenue } from '../../lib/api'
+import { useParams, useHistory } from 'react-router-dom'
+import { deleteVenue, getSingleVenue } from '../../lib/api'
+import { isOwner } from '../../lib/auth'
 
 function venueShow() {
   const [venue, setVenue] = React.useState([])
-
+  
+  const history = useHistory()
   const { id } = useParams()
 
   React.useEffect(() => {
@@ -25,6 +27,16 @@ function venueShow() {
 
   // AB - also having issues with adding events taking place at the venue
 
+  // ! DELETE Function
+  const handleDelete = async () => {
+    try {
+      await deleteVenue(id)
+      history.push('/venues')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <main>
       <section className="event-detail">
@@ -33,7 +45,12 @@ function venueShow() {
         <figure>
           <img src={venueImage} alt={name} />
         </figure>
-        
+        {venue.owner && venue ?
+          isOwner(venue.owner._id) && 
+          <button className="delete-btn" onClick={handleDelete}>Delete</button>
+          :
+          <div>Loading...</div>
+        }
       </section>
       <hr />
       <section>

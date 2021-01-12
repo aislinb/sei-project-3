@@ -1,10 +1,19 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
-import { getSingleEvent } from '../../lib/api'
+import { useParams, useHistory } from 'react-router-dom'
+import { deleteEvent, getSingleEvent, createComment } from '../../lib/api'
+import { isOwner } from '../../lib/auth'
+import useForm from '../../utils/useForm'
 
 function EventShow() {
   const [event, setEvent] = React.useState([])
 
+  const { formdata, handleChange } = useForm({
+    text: '', 
+    rating: 1,
+    owner: {}
+  })
+
+  const history = useHistory()
   const { id } = useParams()
 
   React.useEffect(() => {
@@ -18,7 +27,7 @@ function EventShow() {
       }
     }
     getData()
-  }, [id])
+  }, [id, event.owner])
 
   // De-structured fields from the event object
   const { name, date, description, eventImage } = event
@@ -31,7 +40,29 @@ function EventShow() {
   // Get the year
   const year = jsDate.getFullYear()
 
+  // ! DELETE Function
+  const handleDelete = async () => {
+    try {
+      await deleteEvent(id)
+      history.push('/events')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  // * Submit Reviews
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const { data } = await createComment(formdata)
+      alert(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   function handleRating(e) {
+    e.preventDefault()
     const rating = e.target.value
     console.log(rating)
     return rating
@@ -52,12 +83,18 @@ function EventShow() {
           <img src={eventImage} alt={name} />
         </figure>
         <p>{description}</p>
-        
+        {event.owner && event ?
+          isOwner(event.owner._id) && 
+          <button className="delete-btn" onClick={handleDelete}>Delete</button>
+          :
+          <div>Loading...</div>
+        }
       </section>
       <hr />
+      
       <section className="reviews">
         <h3>Review {event.name}</h3>
-        <form>
+        <form onSubmit={handleSubmit}>
           <section className="rate-event">
             <div>
               <label>Rate Event (1 to 5) 💉 :</label>
@@ -89,9 +126,12 @@ function EventShow() {
             <div>
               <label>Write Your Review</label>
             </div>
-            <div>
-              <textarea placeholder="Tell us what you thought..."/>
-            </div>
+            <textarea 
+              placeholder="Tell us what you thought..."
+              onChange={handleChange}
+              value={formdata.text}
+            />
+            <button type="submit" className="submit-btn">Submit</button>
           </section>
         </form>
       </section>

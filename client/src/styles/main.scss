@@ -253,6 +253,20 @@ nav {
       width: 100%;
     }
   }
+
+  .delete-btn {
+    font-size: 1.1rem;
+    background-color: rgb(220, 0, 0);
+    color: white;
+    border: 1px solid rgb(200, 0, 0);
+    border-radius: 7px;
+    padding: 5px 20px;
+    cursor: pointer;
+  }
+
+  .delete-btn:hover {
+    background-color: rgb(200, 0, 0);
+  }
   
 }
 

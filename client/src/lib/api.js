@@ -22,6 +22,10 @@ export function createEvent(formdata) {
   return axios.post(`${baseUrl}/events`, formdata, headers())
 }
 
+export function deleteEvent(id) {
+  return axios.delete(`${baseUrl}/events/${id}`, headers())
+}
+
 // * Venues requests:
 export function getAllVenues() {
   return axios.get(`${baseUrl}/venues`)
@@ -33,6 +37,27 @@ export function getSingleVenue(id) {
 
 export function createVenue(formdata) {
   return axios.post(`${baseUrl}/venues`, formdata, headers())
+}
+
+export function deleteVenue(id) {
+  return axios.delete(`${baseUrl}/venues/${id}`, headers())
+}
+
+// * Comments requests:
+export function getAllComments() {
+  return axios.get(`${baseUrl}/comments`)
+}
+
+export function getSingleComment(id) {
+  return axios.get(`${baseUrl}/comments/${id}`)
+}
+
+export function createComment(formdata) {
+  return axios.post(`${baseUrl}/comments`, formdata, headers())
+}
+
+export function deleteComment(id) {
+  return axios.delete(`${baseUrl}/comments/${id}`, headers())
 }
 
 // * Auth Requests
