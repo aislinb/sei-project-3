@@ -9,7 +9,6 @@ const userSchema = new mongoose.Schema({
   city: { type: String, required: false },
   userImage: { type: String, required: false },
   userBio: { type: String, required: false, maxlength: 400 },
-  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   events: [{ type: mongoose.Schema.ObjectId, ref: 'Event', required: false }]
 })
 
