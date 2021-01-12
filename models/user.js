@@ -5,7 +5,12 @@ import uniqueValidator from 'mongoose-unique-validator'
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true, maxlength: 20 }, 
   email: { type: String, required: true, unique: true }, 
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  city: { type: String, required: false },
+  userImage: { type: String, required: false },
+  userBio: { type: String, required: false, maxlength: 400 },
+  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  events: [{ type: mongoose.Schema.ObjectId, ref: 'Event', required: false }]
 })
 
 userSchema.virtual('createdEvents', {
