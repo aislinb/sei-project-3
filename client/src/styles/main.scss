@@ -18,7 +18,8 @@ body {
 }
 
 main {
-  min-height: 80vh;
+  //min-height: 40vh;
+  //Was messing up homepage
   width: 90vw;
   margin: 4rem auto 0 auto;
 
@@ -118,7 +119,7 @@ nav {
 //   //text-shadow: 1px 5px 1px$sig-purple;
 // }
 
-// * hugo edit
+// * hugo Home Page with carousel
 .hero {
   background-size: cover;
   color: white;
@@ -128,6 +129,16 @@ nav {
   margin: 0;
   font-size: 2rem;
   //text-shadow: 1px 5px 1px$sig-purple;
+  div {
+    margin: 0;
+    height: 500px;
+  }
+
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 // Events index
@@ -149,8 +160,6 @@ nav {
     border: 1px solid black;
     cursor: pointer;
   }
-
-
 }
 
 .index-list {
@@ -162,7 +171,6 @@ nav {
   justify-content: space-between;
 
   li {
-    color: rgb(238, 230, 250);
     background: linear-gradient(to bottom right, white, rgb(221, 199, 255),white, rgb(238, 230, 250));
     border: 3px solid gold;
     padding: 15px;
