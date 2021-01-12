@@ -40,7 +40,6 @@ function EventShow() {
   // Get the year
   const year = jsDate.getFullYear()
 
-<<<<<<< HEAD
   // ! DELETE Function
   const handleDelete = async () => {
     try {
@@ -60,12 +59,14 @@ function EventShow() {
     } catch (err) {
       console.log(err)
     }
-=======
+  }
+
   function handleRating(e) {
+    e.preventDefault()
     const rating = e.target.value
     console.log(rating)
+    return rating
     // event.preventDefault()
->>>>>>> development
   }
 
   return (
@@ -90,37 +91,10 @@ function EventShow() {
         }
       </section>
       <hr />
-<<<<<<< HEAD
-      <section>
-        <h3>Review This Event</h3>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Rate Event (1 to 5) 💉</label>
-          </div>
-          <div>
-            <input 
-              type="number" 
-              placeholder="5" 
-              min="1" 
-              max="5" 
-              onChange={handleChange}
-              value={formdata.rating}
-            />
-          </div>
-          <br />
-          <div>
-            <label>Write Your Review</label>
-          </div>
-          <textarea 
-            placeholder="Tell us what you thought..."
-            onChange={handleChange}
-            value={formdata.text}
-          />
-          <button type="submit" className="submit-btn">Submit</button>
-=======
+      
       <section className="reviews">
         <h3>Review {event.name}</h3>
-        <form>
+        <form onSubmit={handleSubmit}>
           <section className="rate-event">
             <div>
               <label>Rate Event (1 to 5) 💉 :</label>
@@ -152,11 +126,13 @@ function EventShow() {
             <div>
               <label>Write Your Review</label>
             </div>
-            <div>
-              <textarea placeholder="Tell us what you thought..."/>
-            </div>
+            <textarea 
+              placeholder="Tell us what you thought..."
+              onChange={handleChange}
+              value={formdata.text}
+            />
+            <button type="submit" className="submit-btn">Submit</button>
           </section>
->>>>>>> development
         </form>
       </section>
     </main>
