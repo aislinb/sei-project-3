@@ -34,6 +34,7 @@ function EventShow() {
   function handleRating(e) {
     const rating = e.target.value
     console.log(rating)
+    return rating
     // event.preventDefault()
   }
 
