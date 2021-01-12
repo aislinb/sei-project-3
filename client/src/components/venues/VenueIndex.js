@@ -17,6 +17,18 @@ function venueIndex() {
     }
     getData()
   }, [])
+
+  function compare( a, b ) {
+    if ( a.name < b.name ){
+      return -1
+    }
+    if ( a.name > b.name ){
+      return 1
+    }
+    return 0
+  }
+  venues.sort( compare )
+
   return (
     <main>
       <h2> - Map of venues will go here - </h2>
