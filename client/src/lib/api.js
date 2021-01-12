@@ -75,5 +75,5 @@ export function showUserProfile() {
 }
 
 export function editUserProfile(formdata) {
-  return axios.put(`${baseUrl}/profile/`, formdata, headers())
+  return axios.put(`${baseUrl}/profile/update-profile/`, formdata, headers())
 }

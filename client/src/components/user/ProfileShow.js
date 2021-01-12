@@ -66,7 +66,7 @@ function profileShow() {
           </div>
           <div className="field">
             <button type="submit" className="form-submit-button">
-              <Link to={'/profile/update-profile'} className="edit-button">Edit my profile</Link>
+              <Link to={'/update-profile'} className="edit-button">Edit my profile</Link>
             </button>
           </div>
         </>

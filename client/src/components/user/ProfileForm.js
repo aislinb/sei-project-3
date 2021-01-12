@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 function ProfileForm({ formdata, errors, handleChange, handleSubmit, buttonText = 'Submit' }) {
   return (
     <main>

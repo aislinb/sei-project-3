@@ -34,7 +34,7 @@ function App() {
         <Route path="/map" component={eventsMapbox} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
-        <Route path="/profile/update-profile" component={ProfileEditCard} />
+        <Route path="/update-profile" component={ProfileEditCard} />
         <Route path="/profile" component={ProfileShow} />
       </Switch>
       <Footer />
