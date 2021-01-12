@@ -7,10 +7,13 @@ import Home from './components/common/Home'
 import Register from './components/auth/Register'
 import EventIndex from './components/events/EventIndex'
 import EventShow from './components/events/EventShow'
+import EventNew from './components/events/EventNew'
 import VenueIndex from './components/venues/VenueIndex'
 import VenueShow from './components/venues/VenueShow'
 import ProfileShow from './components/user/ProfileShow'
+import VenueNew from './components/venues/VenueNew'
 import Login from './components/auth/Login'
+import eventsMapbox from './components/events/MapboxEventIndex'
 
 function App() {
 
@@ -21,10 +24,13 @@ function App() {
       <Nav />
       <Switch>
         <Route exact path="/" component={Home}/>
+        <Route path="/events/new" component={EventNew} />
+        <Route path="/venues/new" component={VenueNew} />
         <Route path="/events/:id" component={EventShow} />
         <Route path="/events" component={EventIndex} />
         <Route path="/venues/:id" component={VenueShow} />
         <Route path="/venues" component={VenueIndex} />
+        <Route path="/map" component={eventsMapbox} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/profile" component={ProfileShow} />

@@ -20,7 +20,12 @@ function EventIndex() {
 
   return (
     <main>
-      <h1>Highlights of 2020</h1>
+      <div className="index-header">
+        <h1>Highlights of 2020</h1>
+        <button>
+          <Link to="/events/new">Add Event</Link>
+        </button>
+      </div>
       {events ?
         <ul className="index-list">
           {events.map(item => {

@@ -73,7 +73,7 @@ function Register() {
           {errors.passwordConfirmation && <p className="error-in-form">{errors.passwordConfirmation}</p>}
         </div>
         <div className="field">
-          <button type="submit" className="form-submit-button">Log In</button>
+          <button type="submit" className="form-submit-button">Register</button>
         </div>
       </form>
     </main>
