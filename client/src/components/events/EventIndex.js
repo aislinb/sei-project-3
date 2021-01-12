@@ -17,7 +17,6 @@ function EventIndex() {
     getData()
   }, [])
 
-
   return (
     <main>
       <div className="index-header">

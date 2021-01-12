@@ -17,6 +17,7 @@ function venueIndex() {
     }
     getData()
   }, [])
+
   return (
     <main>
       <h2> - Map of venues will go here - </h2>
