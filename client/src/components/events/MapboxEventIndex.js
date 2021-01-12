@@ -33,6 +33,8 @@ function eventsMapbox() {
 
   return (
     <main>
+      <h1>View Events by Location</h1>
+      <h4>Click on the icon to reveal the event(s) at this venue:</h4>
       <section>
         <div className="map-container">
           {viewport ? 
@@ -71,12 +73,13 @@ function eventsMapbox() {
             latitude={popup.latitude}
             longitude={popup.longitude}
           >
-            <div>{popup.name}, {popup.city}</div>
+            <h4>{popup.name}, {popup.city}</h4>
+            <h4>Events:</h4>
             <div>{events.map(event => {
               if (event.venue.name === popup.name) {
-                return <div>
+                return <p>
                   <Link to={`/events/${event._id}`}>{event.name}</Link>
-                </div>
+                </p>
               }
             })}
             </div>

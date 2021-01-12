@@ -31,6 +31,12 @@ function EventShow() {
   // Get the year
   const year = jsDate.getFullYear()
 
+  function handleRating(e) {
+    const rating = e.target.value
+    console.log(rating)
+    // event.preventDefault()
+  }
+
   return (
     <main>
       <section className="event-detail">
@@ -48,22 +54,44 @@ function EventShow() {
         
       </section>
       <hr />
-      <section>
-        <h3>Review This Event</h3>
+      <section className="reviews">
+        <h3>Review {event.name}</h3>
         <form>
-          <div>
-            <label>Rate Event (1 to 5) 💉</label>
-          </div>
-          <div>
-            <input type="number" placeholder="5" min="1" max="5"/>
-          </div>
+          <section className="rate-event">
+            <div>
+              <label>Rate Event (1 to 5) 💉 :</label>
+            </div>
+            <div className="rate">
+              <input onClick={handleRating} type="radio" id="star5" name="rate" value="5" />
+              <label htmlFor="star5" title="text">5</label>
+              <input onClick={handleRating} type="radio" id="star4" name="rate" value="4" />
+              <label htmlFor="star4" title="text">4</label>
+              <input onClick={handleRating} type="radio" id="star3" name="rate" value="3" />
+              <label htmlFor="star3" title="text">3</label>
+              <input onClick={handleRating} type="radio" id="star2" name="rate" value="2" />
+              <label htmlFor="star2" title="text">2</label>
+              <input onClick={handleRating} type="radio" id="star1" name="rate" value="1" />
+              <label htmlFor="star1" title="text">1</label>
+            </div>
+          </section>
           <br />
-          <div>
-            <label>Write Your Review</label>
-          </div>
-          <div>
-            <textarea placeholder="Tell us what you thought..."/>
-          </div>
+          <br />
+          <section className="avgRating">
+            <div>
+              <label>Average Rating:</label>
+              <div>{event.avgRating}</div>
+            </div>
+          </section>
+          <br />
+          <br />
+          <section className="text-review">
+            <div>
+              <label>Write Your Review</label>
+            </div>
+            <div>
+              <textarea placeholder="Tell us what you thought..."/>
+            </div>
+          </section>
         </form>
       </section>
     </main>
