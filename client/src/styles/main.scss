@@ -209,11 +209,11 @@ nav {
 
 // Events Index Mapbox
 .map-container {
-  margin: 10% 10% 0% 10%;
+  margin: auto auto;
   border: 10px solid gold;
   border-radius: 10px;
-  height: 70vh;
-  width: 70vw;
+  height: calc(100vh - 52px);
+  width: 100%;
   img {
     height: 50px;
     width: 50px;
