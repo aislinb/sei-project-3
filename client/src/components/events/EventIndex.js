@@ -17,8 +17,6 @@ function EventIndex() {
     getData()
   }, [])
 
-<<<<<<< HEAD
-=======
   // sorting events into alphabetical order
   function compare( a, b ) {
     if ( a.name < b.name ){
@@ -34,7 +32,6 @@ function EventIndex() {
   
 
 
->>>>>>> development
   return (
     <main>
       <div className="index-header">

@@ -14,10 +14,9 @@ async function userProfile(req, res, next){
 }
 
 async function userProfileShow(req, res, next) {
-  const { id } = req.params
   try {
-    console.log(id)
     const user = await User.findById(req.currentUser._id)
+      .populate('ratedEvents') // this is not hooked up yet
     if (!user) throw new Error(notFound)
     return res.status(200).json(user)
     
@@ -26,7 +25,25 @@ async function userProfileShow(req, res, next) {
   }
 }
 
+async function userProfileUpdate(req, res, next) {
+  const { id } = req.params
+  try {
+    console.log(id)
+    const userToEdit = await User.findById((req.currentUser._id))
+    if (!userToEdit) throw new Error(notFound)
+    // if (!userToEdit.id.equals(req.currentUser._id)) throw new Error(forbidden)
+    Object.assign(userToEdit, req.body)
+    await userToEdit.save()
+    return res.status(202).json(userToEdit)
+  } catch (err) {
+    next(err)
+  }
+}
+
+
+
 export default {
   userProfile,
-  userProfileShow
+  userProfileShow,
+  userProfileUpdate
 }

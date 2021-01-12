@@ -48,3 +48,7 @@ export function loginUser(formdata) {
 export function showUserProfile() {
   return axios.get(`${baseUrl}/profile/`, headers())
 }
+
+export function editUserProfile(formdata) {
+  return axios.put(`${baseUrl}/profile/`, formdata, headers())
+}
