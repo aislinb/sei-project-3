@@ -12,6 +12,7 @@ function eventsMapbox() {
 
   const [popup, setPopup] = React.useState(null)
 
+  
   const [viewport, setViewport] = React.useState({
     latitude: 51.501476,
     longitude: -0.140634,
@@ -73,7 +74,7 @@ function eventsMapbox() {
               {popup &&
           <Popup
             closeOnClick={true}
-            // onClose={() => setPopup(null)}
+            // onClose={() => setPopup('')}
             latitude={popup.latitude}
             longitude={popup.longitude}
           >

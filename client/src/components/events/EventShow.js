@@ -9,6 +9,7 @@ import RingLoader from 'react-spinners/RingLoader'
 
 function EventShow() {
   const [event, setEvent] = React.useState([])
+  
 
   const isLoggedIn = isAuthenticated()
 
@@ -74,6 +75,8 @@ function EventShow() {
     }
   }
 
+
+
   return (
     <main>
       <section className="event-detail">
@@ -132,6 +135,11 @@ function EventShow() {
                 value={formdata.text}
               />
               <button type="submit" className="submit-btn">Submit</button>
+            </section>
+            <section>
+              <h2>Nearby Events</h2>
+              <div>
+              </div>
             </section>
           </form>
           : 
