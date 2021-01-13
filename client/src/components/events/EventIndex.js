@@ -2,17 +2,79 @@ import React from 'react'
 import { getAllEvents } from '../../lib/api'
 import { Link } from 'react-router-dom'
 import RingLoader from 'react-spinners/RingLoader'
+import Select from 'react-select'
+
 
 function EventIndex() {
   const [events, setEvents] = React.useState([])
-
   const [hasError, setHasError] = React.useState(false)
+
+  let continents = []
+  let countries = []
+  let cities = []
+
+  events.map(event => {
+    continents.push(event.venue.continent)
+    countries.push(event.venue.country)
+    cities.push(event.venue.city)
+  })
+
+  function removeDuplicates(data) {
+    const unique = []
+    data.forEach(element => {
+      if (!unique.includes(element)) {
+        unique.push(element)
+      }
+    })
+    return unique
+  }
+  continents = removeDuplicates(continents)
+  countries = removeDuplicates(countries)
+  cities = removeDuplicates(cities)
+
+  const filteredContinents = []
+  continents.map(continent => {
+    filteredContinents.push({ value: continent, label: continent })
+  })
+
+  const filteredCountries = []
+  countries.map(country => {
+    filteredCountries.push({ value: country, label: country })
+  })
+
+  const filteredCities = []
+  cities.map(city => {
+    filteredCities.push({ value: city, label: city })
+  })
+
+  const handleSelectContinent = (e) => {
+    const results = events.filter(event => {
+      return event.venue.continent === e.value
+    })
+    setEvents(results)
+  }
+  //This function only works once
+
+  const handleSelectCountry = (e) => {
+    const results = events.filter(event => {
+      return event.venue.country === e.value
+    })
+    setEvents(results)
+  }
+
+  const handleSelectCity = (e) => {
+    const results = events.filter(event => {
+      return event.venue.city === e.value
+    })
+    setEvents(results)
+  }
 
   React.useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await getAllEvents()
         setEvents(data)
+
       } catch (err) {
         console.log(err)
         setHasError(true)
@@ -32,6 +94,10 @@ function EventIndex() {
     return 0
   }
   events.sort( compare )
+<<<<<<< HEAD
+=======
+  
+>>>>>>> development
 
   return (
     <main>
@@ -44,6 +110,29 @@ function EventIndex() {
           <Link to="/events/new">Add Event</Link>
         </button>
       </div>
+      <div className="selects">
+        <Select 
+          options={filteredContinents}
+          onChange={handleSelectContinent}
+        />
+        {countries.length > 0 ?
+          <Select 
+            options={filteredCountries}
+            onChange={handleSelectCountry}
+          />
+          :
+          <Select />
+        }
+        {cities.length > 0 ?
+          <Select 
+            options={filteredCities}
+            onChange={handleSelectCity}
+          />
+          :
+          <Select />
+        }
+      </div>
+      <br />
       {events ?
         <ul className="index-list">
           {events.map(item => {
