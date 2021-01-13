@@ -1,9 +1,12 @@
 import React from 'react'
 import { getAllEvents } from '../../lib/api'
 import { Link } from 'react-router-dom'
+import RingLoader from 'react-spinners/RingLoader'
 
 function EventIndex() {
   const [events, setEvents] = React.useState([])
+
+  const [hasError, setHasError] = React.useState(false)
 
   React.useEffect(() => {
     const getData = async () => {
@@ -12,6 +15,7 @@ function EventIndex() {
         setEvents(data)
       } catch (err) {
         console.log(err)
+        setHasError(true)
       }
     }
     getData()
@@ -78,7 +82,14 @@ function EventIndex() {
           }
         </ul>
         :
-        <div>Loading events...</div>
+        <div>
+          {hasError ? 'Oops something went wrong...'
+            :
+            <div className="ring-loader">
+              <RingLoader color="purple" size={60} />
+            </div>
+          }
+        </div>
       }
     </main>
   )

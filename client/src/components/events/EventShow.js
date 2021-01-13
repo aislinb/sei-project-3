@@ -5,6 +5,7 @@ import { isOwner } from '../../lib/auth'
 import useForm from '../../utils/useForm'
 import { isAuthenticated } from '../../lib/auth'
 import { Link } from 'react-router-dom'
+import RingLoader from 'react-spinners/RingLoader'
 
 function EventShow() {
   const [event, setEvent] = React.useState([])
@@ -91,7 +92,9 @@ function EventShow() {
           isOwner(event.owner._id) && 
           <button className="delete-btn" onClick={handleDelete}>Delete</button>
           :
-          <div>Loading...</div>
+          <div className="ring-loader">
+            <RingLoader color="purple" size={60} />
+          </div>
         }
       </section>
       <hr />

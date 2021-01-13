@@ -3,7 +3,10 @@ import { notFound, forbidden } from './../lib/errorHandler.js'
 
 async function eventIndex(_req, res, next) {
   try {
-    const events = await Event.find().populate('venue').populate('owner').populate('comments.owner')
+    const events = await Event.find()
+      .populate('venue')
+      .populate('owner')
+      .populate('comments.owner')
     //.populate('venue')
     return res.status(200).json(events)
   } catch (err) {

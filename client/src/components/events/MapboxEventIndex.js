@@ -4,6 +4,8 @@ import ReactMapGL, { Marker, Popup } from 'react-map-gl'
 
 import { getAllEvents } from '../../lib/api'
 
+import RingLoader from 'react-spinners/RingLoader'
+
 function eventsMapbox() {
 
   const [events, setEvents ] = React.useState(null)
@@ -64,7 +66,9 @@ function eventsMapbox() {
                   </Marker>
                 ))
                 :
-                <h2>Loading map...</h2>
+                <div className="ring-loader">
+                  <RingLoader color="purple" size={60} />
+                </div>
               }
               {popup &&
           <Popup
@@ -87,7 +91,9 @@ function eventsMapbox() {
               }
             </ReactMapGL>
             : 
-            <h1>Finding your location...</h1>
+            <div className="ring-loader">
+              <RingLoader color="purple" size={60} />
+            </div>
           }
         </div>
       </section>
