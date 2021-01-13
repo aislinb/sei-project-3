@@ -32,7 +32,7 @@ function profileShow() {
         <>
           <h1>Welcome, {user.username}!</h1>
           <div>
-            <h1>Please click below to update your details:</h1>
+            <h3>Please click below to update your details:</h3>
           </div>
           <div>
             <h4>Username:</h4>
@@ -65,14 +65,14 @@ function profileShow() {
             <p>{user.events}</p>
           </div>
           <div className="field">
-            <button type="submit" className="form-submit-button">
+            <button>
               <Link to={'/update-profile'} className="edit-button">Edit my profile</Link>
             </button>
           </div>
         </>
         :
-        <div className="submit-btn">
-          <button type="submit" className="form-submit-button">
+        <div>
+          <button>
           Please <Link to="/login">Log in</Link> to access this page
           </button>
         </div>
