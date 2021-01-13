@@ -26,6 +26,10 @@ export function deleteEvent(id) {
   return axios.delete(`${baseUrl}/events/${id}`, headers())
 }
 
+export function editEvent(id, formdata) {
+  return axios.put(`${baseUrl}/events/${id}`, formdata, headers())
+}
+
 // * Venues requests:
 export function getAllVenues() {
   return axios.get(`${baseUrl}/venues`)
