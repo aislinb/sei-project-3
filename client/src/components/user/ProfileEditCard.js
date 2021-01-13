@@ -26,7 +26,8 @@ function ProfileEditCard() {
 
   const handleSubmit = async event => {
     event.preventDefault()
-    window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
+    // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
+    
 
     try {
       await editUserProfile(formdata)
@@ -35,6 +36,7 @@ function ProfileEditCard() {
       setErrors(err.response.data.errors)
     }
   }
+  
 
   return (
     <section className="section">
@@ -44,7 +46,7 @@ function ProfileEditCard() {
           errors={errors}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
-          buttonText="Edit my profile"
+          buttonText="Submit"
         />
       </div>
     </section>
