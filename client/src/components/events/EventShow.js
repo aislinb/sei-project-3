@@ -41,7 +41,8 @@ function EventShow() {
 
   // De-structured fields from the event object
   const { name, date, description, eventImage } = event
-  // Convert ISO date into JS format date
+
+  // Convert event ISO date into JS format date
   const jsDate = new Date(date)
   // Get the day of the month
   const day = jsDate.getDate()
@@ -141,11 +142,10 @@ function EventShow() {
               <div>
                 <h3>Reviews:</h3>
                 {event.comments.map(comment => {
-                  console.log(comment)
                   return (
                     <div key={comment._id} className="review">
                       <h5>{comment.owner.username}</h5>
-                      <p><small>{comment.updatedAt}</small></p>
+                      <p><small>Reviewed {comment.updatedAt.slice(0, 10)}</small></p>
                       <p>{comment.text}</p>
                       <h5>{comment.rating} ⭐️</h5>
                     </div>
