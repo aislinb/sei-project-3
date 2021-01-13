@@ -457,7 +457,7 @@ export default [
     // Campeche, Mexico
   },
   {
-    name: 'Australian Tennis Open', 
+    name: 'Australian Open', 
     date: '2020-02-08', 
     description: 'Novak Djokovic won an all-time record seventh Australian Open title, defeating Rafael Nadal in the final, 6–3, 6–2, 6–3 to win the Men/s Singles tennis title at the 2020 Australian Open. The match lasted two hours and four minutes. This was Djokovic/s 15th Grand Slam title, surpassing Pete Sampras for third place on the all-time list, behind Federer and Nadal.',
     eventImage: 'https://cdn.newsapi.com.au/image/v1/bca9a5eeb19416d7478afade4818a911',
