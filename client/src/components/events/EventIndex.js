@@ -26,14 +26,35 @@ function EventIndex() {
   //const [filteredEvents, setFilteredEvents] = React.useState([])
   const [hasError, setHasError] = React.useState(false)
 
-  // const [countries, setCountries] = React.useState([])
-
-  const countries = []
+  let countries = []
+  let cities = []
 
   events.map(event => {
-    countries.push({ value: event.venue.country, label: event.venue.country })
+    countries.push(event.venue.country)
+    cities.push(event.venue.city)
   })
-  console.log(countries)
+
+  function removeDuplicates(data) {
+    const unique = []
+    data.forEach(element => {
+      if (!unique.includes(element)) {
+        unique.push(element)
+      }
+    })
+    return unique
+  }
+  countries = removeDuplicates(countries)
+  cities = removeDuplicates(cities)
+
+  const filteredCountries = []
+  countries.map(country => {
+    filteredCountries.push({ value: country, label: country })
+  })
+
+  const filteredCities = []
+  cities.map(city => {
+    filteredCities.push({ value: city, label: city })
+  })
 
   const handleSelectContinent = (e) => {
     const results = events.filter(event => {
@@ -50,16 +71,18 @@ function EventIndex() {
     setEvents(results)
   }
 
+  const handleSelectCity = (e) => {
+    const results = events.filter(event => {
+      return event.venue.city === e.value
+    })
+    setEvents(results)
+  }
+
   React.useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await getAllEvents()
         setEvents(data)
-
-        // const countryArr = await events.map(event => {
-        //   return event.venue.country
-        // })
-        // setCountries(countryArr)
 
       } catch (err) {
         console.log(err)
@@ -97,26 +120,27 @@ function EventIndex() {
       </div>
       <div>
         <Select 
-          // options={events.map(event => {
-          //   return <option key={event._id} value={event.venue.continent}>{event.venue.continent}</option>
-          // })}
-          // value={selectOptions.map(option => {
-          //   return option.value
-          // })}
           options={selectOptions}
           onChange={handleSelectContinent}
-          // isMultiOnChange={selected => handleMultiSelectChange(selected, 'continents')}
         />
         {countries.length > 0 ?
           <Select 
-            options={countries}
+            options={filteredCountries}
             onChange={handleSelectCountry}
           />
           :
-          <p>No Countries</p>
+          <Select />
         }
-          
-        <Select />
+        {cities.length > 0 ?
+          <Select 
+            options={filteredCities}
+            onChange={handleSelectCity}
+          />
+          :
+          <Select />
+        }
+
+
         {/* <select onChange={handleMultiSelectChange}>
           {events.map(event => {
             return <option key={event._id} value={event.venue.continent}>{event.venue.continent}</option>
