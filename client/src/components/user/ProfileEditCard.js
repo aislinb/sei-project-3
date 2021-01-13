@@ -10,7 +10,6 @@ function ProfileEditCard() {
   const { formdata, errors, handleChange, setFormdata, setErrors } = useForm({
     username: '', 
     email: '',
-    password: '',
     city: '',
     userImage: '',
     userBio: '',
@@ -27,9 +26,10 @@ function ProfileEditCard() {
 
   const handleSubmit = async event => {
     event.preventDefault()
+    window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
 
     try {
-      await editUserProfile(id, formdata)
+      await editUserProfile(formdata)
       history.push('/profile')
     } catch (err) {
       setErrors(err.response.data.errors)

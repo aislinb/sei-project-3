@@ -1,29 +1,30 @@
 import React from 'react'
 
-
 function ProfileForm({ formdata, errors, handleChange, handleSubmit, buttonText = 'Submit' }) {
   return (
     <main>
-      <form className="profile-page-form" onSubmit={handleSubmit}>
+      <form className="profile-edit-form" onSubmit={handleSubmit}>
         <div className="field">
-          <label className="label">Name</label>
+          <label className="block-form">Name</label>
           <div className="control">
             <input
-              className="input-field"
+              className="block-form"
+              type="text"
               placeholder="Name"
               name="username"
               onChange={handleChange}
-              value={formdata.name}
+              value={formdata.username}
             />
           </div>
           {errors.name && <p className="error-in-field">{errors.name}</p>}
         </div>
         <div className="field">
-          <label className="label">Email</label>
+          <label className="block-form">Email</label>
           <div className="control">
             <input
-              className="input-field"
+              className="block-form"
               placeholder="Email"
+              type="text"
               name="email"
               onChange={handleChange}
               value={formdata.email}
@@ -32,11 +33,12 @@ function ProfileForm({ formdata, errors, handleChange, handleSubmit, buttonText 
           {errors.name && <p className="error-in-field">{errors.name}</p>}
         </div>
         <div className="field">
-          <label className="label">City</label>
+          <label className="block-form">City</label>
           <div className="control">
             <input
-              className="input-field"
+              className="block-form"
               placeholder="City"
+              type="text"
               name="city"
               onChange={handleChange}
               value={formdata.city}
@@ -45,19 +47,25 @@ function ProfileForm({ formdata, errors, handleChange, handleSubmit, buttonText 
           {errors.name && <p className="error-in-field">{errors.name}</p>}
         </div>
         <div className="field">
-          <label className="label">Profile Image:</label>
+          <label className="block-form">Profile Image:</label>
           <input
-            className="input-field"
+            className="block-form"
             placeholder="Enter URL here"
+            type="text"
             name="userImage"
+            onChange={handleChange}
+            value={formdata.userImage}
           />
         </div>
         <div className="field">
-          <label className="label">About Me:</label>
+          <label className="block-form">About Me:</label>
           <input
-            className="user-bio-field"
+            className="block-form"
             placeholder="Tell us about yourself..."
+            type="text"
             name="userBio"
+            onChange={handleChange}
+            value={formdata.userBio}
           />
         </div>
         <div className="field">

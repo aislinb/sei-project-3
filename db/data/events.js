@@ -171,7 +171,7 @@ export default [
     name: 'Tomorrowland', 
     date: '2020-07-13', 
     description: 'Tomorrowland’s scale cannot be beat – 15 stages and 180,000 people from over 75 countries. However, two general impressions that detracted from my experience – 1) Too big! Takes forever to walk anywhere, even if you are staying in the Dreamville camping area. 2) Crowd was quite touristy; given the fame of the festival, seems like there were many who didn’t have the “raver spirit” in the crowd.',
-    eventImage: 'https://lh3.googleusercontent.com/proxy/c7vfJ1eD7rOVOi8_a5y-yvKZCZcsMfefNa2uHqbQLIC2HYaQetBD_4uWT1LaJbhwtisJVFTCcBCyypiBHrkAX4JLf6z0-MphYpuuNG2xLJN_eHlCVdhi4BvN',
+    eventImage: 'https://www.tomorrowland.com/src/Frontend/Themes/tomorrowland/Core/Layout/images/timeline/2019-9.jpg',
     venueRef: 'Tomorrowland Festival'
   }, 
   {
@@ -492,7 +492,7 @@ export default [
     name: 'Australian Fashion Week', 
     date: '2020-05-12', 
     description: 'Ladies. Get your glam on at Australia’s biggest fashion event of the year. You may not be able to afford the clothes, but you can still look. Dress up and head down to the Circular Quay in Sydney.',
-    eventImage: 'https://media1.popsugar-assets.com/files/thumbor/naGJctEHqycw21mL3T_VsUcBNSc/72x277:4726x3325/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2020/05/12/427/n/4981322/a7c350af5cd7e420d64584.45170803_/i/Aje-Runway-Pictures-Sydney-Fashion-Week-2020.jpg',
+    eventImage: 'https://i.guim.co.uk/img/media/79a49f97db038b1269cc4925f9979b768cb0a502/0_311_4742_2847/master/4742.jpg?width=700&quality=85&auto=format&fit=max&s=e7b12cc98604f5dca2dc7a22bc5103a1',
     venueRef: 'Bondi Beach',
     // Carriageworks, Eveleigh, Australia
   },
@@ -500,7 +500,7 @@ export default [
     name: 'NYE Fireworks', 
     date: '2020-12-31', 
     description: 'Sydney Harbour does one of the best New Year’s Eve fireworks displays and can challenge even ‘Times Square’ in New York for popularity. ‘The Rocks’ is the place to be for this one. Just one word: epic.',
-    eventImage: 'https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F191229094719-sydney-nye-fireworks-2020.jpg',
+    eventImage: 'https://ichef.bbci.co.uk/news/1024/cpsprodpb/10877/production/_110330776_gettyimages-1076520270.jpg',
     venueRef: 'Sydney Harbour',
     // Sydney Harbour, Sydney, Australia
   },
@@ -513,7 +513,7 @@ export default [
     // Sydney Olympic Park
   },
   {
-    name: 'Winter Olympics, Hakuba, Japan', 
+    name: 'Winter Olympics', 
     date: '2020-02-07', 
     description: 'This year the Japanese hosted games went down in the history books, making it the first year ever for Great Britain not only to appear on the board, but to finish in the top position. A truly incredible performance from tema GB in Slaalem, GS and Super GS. Notable nail-biting events were the curling matches which crowds went wild for.',
     eventImage: 'https://api.time.com/wp-content/uploads/2017/12/gus-kenworthy-2014-sochi.jpg',
@@ -532,7 +532,7 @@ export default [
     name: 'Chinese New Year', 
     date: '2020-01-25', 
     description: '2020: Year of the Rat. Those born under the Year of the Rat are believed to be quick-witted and resourceful, and they get along best with Oxes, Rabbits and Dragons, and the worst with Roosters and Horses.',
-    eventImage: 'https://www.nationalgeographic.com/content/dam/travel/2020-digital/chinese-new-year/chinese-new-year-1.jpg',
+    eventImage: 'https://www.eastwestbank.com/ReachFurther/NewsArticleStore/71/Must-Knows-for-Doing-Business-During-Chinese-New-Year-Full.jpg',
     venueRef: 'National Stadium Beijing',
     // Beijing, China
   },
@@ -556,7 +556,7 @@ export default [
     name: 'Groove on the Grass', 
     date: '2020-02-08', 
     description: 'Taking place a handful of times each season at the Emirates Golf Club, this thumping festival brings in the electronic greats - and there are few better examples of that than in the upcoming February edition, which features dance-pioneers Underworld. Along with art, a marketplace, food trucks and activities, its a holistic experience in a verdant setting',
-    eventImage: 'https://www.timeoutdubai.com/public/images/2020/09/08/Groove-on-the-Grass.jpg',
+    eventImage: 'https://www.cosmopolitanme.com/public/styles/980px_1470px_fullimage_scale/public/images/2016/11/17/gotg.jpg?itok=LGQfCjv3',
     venueRef: 'Emirates Golf Club',
     // Dubai, UAE
   },
@@ -564,7 +564,7 @@ export default [
     name: 'Winter at Tantora', 
     date: '2020-12-20', 
     description: 'There is still time to catch this brand-new festival in one of Saudi Arabias most stunning sites, a sandstone landscape that was once inhabited by the Nabateans. Each weekend over the multi-week festival features Arabian musicians alongside arts and cultural activities.',
-    eventImage: 'https://www.abouther.com/sites/default/files/2020/10/01/winter_at_tantora.jpg',
+    eventImage: 'https://ar.vogue.me/image_provider/?w=750&h=&zc=1&q=80&cc=ffffff&src=https://en.vogue.me/wp-content/uploads/2019/12/Maraya-External-1.jpg',
     venueRef: 'The Rock Mosque',
     // The Rock Mosque, Al-Ula County, Saudi Arabia
   },
@@ -580,7 +580,7 @@ export default [
     name: 'Chill-Out Festival Istanbul', 
     date: '2020-06-06', 
     description: 'Istanbul’s Chill-Out Festival is 2 days long dance, electronic and pop festival, held at Garden Fiesta, located in the Sariyer district. Chill-Out festival is Turkey’s leading music festival, you can enjoy the the refined style of Lounge FM 96 to life with its lovely ambiance.',
-    eventImage: 'https://lh3.googleusercontent.com/proxy/r1NqhJl2CqKFlrPr0Hf-j4XjTtN-GM9wFkn_A3oee2mn8VsMjaycFZTW4b_AMTTUR70u3_Uvw73erVCGafj7Mr2KQdY1-Lr5N4E36tNVsDh_YNk5LR30ScolJG1mj-WkXsnGY3LdVgEQH5AbW_tgVKNWlAfo9l9q0eeGetIozHuc_g',
+    eventImage: 'https://www.tooistanbul.com/wp-content/uploads/2015/12/Screen-Shot-2016-01-21-at-17.03.41.png',
     venueRef: 'Kılıçpın Garden Fiesta',
     // Istanbul, Turkey
   },
@@ -588,7 +588,7 @@ export default [
     name: 'Umhlanga Reed Dance', 
     date: '2020-08-22', 
     description: 'Each year, more than 40,000 Swazi maidens unite for a spectacular dance extravaganza called the Umhlanga Reed Dance, a centuries-old tribute to the Queen Mother. The gorgeous spectacle sees the female participants don vibrant costumes and perform songs and dances as they deliver reed to the Royal Residence.',
-    eventImage: 'https://whileinafrica.com/wp-content/uploads/2020/06/Umhlanga-Reed-Dance-whileinafrica.jpg',
+    eventImage: 'https://static.officeholidays.com/images/935x475c/swaziland-reed-dance-01.jpg',
     venueRef: 'Royal Residence, Lobamba',
     // Eludzidzini, Swaziland
   },
@@ -596,7 +596,7 @@ export default [
     name: 'Amani Festival', 
     date: '2020-02-05', 
     description: 'Just $1 gains you entry to Amani, a festival that combines the old and the new of Congolese music and culture. As well as traditional dance, theatre and craft, the latest stars of African music can be found strutting their stuff. Added to that, you’re in the prime location to go trekking in search of mountain gorillas. What’s not to like?',
-    eventImage: 'https://africanmusicguide.co.uk/wp-content/uploads/2020/01/amaini-fest-2018-creedit-amani-fest.jpg',
+    eventImage: 'https://ichef.bbci.co.uk/news/976/cpsprodpb/3DD0/production/_110942851_performer.jpg',
     venueRef: 'Collège Mwanga',
     // Goma, DR Congo
   },
@@ -612,7 +612,7 @@ export default [
     name: 'G20 Riyadh Summit', 
     date: '2020-11-21', 
     description: 'The 15th meeting of Group of Twenty (G20) convened from 21-22 November 2020 in Riyadh, Saudi Arabia. This event marked the first time that Saudi Arabia held the Presidency of the G20. The Saudi Arabian Presidency has selected the theme, ‘Realizing Opportunities of the 21st Century For All',
-    eventImage: 'https://www.aljazeera.com/wp-content/uploads/2020/06/e50d7f8e6bc2446aa8726cda85fc94b4_18.jpeg',
+    eventImage: 'https://www.eastasiaforum.org/wp-content/uploads/2019/07/2019-06-29T075313Z_1676058421_RC1F975421D0_RTRMADP_3_G20-SUMMIT-CLOSING-SESSION.jpg',
     venueRef: 'Murabba Palace',
     // Riyadh, Saudi Arabia
   },

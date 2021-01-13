@@ -41,8 +41,8 @@ router.route('/venues/:id/comments/:commentId')
 router.route('/profile')
   .get(secureRoute, users.userProfile)
 
-router.route('/profile')
-  .put(secureRoute, users.userProfile)
+router.route('/update-profile')
+  .put(secureRoute, users.userProfileUpdate)
 
 router.route('/register')
   .post(auth.registerUser)
