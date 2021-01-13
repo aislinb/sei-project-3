@@ -32,9 +32,6 @@ function EventIndex() {
     return 0
   }
   events.sort( compare )
-  
-  
-
 
   return (
     <main>

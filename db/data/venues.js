@@ -614,7 +614,7 @@ export default [
   {
     name: 'Gyeongbokgung Palace',
     city: 'Seoul', 
-    country: 'North Korea', 
+    country: 'South Korea', 
     continent: 'Asia',
     venueImage: 'https://afar-production.imgix.net/uploads/images/post_images/images/P8AVsTSVBP/original_e30a5e10058c7167cd5e9cdcd65cc706.jpg?1464314013?ixlib=rails-0.3.0&auto=format%2Ccompress&crop=entropy&fit=crop&h=719&q=80&w=954',
     latitude: 37.579617,

@@ -12,11 +12,20 @@ function eventsMapbox() {
 
   const [popup, setPopup] = React.useState(null)
 
+  // const [viewport, setViewport] = React.useState(null)
+
   const [viewport, setViewport] = React.useState({
     latitude: 51.501476,
     longitude: -0.140634,
     zoom: 4
   })
+
+  // React.useEffect(() => {
+  //   window.navigator.geolocation.getCurrentPosition(position => {
+  //     const { coords: { latitude, longitude } } = position
+  //     setViewport({ latitude, longitude })
+  //   })
+  // }, [])
 
   React.useEffect(() => {
     const getData = async () => {
@@ -45,7 +54,10 @@ function eventsMapbox() {
               height="100%"
               width="100%"
               mapStyle='mapbox://styles/mapbox/streets-v11'
+              // latitude={viewport.latitude}
+              // longitude={viewport.longitude}
               {...viewport}
+              // zoom={4}
               onClick={() => setPopup(null)}
               onViewportChange={viewport => setViewport(viewport)}
             >
