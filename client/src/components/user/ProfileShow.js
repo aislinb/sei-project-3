@@ -2,10 +2,12 @@ import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { isAuthenticated } from '../../lib/auth'
 import { showUserProfile } from '../../lib/api'
+import { getAllEvents } from '../../lib/api'
 
 function profileShow() {
   const isLoggedIn = isAuthenticated()
   const [user, setUser] = React.useState('')
+  const [hasError, setHasError] = React.useState(false)
 
   const { id } = useParams()
 
@@ -16,12 +18,28 @@ function profileShow() {
         const { data } = await showUserProfile(id)
         setUser(data)
       } catch (err) {
-        console.log(err)
+        setHasError(true)
+        console.log(hasError)
       }
     }
     getData()
   }, [id])
   console.log(user)
+
+  // GET EVENTS:
+  const [events, setEvents] = React.useState([])
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await getAllEvents()
+        setEvents(data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+  }, [])
 
   // // De-structured fields from the event object
   // const { username, email } = user
@@ -43,12 +61,16 @@ function profileShow() {
             <p>{user.email}</p>
           </div>
           <div>
+            <h4>City:</h4>
+            <p>{user.city}</p>
+          </div>
+          <div>
             <h4>Profile Picture:</h4>
             {!user.userImage ? 
               <div>You have not added a profile image yet!</div>
               :
-              <figure className="image">
-                <img src={user.userImage} alt={user.name}/>
+              <figure className="profile-image">
+                <img src={user.userImage} alt={user.username}/>
               </figure>
             }
           </div>
@@ -61,8 +83,16 @@ function profileShow() {
             }
           </div>
           <div>
-            <h4>Events you have rated:</h4>
-            <p>{user.events}</p>
+            <h4>Events you have created:</h4>
+            {user && events ? 
+              events.map(event => {
+                if (event.owner._id === user._id) {
+                  return <div><Link to={`/events/${event._id}`}>{event.name}</Link></div>
+                }
+              })
+              :
+              <div>No events created yet</div>
+            }
           </div>
           <div className="field">
             <button>

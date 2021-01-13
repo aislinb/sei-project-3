@@ -78,7 +78,7 @@ function EventShow() {
         <h1>{name}</h1>
         <h5>{day}/{month}/{year}</h5>
         {event.venue ?
-          <h6>{event.venue.name}, {event.venue.city}, {event.venue.country}</h6>
+          <h6><Link to={`/venues/${event.venue.id}`}>{event.venue.name}</Link>, {event.venue.city}, {event.venue.country}</h6>
           :
           <h6></h6>
         }

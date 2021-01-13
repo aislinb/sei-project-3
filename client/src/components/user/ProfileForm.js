@@ -5,18 +5,18 @@ function ProfileForm({ formdata, errors, handleChange, handleSubmit, buttonText 
     <main>
       <form className="profile-edit-form" onSubmit={handleSubmit}>
         <div className="field">
-          <label className="block-form">Name</label>
+          <label className="block-form">Username</label>
           <div className="control">
             <input
               className="block-form"
               type="text"
-              placeholder="Name"
+              placeholder="Username"
               name="username"
               onChange={handleChange}
               value={formdata.username}
             />
           </div>
-          {errors.name && <p className="error-in-field">{errors.name}</p>}
+          {errors.username && <p className="error-in-field">{errors.username}</p>}
         </div>
         <div className="field">
           <label className="block-form">Email</label>
@@ -30,7 +30,7 @@ function ProfileForm({ formdata, errors, handleChange, handleSubmit, buttonText 
               value={formdata.email}
             />
           </div>
-          {errors.name && <p className="error-in-field">{errors.name}</p>}
+          {errors.email && <p className="error-in-field">{errors.email}</p>}
         </div>
         <div className="field">
           <label className="block-form">City</label>
@@ -44,7 +44,7 @@ function ProfileForm({ formdata, errors, handleChange, handleSubmit, buttonText 
               value={formdata.city}
             />
           </div>
-          {errors.name && <p className="error-in-field">{errors.name}</p>}
+          {errors.city && <p className="error-in-field">{errors.city}</p>}
         </div>
         <div className="field">
           <label className="block-form">Profile Image:</label>
@@ -57,6 +57,7 @@ function ProfileForm({ formdata, errors, handleChange, handleSubmit, buttonText 
             value={formdata.userImage}
           />
         </div>
+        {errors.userImage && <p className="error-in-field">{errors.userImage}</p>}
         <div className="field">
           <label className="block-form">About Me:</label>
           <input
@@ -68,6 +69,7 @@ function ProfileForm({ formdata, errors, handleChange, handleSubmit, buttonText 
             value={formdata.userBio}
           />
         </div>
+        {errors.userBio && <p className="error-in-field">{errors.userBio}</p>}
         <div className="field">
           <button type="submit" className="submit-button">{buttonText}</button>
         </div>

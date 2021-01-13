@@ -4,7 +4,7 @@ import { notFound } from '../lib/errorHandler.js'
 async function userProfile(req, res, next){
   try {
     const user = await User.findById(req.currentUser._id)
-      .populate('event')
+      .populate('events')
       .populate('events.owner')
     if (!user) throw new Error(notFound)
     return res.status(200).json(user)
@@ -16,7 +16,8 @@ async function userProfile(req, res, next){
 async function userProfileShow(req, res, next) {
   try {
     const user = await User.findById(req.currentUser._id)
-      .populate('event') // this is not hooked up yet
+      .populate('events') // this is not hooked up yet
+      .populate('events.owner')
     if (!user) throw new Error(notFound)
     return res.status(200).json(user)
     

@@ -8,7 +8,7 @@ function ProfileEditCard() {
   const history = useHistory()
   const { id } = useParams()
   const { formdata, errors, handleChange, setFormdata, setErrors } = useForm({
-    username: '', 
+    username: '',
     email: '',
     city: '',
     userImage: '',
