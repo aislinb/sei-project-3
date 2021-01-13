@@ -2,34 +2,19 @@ import React from 'react'
 import { getAllEvents } from '../../lib/api'
 import { Link } from 'react-router-dom'
 import RingLoader from 'react-spinners/RingLoader'
-//import useForm from '../../utils/useForm'
 import Select from 'react-select'
 
-const selectOptions = [
-  { value: 'Europe', label: 'Europe' },
-  { value: 'Australasia', label: 'Australasia' },
-  { value: 'North America', label: 'North America' },
-  { value: 'South America', label: 'South America' },
-  { value: 'Africa', label: 'Africa' },
-  { value: 'Asia', label: 'Asia' },
-  { value: 'Antarctica', label: 'Antarctica' }
-]
-
-// const selectCountries = [
-//   { value: 'France', label: 'France' },
-//   { value: 'United Kingdom', label: 'United Kingdom' },
-//   { value: 'Germany', label: 'Germany' }
-// ]
 
 function EventIndex() {
   const [events, setEvents] = React.useState([])
-  //const [filteredEvents, setFilteredEvents] = React.useState([])
   const [hasError, setHasError] = React.useState(false)
 
+  let continents = []
   let countries = []
   let cities = []
 
   events.map(event => {
+    continents.push(event.venue.continent)
     countries.push(event.venue.country)
     cities.push(event.venue.city)
   })
@@ -43,8 +28,14 @@ function EventIndex() {
     })
     return unique
   }
+  continents = removeDuplicates(continents)
   countries = removeDuplicates(countries)
   cities = removeDuplicates(cities)
+
+  const filteredContinents = []
+  continents.map(continent => {
+    filteredContinents.push({ value: continent, label: continent })
+  })
 
   const filteredCountries = []
   countries.map(country => {
@@ -104,8 +95,6 @@ function EventIndex() {
   }
   events.sort( compare )
   
-  
-
 
   return (
     <main>
@@ -118,9 +107,9 @@ function EventIndex() {
           <Link to="/events/new">Add Event</Link>
         </button>
       </div>
-      <div>
+      <div className="selects">
         <Select 
-          options={selectOptions}
+          options={filteredContinents}
           onChange={handleSelectContinent}
         />
         {countries.length > 0 ?
@@ -139,25 +128,8 @@ function EventIndex() {
           :
           <Select />
         }
-
-
-        {/* <select onChange={handleMultiSelectChange}>
-          {events.map(event => {
-            return <option key={event._id} value={event.venue.continent}>{event.venue.continent}</option>
-          })}
-        </select>
-        <select>
-          {events.map(event => {
-            return <option key={event._id} value={event.venue.country}>{event.venue.country}</option>
-          })}
-        </select>
-        <select>
-          {events.map(event => {
-            return <option key={event._id} value={event.venue.city}>{event.venue.city}</option>
-          })}
-        </select> */}
-        {/* <button>Search</button> */}
       </div>
+      <br />
       {events ?
         <ul className="index-list">
           {events.map(item => {
