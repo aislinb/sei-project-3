@@ -94,11 +94,9 @@ function EventIndex() {
     return 0
   }
   events.sort( compare )
-<<<<<<< HEAD
-=======
   
->>>>>>> development
 
+  
   return (
     <main>
       <div className="index-header">
