@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 
 function eventNew() {
   const history = useHistory()
-  const { formdata, handleChange } = useForm({
+  const { formdata, handleChange, errors, setErrors } = useForm({
     name: '', 
     city: '', 
     country: '', 
@@ -23,7 +23,7 @@ function eventNew() {
       // un-comment below to test data you are submitting
       //window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
-      console.log(err)
+      setErrors(err.response.data.errors)
     }
   }
 
@@ -34,6 +34,7 @@ function eventNew() {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         formdata={formdata}
+        errors={errors}
       />
     </main>
   )

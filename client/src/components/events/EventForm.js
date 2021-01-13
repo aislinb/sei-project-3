@@ -2,8 +2,11 @@ import React from 'react'
 import { getAllVenues } from '../../lib/api'
 import { Link } from 'react-router-dom'
 
-function EventForm({ handleChange, handleSubmit, formdata }) {
+
+function EventForm({ handleChange, handleSubmit, formdata, errors }) {
   const [venues, setVenues] = React.useState([])
+
+  
 
   React.useEffect(() => {
     const getData = async () => {
@@ -29,6 +32,9 @@ function EventForm({ handleChange, handleSubmit, formdata }) {
         onChange={handleChange} 
         value={formdata.name}
       />
+      <div>
+        {errors.name && <p className="error-message">{errors.name}</p>}
+      </div>
       <label className="block-form">Event Date</label>
       <input 
         className="block-form"
@@ -37,6 +43,9 @@ function EventForm({ handleChange, handleSubmit, formdata }) {
         onChange={handleChange} 
         value={formdata.date}
       />
+      <div>
+        {errors.date && <p className="error-message">{errors.date}</p>}
+      </div>
       <div className="side-note">
         <label className="block-form">Event Venue</label>
         <div className="index-header venue-not-on-list">
@@ -53,7 +62,7 @@ function EventForm({ handleChange, handleSubmit, formdata }) {
         value={formdata.venue}
       //Need to add a function onselect to add the entire venue object to the event object
       >
-        <option>Select a venue</option>
+        <option disabled>Select a venue</option>
         {venues ?
           venues.map(venue => {
             return (
@@ -73,6 +82,9 @@ function EventForm({ handleChange, handleSubmit, formdata }) {
         onChange={handleChange} 
         value={formdata.description}
       />
+      <div>
+        {errors.description && <p className="error-message">{errors.description}</p>}
+      </div>
       <label className="block-form">Image URL</label>
       <input 
         className="block-form"
@@ -82,6 +94,9 @@ function EventForm({ handleChange, handleSubmit, formdata }) {
         onChange={handleChange} 
         value={formdata.image}
       />
+      <div>
+        {errors.eventImage && <p className="error-message">{errors.eventImage}</p>}
+      </div>
       <button type="submit" className="submit-btn">Submit</button>
     </form>
   )

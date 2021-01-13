@@ -1,6 +1,7 @@
 import React from 'react'
 import { getAllVenues } from '../../lib/api'
 import { Link } from 'react-router-dom'
+import RingLoader from 'react-spinners/RingLoader'
 
 
 function venueIndex() {
@@ -63,7 +64,9 @@ function venueIndex() {
           }
         </ul>
         :
-        <div>Loading events...</div>
+        <div className="ring-loader">
+          <RingLoader color="purple" size={60} />
+        </div>
       }
     </main>
   )

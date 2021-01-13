@@ -59,6 +59,7 @@ function venueShow() {
     }
   }
 
+  console.log(venue.comments)
   return (
     <main>
       <section className="event-detail">
