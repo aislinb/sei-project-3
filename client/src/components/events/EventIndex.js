@@ -108,7 +108,7 @@ function EventIndex() {
   return (
     <main>
       <div className="index-header">
-        <h1>Highlights of 2020</h1>
+        <h1>Highlights of <span className="year-2020">2020</span></h1>
         <Link to="/map"><button className="link-button">
           Map View
         </button></Link>
