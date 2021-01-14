@@ -5,6 +5,7 @@ import { isOwner, isAuthenticated } from '../../lib/auth'
 import useForm from '../../utils/useForm'
 import { Link } from 'react-router-dom'
 import RingLoader from 'react-spinners/RingLoader'
+import profilePlaceholder from '../../images/profile-placeholder.jpg'
 
 function venueShow() {
   const [venue, setVenue] = React.useState([])
@@ -76,7 +77,9 @@ function venueShow() {
     e.preventDefault()
     try {
       await createVenueComment(formdata, venue._id)
-      window.location.reload()
+      const { data } = await getSingleVenue(id)
+      setVenue(data)
+      // window.location.reload() <-- Don't use this in React
       // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
       setErrors(err.response.data.errors)
@@ -176,7 +179,15 @@ function venueShow() {
                   return (
                     <div key={comment._id} className="review">
                       <h3>{comment.owner.username}</h3>
-                      <h5>{comment.text}</h5>
+                      <div className="avatar">
+                        {comment.owner.userImage ? 
+                          <img src={comment.owner.userImage} alt="profile pic" />
+                          :
+                          <img src={profilePlaceholder} alt="profile pic" />
+                        }
+                      </div>
+                      <p><small>Reviewed {comment.updatedAt.slice(0, 10)}</small></p>
+                      <p>{comment.text}</p>
                       <h5>{comment.rating} ⭐️</h5>
                     </div>
                   )
