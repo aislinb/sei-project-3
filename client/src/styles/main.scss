@@ -4,6 +4,18 @@ $sig-purple: #48194f;
 $sig-light-purple: rgb(221, 199, 255);
 $sig-very-light-purple: rgb(238, 230, 250);
 $sig-pink: #ffeded;
+//
+
+
+  // @keyframes glow {
+  //   from {
+  //     text-shadow: 2px 2px 10px purple;
+  //   }
+  //   to {
+  //     text-shadow: 2px 2px 20px purple, 2px 2px 10px purple;
+  //   }
+  // }
+// }
 
 
 // Universal styles
@@ -34,11 +46,76 @@ main {
   text-align: center;
 }
 
-.year-2020 {
-  font-family: 'Roboto', sans-serif;
-
-  //font-family: Arial, Helvetica, sans-serif;
-}
+.header-image {
+  @import url('https://fonts.googleapis.com/css?family=Roboto:300');
+  h1 {
+    margin: 0;
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 1;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 3.3rem;
+    text-transform: uppercase;
+    // animation: glow 2s ease-in-out infinite alternate;
+    text-align: center;
+  }
+  div {
+    display:inline-block;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  
+  div:first-of-type {  
+    font-family: 'Roboto', sans-serif; 
+    animation: showup 7s infinite;
+    margin-bottom: 4px;
+  }
+  
+  .extra-gap {
+    margin-right: 10px;
+  }
+  
+  div:last-of-type {
+    width:0px;
+    animation: reveal 7s infinite;
+  }
+  
+  div:last-of-type span {
+    width: 200px;
+    margin-left:-355px;
+    animation: slidein 7s infinite;
+  }
+  
+  @keyframes showup {
+      0% {opacity:0;}
+      20% {opacity:1;}
+      80% {opacity:1;}
+      100% {opacity:0;}
+  }
+  
+  @keyframes slidein {
+      0% { margin-left:-800px; }
+      20% { margin-left:-800px; }
+      35% { margin-left:0px; }
+      100% { margin-left:0px; }
+  }
+  
+  @keyframes reveal {
+      0% {opacity:0;width:0px;}
+      20% {opacity:1;width:0px;}
+      30% {width:355px;}
+      80% {opacity:1;}
+      100% {opacity:0;width:355px;}
+  }
+  
+  
+  p {
+    font-size:12px;
+    color:#999;
+    margin-top:200px;
+  }
+  }
+  
 
 h1 {
   font-family: 'Josefin Sans', sans-serif;
@@ -208,6 +285,11 @@ nav {
     margin-top: 2%;
     box-shadow: 0px 0px 20px $sig-purple;
   }
+}
+
+#root > main > p {
+  margin-top: -15px;
+  margin-bottom: 40px;
 }
 
 // Events index

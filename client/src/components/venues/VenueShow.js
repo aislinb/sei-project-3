@@ -122,7 +122,7 @@ function venueShow() {
           <form onSubmit={handleSubmit}>
             <section className="rate-event">
               <div>
-                <label>Rate This Venue (1 to 5) 💉 :</label>
+                <label>Rate This Venue (1 to 5):</label>
               </div>
               <div className="rate">
                 <input onClick={handleChange} type="radio" id="star5" name="rating" value="5" />
