@@ -2,10 +2,71 @@ import React from 'react'
 import { getAllVenues } from '../../lib/api'
 import { Link } from 'react-router-dom'
 import RingLoader from 'react-spinners/RingLoader'
-
+import Select from 'react-select'
 
 function venueIndex() {
   const [venues, setVenues] = React.useState([])
+  const [hasError, setHasError] = React.useState(false)
+
+  let continents = []
+  let countries = []
+  let cities = []
+
+  venues.map(venue => {
+    continents.push(venue.continent)
+    countries.push(venue.country)
+    cities.push(venue.city)
+  })
+
+  function removeDuplicates(data) {
+    const unique = []
+    data.forEach(element => {
+      if (!unique.includes(element)) {
+        unique.push(element)
+      }
+    })
+    return unique
+  }
+  continents = removeDuplicates(continents)
+  countries = removeDuplicates(countries)
+  cities = removeDuplicates(cities)
+
+  const filteredContinents = []
+  continents.map(continent => {
+    filteredContinents.push({ value: continent, label: continent })
+  })
+
+  const filteredCountries = []
+  countries.map(country => {
+    filteredCountries.push({ value: country, label: country })
+  })
+
+  const filteredCities = []
+  cities.map(city => {
+    filteredCities.push({ value: city, label: city })
+  })
+
+  const handleSelectContinent = (e) => {
+    const results = venues.filter(venue => {
+      return venue.continent === e.value
+    })
+    setVenues(results)
+  }
+  //This function only works once
+
+  const handleSelectCountry = (e) => {
+    const results = venues.filter(venue => {
+      return venue.country === e.value
+    })
+    setVenues(results)
+  }
+
+  const handleSelectCity = (e) => {
+    const results = venues.filter(venue => {
+      return venue.city === e.value
+    })
+    setVenues(results)
+  }
 
   React.useEffect(() => {
     const getData = async () => {
@@ -14,6 +75,7 @@ function venueIndex() {
         setVenues(data)
       } catch (err) {
         console.log(err)
+        setHasError(true)
       }
     }
     getData()
@@ -29,11 +91,9 @@ function venueIndex() {
     return 0
   }
   venues.sort( compare )
-
+  
   return (
     <main>
-      <h3> - Add filter buttons to browse by continent/country here -</h3>
-      <h3> Browse an event that took place at your chosen venue: </h3>
       <div className="index-header">
         <h1>Browse Venues</h1>
         <button>
@@ -42,6 +102,31 @@ function venueIndex() {
         <button>
           <Link to="/venues/new">Add Venue</Link>
         </button>
+      </div>
+      <div className="selects">
+        <Select 
+          options={filteredContinents}
+          onChange={handleSelectContinent}
+          placeholder="Select a continent..."
+        />
+        {countries.length > 0 ?
+          <Select 
+            options={filteredCountries}
+            onChange={handleSelectCountry}
+            placeholder="Select a country..."
+          />
+          :
+          <Select />
+        }
+        {cities.length > 0 ?
+          <Select 
+            options={filteredCities}
+            onChange={handleSelectCity}
+            placeholder="Select a city..."
+          />
+          :
+          <Select />
+        }
       </div>
       {venues ?
         <ul className="index-list">
@@ -64,8 +149,13 @@ function venueIndex() {
           }
         </ul>
         :
-        <div className="ring-loader">
-          <RingLoader color="purple" size={60} />
+        <div>
+          {hasError ? 'Oops something went wrong...'
+            :
+            <div className="ring-loader">
+              <RingLoader color="purple" size={60} />
+            </div>
+          }
         </div>
       }
     </main>

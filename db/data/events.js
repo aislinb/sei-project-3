@@ -26,7 +26,14 @@ export default [
     description: 'Did anyone expect that? England and Wales draw with Wales getting a last minute drop goal.',
     eventImage: 'https://www.telegraph.co.uk/content/dam/rugby-union/2019/08/14/TELEMMGLPICT000206309766_trans_NvBQzQNjv4Bqg-VWvOIJKlKo7WTGpl35mf4w43zrVIatcqU_k_kMehc.jpeg',
     venueRef: 'Principality Stadium'
-  }, 
+  },
+  {
+    name: 'Lounge on the Farm', 
+    date: '2020-08-08', 
+    description: 'Anyone who is anyone in the East Kent vicinity wouldnt miss this event for the world! A favourite amongst Canterbury teenagers who cant handle their local cider, it was a joy to witness this years banging lineup amongst a sea of terrible haircuts.',
+    eventImage: 'https://bigseventravel.com/wp-content/uploads/2019/10/def.jpg',
+    venueRef: 'Merton Farm'
+  },
   {
     name: 'England v Germany', 
     date: '2020-09-23', 
@@ -257,7 +264,14 @@ export default [
     description: 'Armed with just a foot loop pedal, his guitar, his voice and a microphone, Sheeran captivated the audience for almost two hours. There is no debate that he is a talented live performer and can hold his own opposite a sold-out crowd of 39,000, however, in my eyes, the gig didn\'t reach its full potential.',
     eventImage: 'https://cdn.mysnapp.co.uk/images/original/ed-sheeran-has-broken-another-world-record-editorial-article-image-link-gP73.jpg',
     venueRef: 'Aviva Stadium'
-  }, 
+  },
+  {
+    name: 'Ed Sheeran', 
+    date: '2020-03-04', 
+    description: 'Armed with just a foot loop pedal, his guitar, his voice and a microphone, Sheeran captivated the audience for almost two hours. There is no debate that he is a talented live performer and can hold his own opposite a sold-out crowd of 39,000, however, in my eyes, the gig didn\'t reach its full potential.',
+    eventImage: 'https://cdn.mysnapp.co.uk/images/original/ed-sheeran-has-broken-another-world-record-editorial-article-image-link-gP73.jpg',
+    venueRef: 'Christchurch Arena'
+  },
   {
     name: 'Adele', 
     date: '2020-11-20', 

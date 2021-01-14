@@ -18,6 +18,24 @@ export default [
     longitude: -0.341505
   },
   {
+    name: 'Merton Farm',
+    city: 'Canterbury', 
+    country: 'United Kingdom', 
+    continent: 'Europe',
+    venueImage: 'https://bigseventravel.com/wp-content/uploads/2019/10/def.jpg',
+    latitude: 51.2504,
+    longitude: 1.0781
+  },
+  {
+    name: 'Christchurch Arena',
+    city: 'Canterbury', 
+    country: 'New Zealand', 
+    continent: 'Australasia',
+    venueImage: 'https://www.theconstructionindex.co.uk/assets/news_articles/2020/03/1583225393_03mar20-canterbury-multi-use-arena.jpg',
+    latitude: 43.5458,
+    longitude: 172.6013
+  },
+  {
     name: 'Birmingham Arena',
     city: 'Birmingham', 
     country: 'United Kingdom', 
@@ -380,7 +398,7 @@ export default [
   {
     name: 'Scotiabank Arena', 
     city: 'Toronto', 
-    country: 'United States', 
+    country: 'Canada', 
     continent: 'North America', 
     venueImage: 'https://mbii.com/wp-content/uploads/2018/09/Air-Canada-Centre-D.jpg',
     latitude: 43.643466,
@@ -389,7 +407,7 @@ export default [
   {
     name: 'Rogers Arena', 
     city: 'Vancouver', 
-    country: 'United States', 
+    country: 'Canada', 
     continent: 'North America', 
     venueImage: 'https://cdn.wegow.com/media/venues/rogers-arena/rogers-arena-1557248037.59.2560x1440.jpg',
     latitude: 49.277836,
@@ -414,7 +432,7 @@ export default [
     longitude: -71.264347
   },
   {
-    name: 'Barlcays Center', 
+    name: 'Barclays Center', 
     city: 'New York', 
     country: 'United States', 
     continent: 'North America', 

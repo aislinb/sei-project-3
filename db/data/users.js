@@ -22,5 +22,23 @@ export default [
     email: 'jack@email',
     password: 'pass',
     passwordConfirmation: 'pass',
+  },
+  {
+    username: 'jack',
+    email: 'jack@email',
+    password: 'pass',
+    passwordConfirmation: 'pass',
+  },
+  {
+    username: 'char',
+    email: 'char@email',
+    password: 'pass',
+    passwordConfirmation: 'pass',
+  },
+  {
+    username: 'noa',
+    email: 'noa@email',
+    password: 'pass',
+    passwordConfirmation: 'pass',
   }
 ]

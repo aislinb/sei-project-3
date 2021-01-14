@@ -29,7 +29,7 @@ function Register() {
         <div className="field">
           <label className="label">Username</label>
           <input
-            className="input-field"
+            className={`input ${errors.username ? 'error-in-form' : ''}`}
             placeholder="Username"
             onChange={handleChange}
             name="username"
@@ -39,7 +39,7 @@ function Register() {
         <div className="field">
           <label className="label">Email</label>
           <input
-            className="input-field"
+            className={`input ${errors.email ? 'error-in-form' : ''}`}
             placeholder="Email"
             onChange={handleChange}
             name="email"
@@ -50,7 +50,7 @@ function Register() {
           <label className="label">Password</label>
           <input
             type="password"
-            className="input-field"
+            className={`input ${errors.password ? 'error-in-form' : ''}`}
             placeholder="Password"
             onChange={handleChange}
             name="password"

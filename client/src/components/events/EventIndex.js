@@ -111,11 +111,13 @@ function EventIndex() {
         <Select 
           options={filteredContinents}
           onChange={handleSelectContinent}
+          placeholder="Select a continent..."
         />
         {countries.length > 0 ?
           <Select 
             options={filteredCountries}
             onChange={handleSelectCountry}
+            placeholder="Select a country..."
           />
           :
           <Select />
@@ -124,6 +126,7 @@ function EventIndex() {
           <Select 
             options={filteredCities}
             onChange={handleSelectCity}
+            placeholder="Select a city..."
           />
           :
           <Select />
