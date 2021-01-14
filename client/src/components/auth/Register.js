@@ -23,11 +23,11 @@ function Register() {
     }
   }
   return (
-    <main>
+    <main className="login">
       <h1>Register here</h1>
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="field">
-          <label className="label">Username</label>
+          <label className="label">Username:</label>
           <input
             className={`input ${errors.username ? 'error-in-form' : ''}`}
             placeholder="Username"
@@ -37,7 +37,7 @@ function Register() {
           />
         </div>
         <div className="field">
-          <label className="label">Email</label>
+          <label className="label">Email:</label>
           <input
             className={`input ${errors.email ? 'error-in-form' : ''}`}
             placeholder="Email"
@@ -47,7 +47,7 @@ function Register() {
           />
         </div>
         <div className="field">
-          <label className="label">Password</label>
+          <label className="label">Password:</label>
           <input
             type="password"
             className={`input ${errors.password ? 'error-in-form' : ''}`}
@@ -59,7 +59,7 @@ function Register() {
         </div>
         {errors.password && <p className="error-in-form">{errors.password}</p>}
         <div className="field">
-          <label className="label">Password Confirmation</label>
+          <label className="label">Password Confirmation:</label>
           <div className="control">
             <input
               type="password"

@@ -167,8 +167,8 @@ export default [
     country: 'United Kingdom', 
     continent: 'Europe',
     venueImage: 'https://www.sportinglife.com/images/news/945x532/48408767-841f-445d-9ae1-d010c5ece578.jpg',
-    latitude: 53.380972,
-    longitude: -1.466826
+    latitude: 53.403472,
+    longitude: -1.420554
   },
   {
     name: 'Ibrox',

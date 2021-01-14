@@ -44,7 +44,7 @@ function profileShow() {
   // const { username, email } = user
 
   return (
-    <main>
+    <main className="profile-show">
       {isLoggedIn ?
         <>
           <h1>Welcome, {user.username}!</h1>

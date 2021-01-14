@@ -48,7 +48,7 @@ function ProfileForm({ formdata, errors, handleChange, handleSubmit, buttonText 
           {errors.city && <p className="error-in-field">{errors.city}</p>}
         </div>
         <div className="field">
-          <label className="block-form">Profile Image:</label>
+          <label className="block-form">Profile Image: (please wait for image to appear)</label>
           <ImageUploadField
             onChange={handleChange}
             labelText="Profile Image"
