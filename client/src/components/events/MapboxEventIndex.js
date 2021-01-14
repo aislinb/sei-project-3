@@ -87,9 +87,9 @@ function eventsMapbox() {
               {popup &&
           <Popup
             closeOnClick={true}
-            // onClose={() => setPopup('')}
             latitude={popup.latitude}
             longitude={popup.longitude}
+            closeButton={false}
           >
             <h4>{popup.name}, {popup.city}</h4>
             <h4>Events:</h4>

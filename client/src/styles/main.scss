@@ -191,21 +191,26 @@ nav {
   align-items: center;
 
   button {
-    a {
-      color: gold;
-      text-decoration: none;
-    }
     
-    background: linear-gradient(rgb(100, 100, 100), rgb(50, 50, 50));
+    // background: linear-gradient($sig-purple, $sig-light-purple, $sig-purple);
+    background-color: white;
     border-radius: 5px;
     padding: 7px 25px;
     font-size: 1rem;
-    border: 1px solid black;
+    border: 3px solid $sig-purple;
     cursor: pointer;
+    transition-duration: 0.4s;;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+
+  button:hover {
+    background-color: $sig-purple; /* Green */
+    color: white;
   }
 
   .link-button {
-    color: gold;
+    color: $sig-purple;
+    font-family: 'Josefin Sans', sans-serif;
   }
 }
 
@@ -271,7 +276,7 @@ nav {
 // Events Index Mapbox
 .map-container {
   margin: auto auto;
-  border: 10px solid gold;
+  border: 10px solid $sig-purple;
   border-radius: 10px;
   height: calc(100vh - 52px);
   width: 100%;
@@ -312,16 +317,12 @@ nav {
 
     img {
       width: 100%;
+      border-radius: 20px;
     }
   }
   
 }
 
-
-
-// .rate-event {
-// align-items: left;
-// }
 
 .reviews-and-ratings-wrapper {
   display: flex;
