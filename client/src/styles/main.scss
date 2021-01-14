@@ -15,7 +15,8 @@ body {
   height: 100%;
   min-height: 100%;
   line-height: 1.5;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Avenir', Helvetica, sans-serif;
+  //font-family: 'Josefin Sans', sans-serif;
   margin: 0;
   color: $sig-purple;
 
@@ -27,6 +28,19 @@ main {
   width: 90vw;
   margin: 4rem auto 0 auto;
 
+}
+
+.year-2020 {
+  font-family: 'Roboto', sans-serif;
+
+  //font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-family: 'Josefin Sans', sans-serif;
+  //font-family: 'Abril Fatface', cursive;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .submit-btn {
@@ -102,6 +116,10 @@ nav {
   top: 0;
   width: 100%;
   z-index: 2;
+  font-family: 'Josefin Sans', sans-serif;
+  //font-family: 'Abril Fatface', cursive;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 
   .logo {
     display: flex;
@@ -115,6 +133,7 @@ nav {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 3px;
+    font-family: 'Archivo Black', sans-serif;
   }
 
   a {
@@ -141,10 +160,13 @@ nav {
     color: $sig-purple;
     background-color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 7px 10px 5px 10px;
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     margin-left: 5px;
     a {
       color: $sig-purple;
@@ -232,6 +254,8 @@ nav {
     h3 {
       font-size: 1.5rem;
       color: $sig-purple;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 1px;
     }
 
     h5 {
