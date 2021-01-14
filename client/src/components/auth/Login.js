@@ -31,11 +31,12 @@ function Login() {
   }
 
   return (
-    <main>
+    <main className="login">
       <section className="section">
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="field">
-            <label className="label">Email</label>
+            <h1>Login here</h1>
+            <label className="label">Email:</label>
             <input
               className="input-field"
               placeholder="Email"
@@ -46,7 +47,7 @@ function Login() {
             />
           </div>
           <div className="field">
-            <label className="label">Password</label>
+            <label className="label">Password:</label>
             <input
               type="password"
               className="input-field"

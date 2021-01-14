@@ -57,7 +57,7 @@ function Home() {
           </HeroCarousel>
         </section>
         <h1><span className="year-2020">2020</span> Reimagined</h1>
-        <p>Reimagining the events we missed in 2020 as if COVID were non-existent. In an alternate reality, thousands of people attended events across the world in 2020 living their best lives. Let us know what your 2020 self thought as you partied, supported and travelled to these incredible events.</p>
+        <p>Reimagining the events we missed in 2020 as if COVID were non-existent. In an alternate reality, thousands of people attended events across the world in 2020 living their best lives. Let us know what your 2020 self thought, as you partied, supported and travelled to these incredible events.</p>
         <div>
           <h2>Highest Rated Events</h2>
           {events ?

@@ -212,28 +212,29 @@ nav {
   justify-content: space-between;
   align-items: center;
 
-  button {
-    
-    // background: linear-gradient($sig-purple, $sig-light-purple, $sig-purple);
-    background-color: white;
-    border-radius: 5px;
-    padding: 7px 25px;
-    font-size: 1rem;
-    border: 3px solid $sig-purple;
-    cursor: pointer;
-    transition-duration: 0.4s;;
-    font-family: 'Josefin Sans', sans-serif;
-  }
-
-  button:hover {
-    background-color: $sig-purple; /* Green */
-    color: white;
-  }
 
   .link-button {
     color: $sig-purple;
     font-family: 'Josefin Sans', sans-serif;
   }
+}
+
+button {
+    
+  // background: linear-gradient($sig-purple, $sig-light-purple, $sig-purple);
+  background-color: white;
+  border-radius: 5px;
+  padding: 7px 25px;
+  font-size: 1rem;
+  border: 3px solid $sig-purple;
+  cursor: pointer;
+  transition-duration: 0.4s;;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+button:hover {
+  background-color: $sig-purple; /* Green */
+  color: white;
 }
 
 .index-list {
@@ -321,6 +322,7 @@ nav {
 // Event Show
 .event-detail {
 
+  margin: 5%;
   h1 {
     text-align: center;
   }
@@ -473,10 +475,39 @@ nav {
 
 }
 
+// Login
+.login {
+  text-align: center;
+  
+  h1 {
+    font-size: 30px;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+
+  label {
+    padding: 10px;
+  }
+}
+
 // PROFILE PAGE
 //errors
+.login-error {
+  color: red;
+}
+
 .error-in-form {
   border-color: red;
+}
+
+.profile-show {
+  img {
+    width: 20%;
+    border-radius: 10px;
+  }
+
 }
 
 
