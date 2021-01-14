@@ -476,6 +476,48 @@ button:hover {
   
 }
 
+//Show Pages
+.events-at-this-venue {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+
+.event-preview {
+  box-shadow: 1px 1px 5px 3px rgba(67, 67, 67, 0.2);
+  padding: 10px;
+  border-radius: 7px;
+  width: 32%;
+  margin-bottom: 1rem;
+
+  h5, p {
+    font-size: 1rem;
+    margin: 5px auto;
+    text-align: center;
+  }
+
+  p {
+    font-size: 0.85rem;
+  }
+  
+  a {
+    text-decoration: none;
+    color: $sig-purple;
+  }
+  
+  figure {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+
+
 
 .reviews-and-ratings-wrapper {
   display: flex;
