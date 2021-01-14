@@ -5,7 +5,6 @@ function VenueForm({ handleChange, handleSubmit, formdata, errors }) {
 
   return (
     <form className="add-form" onSubmit={handleSubmit}>
-      <h1>Add a New Venue</h1>
       <label className="block-form">Venue Name</label>
       <input 
         className="block-form"
@@ -15,9 +14,13 @@ function VenueForm({ handleChange, handleSubmit, formdata, errors }) {
         onChange={handleChange} 
         value={formdata.name}
       />
-      <div>
-        {errors.name && <p className="error-message">{errors.name}</p>}
-      </div>
+      {errors ? 
+        <div>
+          {errors.name && <p className="error-message">{errors.name}</p>}
+        </div>
+        :
+        <div></div>
+      }
       <label className="block-form">Venue City</label>
       <input 
         className="block-form"
@@ -27,9 +30,13 @@ function VenueForm({ handleChange, handleSubmit, formdata, errors }) {
         onChange={handleChange} 
         value={formdata.city}
       />
-      <div>
-        {errors.city && <p className="error-message">{errors.city}</p>}
-      </div>
+      {errors ? 
+        <div>
+          {errors.city && <p className="error-message">{errors.city}</p>}
+        </div>
+        :
+        <div></div>
+      }
       <label className="block-form">Venue Country</label>
       <input 
         className="block-form"
@@ -39,9 +46,13 @@ function VenueForm({ handleChange, handleSubmit, formdata, errors }) {
         onChange={handleChange} 
         value={formdata.country}
       />
-      <div>
-        {errors.country && <p className="error-message">{errors.country}</p>}
-      </div>
+      {errors ? 
+        <div>
+          {errors.country && <p className="error-message">{errors.country}</p>}
+        </div>
+        :
+        <div></div>
+      }
       <label className="block-form">Venue Continent</label>
       <input 
         className="block-form"
@@ -51,9 +62,13 @@ function VenueForm({ handleChange, handleSubmit, formdata, errors }) {
         onChange={handleChange} 
         value={formdata.continent}
       />
-      <div>
-        {errors.continent && <p className="error-message">{errors.continent}</p>}
-      </div>
+      {errors ? 
+        <div>
+          {errors.continent && <p className="error-message">{errors.continent}</p>}
+        </div>
+        :
+        <div></div>
+      }
       <label className="block-form">Image URL</label>
       <input 
         className="block-form"
@@ -63,9 +78,13 @@ function VenueForm({ handleChange, handleSubmit, formdata, errors }) {
         onChange={handleChange} 
         value={formdata.venueImage}
       />
-      <div>
-        {errors.venueImage && <p className="error-message">{errors.venueImage}</p>}
-      </div>
+      {errors ? 
+        <div>
+          {errors.venueImage && <p className="error-message">{errors.venueImage}</p>}
+        </div>
+        :
+        <div></div>
+      }
       <div className="side-note">
         <label className="block-form">Latitude</label>
         <div className="index-header venue-not-on-list">
@@ -83,9 +102,13 @@ function VenueForm({ handleChange, handleSubmit, formdata, errors }) {
         onChange={handleChange} 
         value={formdata.latitude}
       />
-      <div>
-        {errors.latitude && <p className="error-message">{errors.latitude}</p>}
-      </div>
+      {errors ? 
+        <div>
+          {errors.latitude && <p className="error-message">{errors.latitude}</p>}
+        </div>
+        :
+        <div></div>
+      }
       <label className="block-form">Longitude</label>
       <input 
         className="block-form"
@@ -95,9 +118,13 @@ function VenueForm({ handleChange, handleSubmit, formdata, errors }) {
         onChange={handleChange} 
         value={formdata.longitude}
       />
-      <div>
-        {errors.longitude && <p className="error-message">{errors.longitude}</p>}
-      </div>
+      {errors ? 
+        <div>
+          {errors.longitude && <p className="error-message">{errors.longitude}</p>}
+        </div>
+        :
+        <div></div>
+      }
       <button type="submit" className="submit-btn">Submit</button>
     </form>
   )

@@ -12,12 +12,9 @@ function eventsMapbox() {
 
   const [popup, setPopup] = React.useState(null)
 
-<<<<<<< HEAD
   
-=======
   // const [viewport, setViewport] = React.useState(null)
 
->>>>>>> development
   const [viewport, setViewport] = React.useState({
     latitude: 51.501476,
     longitude: -0.140634,

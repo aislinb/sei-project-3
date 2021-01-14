@@ -10,7 +10,7 @@ function eventNew() {
   const { formdata, handleChange, errors, setErrors } = useForm({
     name: '', 
     // Get ISO formatted dated from user selection. need to restrict date to only 2020
-    date: '0000-00-00', 
+    date: '', 
     description: '',
     eventImage: '',
     // ACTUAL venue OBJECT will go here, found by its mongo id
@@ -32,6 +32,7 @@ function eventNew() {
 
   return (
     <main>
+      <h1 className="form-heading">Add a 2020 Event</h1>
       <EventForm 
         handleChange={handleChange}
         handleSubmit={handleSubmit}
