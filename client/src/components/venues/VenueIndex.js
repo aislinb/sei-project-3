@@ -96,8 +96,10 @@ function venueIndex() {
   }
   venues.sort( compare )
 
-  const reloadPage = () => {
-    window.location.reload()
+  const handleResetSelection = async () => {
+    // window.location.reload() <-- Don't use this is React
+    const { data } = await getAllVenues()
+    setVenues(data)
   }
   
 
@@ -115,9 +117,9 @@ function venueIndex() {
           :
           <h6></h6>
         }
-        <Link to="/venues/"><button className="link-button" onClick={reloadPage} >
+        <button className="link-button" onClick={handleResetSelection} >
           Reset Selection
-        </button></Link>
+        </button>
       </div>
       <div className="selects">
         <Select 

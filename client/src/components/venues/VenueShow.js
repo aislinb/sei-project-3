@@ -106,18 +106,37 @@ function venueShow() {
           </div>
         }
       </section>
-      <div>
-        <h4>Events at this venue:</h4>
+      <h4>Events at this venue:</h4>
+      <section className="events-at-this-venue">
         {venue && events ? 
           events.map(event => {
+            const { _id, name, date, eventImage } = event
+            // Convert ISO date into JS format date
+            const jsDate = new Date(date)
+            // Get the day of the month
+            const day = jsDate.getDate()
+            // Get the actual month - months begin at 0
+            const month = jsDate.getMonth() + 1
+            // Get the year
+            const year = jsDate.getFullYear()
             if (event.venue.name === venue.name) {
-              return <div><Link to={`/events/${event._id}`}>{event.name}</Link></div>
+              return (
+                <div className="event-preview">
+                  <Link to={`/events/${_id}`}>
+                    <h5>{name}</h5>
+                    <p>{day}/{month}/{year}</p>
+                    <figure>
+                      <img src={eventImage} alt={name} />
+                    </figure>
+                  </Link>
+                </div>
+              )
             }
           })
           :
           <div>No events at this venue.</div>
         }
-      </div>
+      </section>
       <hr />
       <section className="add-review">
         <h3>Review {venue.name}</h3>
