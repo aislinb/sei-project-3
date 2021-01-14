@@ -167,14 +167,16 @@ function EventIndex() {
             // Get the day of the month
             const day = jsDate.getDate()
             // Get the actual month - months begin at 0
-            const month = jsDate.getMonth() + 1
+            let month = jsDate.getMonth()
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+            month = months[month]
             // Get the year
             const year = jsDate.getFullYear()
             return (
               <li key={_id}>
                 <Link to={`/events/${_id}`}>
                   <h3>{name}</h3>
-                  <h5>{day}/{month}/{year}</h5>
+                  <h5>{day} {month} {year}</h5>
                   {item.venue ? 
                     <h6>{item.venue.name}, {item.venue.city}, {item.venue.country}</h6>
                     : 

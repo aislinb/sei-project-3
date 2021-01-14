@@ -20,7 +20,7 @@ function Login() {
       const { data } = await loginUser(formdata)
       setToken(data.token)
       history.push('/events') //page to go to after logging in
-      window.location.reload()
+      // window.location.reload()
     } catch (err) {
       setError(true)
     }

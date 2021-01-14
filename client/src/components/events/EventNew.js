@@ -32,7 +32,7 @@ function eventNew() {
 
   return (
     <main>
-      <h1 className="form-heading">Add a 2020 Event</h1>
+      <h1 className="form-heading">Add a <span className="year-2020">2020</span> Event</h1>
       <EventForm 
         handleChange={handleChange}
         handleSubmit={handleSubmit}

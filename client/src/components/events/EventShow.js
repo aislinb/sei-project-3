@@ -51,7 +51,9 @@ function EventShow() {
   // Get the day of the month
   const day = jsDate.getDate()
   // Get the actual month - months begin at 0
-  const month = jsDate.getMonth() + 1
+  let month = jsDate.getMonth()
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  month = months[month]
   // Get the year
   const year = jsDate.getFullYear()
 
@@ -87,7 +89,7 @@ function EventShow() {
     <main>
       <section className="event-detail">
         <h1>{name}</h1>
-        <h5>{day}/{month}/{year}</h5>
+        <h5>{day} {month} {year}</h5>
         {event.venue ?
           <h6><Link to={`/venues/${event.venue.id}`}>{event.venue.name}</Link>, {event.venue.city}, {event.venue.country}</h6>
           :

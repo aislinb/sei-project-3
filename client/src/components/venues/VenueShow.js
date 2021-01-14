@@ -108,7 +108,7 @@ function venueShow() {
           </div>
         }
       </section>
-      <h4>Events at this venue:</h4>
+      <h4 className="events-at-this-venue-header">Events at this venue:</h4>
       <section className="events-at-this-venue">
         {venue && events ? 
           events.map(event => {
@@ -118,7 +118,9 @@ function venueShow() {
             // Get the day of the month
             const day = jsDate.getDate()
             // Get the actual month - months begin at 0
-            const month = jsDate.getMonth() + 1
+            let month = jsDate.getMonth()
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+            month = months[month]
             // Get the year
             const year = jsDate.getFullYear()
             if (event.venue.name === venue.name) {
@@ -126,7 +128,7 @@ function venueShow() {
                 <div className="event-preview">
                   <Link to={`/events/${_id}`}>
                     <h5>{name}</h5>
-                    <p>{day}/{month}/{year}</p>
+                    <p>{day} {month} {year}</p>
                     <figure>
                       <img src={eventImage} alt={name} />
                     </figure>
