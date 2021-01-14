@@ -42,6 +42,40 @@ main {
 
 }
 
+#root > main > form > div.side-note > div > button {
+    
+  // background: linear-gradient($sig-purple, $sig-light-purple, $sig-purple);
+  background-color: white;
+  border-radius: 5px;
+  padding: 7px 25px;
+  font-size: 1rem;
+  border: 3px solid $sig-purple;
+  cursor: pointer;
+  transition-duration: 0.4s;;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#root > main > form > div.side-note > div > button:hover {
+  background-color: $sig-purple; /* Green */
+  color: white;
+}
+
+main {
+  a {
+    text-decoration: none;
+    color: purple;
+    font-weight: bold;
+    padding: 10px 0px;
+  }
+  
+  a:hover {
+  
+    color: $sig-purple;
+    border-radius: 6px;
+  }
+  }
+
+
 #root > main > h1 {
   text-align: center;
 }
@@ -587,7 +621,7 @@ button:hover {
 
 // PROFILE PAGE
 
- form {
+form {
   width: 40%;
   align-items: center;
   justify-content: left;

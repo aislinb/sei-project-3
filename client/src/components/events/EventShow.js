@@ -72,6 +72,8 @@ function EventShow() {
       await createEventComment(formdata, event._id)
       const { data } = await getSingleEvent(id)
       setEvent(data)
+      formdata.text = ''
+      e.target[5].value = ''
       // window.location.reload() <-- Don't use this in React
       // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
@@ -142,11 +144,6 @@ function EventShow() {
                 value={formdata.text}
               />
               <button type="submit" className="submit-btn">Submit</button>
-            </section>
-            <section>
-              <h2>Nearby Events</h2>
-              <div>
-              </div>
             </section>
           </form>
           : 

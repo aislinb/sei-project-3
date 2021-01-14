@@ -79,6 +79,8 @@ function venueShow() {
       await createVenueComment(formdata, venue._id)
       const { data } = await getSingleVenue(id)
       setVenue(data)
+      formdata.text = ''
+      e.target[5].value = ''
       // window.location.reload() <-- Don't use this in React
       // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
