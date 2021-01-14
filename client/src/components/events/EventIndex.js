@@ -3,9 +3,13 @@ import { getAllEvents } from '../../lib/api'
 import { Link } from 'react-router-dom'
 import RingLoader from 'react-spinners/RingLoader'
 import Select from 'react-select'
+import { isAuthenticated } from '../../lib/auth'
 
 
 function EventIndex() {
+
+  const isLoggedIn = isAuthenticated()
+
   const [events, setEvents] = React.useState([])
   const [hasError, setHasError] = React.useState(false)
 
@@ -105,40 +109,50 @@ function EventIndex() {
     <main>
       <div className="index-header">
         <h1>Highlights of 2020</h1>
-        <button>
-          <Link to="/map">Map View</Link>
-        </button>
-        <button>
-          <Link to="/events/new">Add Event</Link>
-        </button>
-        <button onClick={reloadPage}>
-          <Link to="/events/">Reset Selection</Link>
-        </button>
+        <Link to="/map"><button className="link-button">
+          Map View
+        </button></Link>
+        {isLoggedIn ? 
+          <Link to="/events/new"><button className="link-button" >
+              Add Event
+          </button></Link>
+          :
+          <h6></h6>
+        }
+        <Link to="/events/"><button className="link-button" onClick={reloadPage} >
+          Reset Selection
+        </button></Link>
       </div>
       <div className="selects">
-        <h2>Continent:</h2>
-        <Select 
-          options={filteredContinents}
-          onChange={handleSelectContinent}
-        />
-        <h2>Country:</h2>
-        {countries.length > 0 ?
+        <div>
           <Select 
-            options={filteredCountries}
-            onChange={handleSelectCountry}
+            placeholder="Select a Continent..."
+            options={filteredContinents}
+            onChange={handleSelectContinent}
           />
-          :
-          <Select />
-        }
-        <h2>City:</h2>
-        {cities.length > 0 ?
-          <Select 
-            options={filteredCities}
-            onChange={handleSelectCity}
-          />
-          :
-          <Select />
-        }
+        </div>
+        <div>
+          {countries.length > 0 ?
+            <Select 
+              placeholder="Select a Country..."
+              options={filteredCountries}
+              onChange={handleSelectCountry}
+            />
+            :
+            <Select />
+          }
+        </div>
+        <div>
+          {cities.length > 0 ?
+            <Select 
+              placeholder="Select a City..."
+              options={filteredCities}
+              onChange={handleSelectCity}
+            />
+            :
+            <Select />
+          }
+        </div>
       </div>
       <br />
       {events ?

@@ -2,9 +2,12 @@ import React from 'react'
 import { getAllVenues } from '../../lib/api'
 import { Link } from 'react-router-dom'
 import RingLoader from 'react-spinners/RingLoader'
+import { isAuthenticated } from '../../lib/auth'
 
 
 function venueIndex() {
+  const isLoggedIn = isAuthenticated()
+
   const [venues, setVenues] = React.useState([])
 
   React.useEffect(() => {
@@ -30,18 +33,28 @@ function venueIndex() {
   }
   venues.sort( compare )
 
+  const reloadPage = () => {
+    window.location.reload()
+  }
+  
+
   return (
     <main>
-      {/* <h3> - Add filter buttons to browse by continent/country here -</h3>
-      <h3> Browse an event that took place at your chosen venue: </h3> */}
       <div className="index-header">
         <h1>Browse Venues</h1>
-        <button>
-          <Link to="/map">Map View</Link>
-        </button>
-        <button>
-          <Link to="/venues/new">Add Venue</Link>
-        </button>
+        <Link to="/map"><button className="link-button">
+          Map View
+        </button></Link>
+        {isLoggedIn ? 
+          <Link to="/venues/new"><button className="link-button" >
+              Add Venue
+          </button></Link>
+          :
+          <h6></h6>
+        }
+        <Link to="/venues/"><button className="link-button" onClick={reloadPage} >
+          Reset Selection
+        </button></Link>
       </div>
       {venues ?
         <ul className="index-list">
