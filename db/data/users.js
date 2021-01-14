@@ -24,12 +24,6 @@ export default [
     passwordConfirmation: 'pass',
   },
   {
-    username: 'jack',
-    email: 'jack@email',
-    password: 'pass',
-    passwordConfirmation: 'pass',
-  },
-  {
     username: 'char',
     email: 'char@email',
     password: 'pass',
@@ -38,6 +32,12 @@ export default [
   {
     username: 'noa',
     email: 'noa@email',
+    password: 'pass',
+    passwordConfirmation: 'pass',
+  },
+  {
+    username: 'charlotte',
+    email: 'charlotte@email',
     password: 'pass',
     passwordConfirmation: 'pass',
   }

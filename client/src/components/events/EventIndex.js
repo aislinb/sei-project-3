@@ -94,8 +94,13 @@ function EventIndex() {
     return 0
   }
   events.sort( compare )
+
+  const reloadPage = () => {
+    window.location.reload()
+  }
   
 
+  
   return (
     <main>
       <div className="index-header">
@@ -106,13 +111,18 @@ function EventIndex() {
         <button>
           <Link to="/events/new">Add Event</Link>
         </button>
+        <button onClick={reloadPage}>
+          <Link to="/events/">Reset Selection</Link>
+        </button>
       </div>
       <div className="selects">
+        <h2>Continent:</h2>
         <Select 
           options={filteredContinents}
           onChange={handleSelectContinent}
           placeholder="Select a continent..."
         />
+        <h2>Country:</h2>
         {countries.length > 0 ?
           <Select 
             options={filteredCountries}
@@ -122,6 +132,7 @@ function EventIndex() {
           :
           <Select />
         }
+        <h2>City:</h2>
         {cities.length > 0 ?
           <Select 
             options={filteredCities}

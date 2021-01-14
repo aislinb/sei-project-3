@@ -14,6 +14,7 @@ import VenueShow from './components/venues/VenueShow'
 import ProfileShow from './components/user/ProfileShow'
 import ProfileEditCard from './components/user/ProfileEditCard'
 import VenueNew from './components/venues/VenueNew'
+import VenueEdit from './components/venues/VenueEdit'
 import Login from './components/auth/Login'
 import eventsMapbox from './components/events/MapboxEventIndex'
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/events/:id/edit" component={EventEdit} />
         <Route path="/events/:id" component={EventShow} />
         <Route path="/events" component={EventIndex} />
+        <Route path="/venues/:id/edit" component={VenueEdit} />
         <Route path="/venues/:id" component={VenueShow} />
         <Route path="/venues" component={VenueIndex} />
         <Route path="/map" component={eventsMapbox} />

@@ -1,4 +1,5 @@
 import React from 'react'
+import ImageUploadField from './ImageUpload'
 
 function ProfileForm({ formdata, errors, handleChange, handleSubmit, buttonText = 'Submit' }) {
   return (
@@ -48,12 +49,10 @@ function ProfileForm({ formdata, errors, handleChange, handleSubmit, buttonText 
         </div>
         <div className="field">
           <label className="block-form">Profile Image:</label>
-          <input
-            className="block-form"
-            placeholder="Enter URL here"
-            type="text"
-            name="userImage"
+          <ImageUploadField
             onChange={handleChange}
+            labelText="Profile Image"
+            name="userImage"
             value={formdata.userImage}
           />
         </div>

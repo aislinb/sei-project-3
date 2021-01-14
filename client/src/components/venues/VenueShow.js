@@ -1,20 +1,28 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { deleteVenue, getSingleVenue, createVenueComment } from '../../lib/api'
+import { deleteVenue, getSingleVenue, createVenueComment, getAllEvents } from '../../lib/api'
 import { isOwner, isAuthenticated } from '../../lib/auth'
 import useForm from '../../utils/useForm'
 import { Link } from 'react-router-dom'
+import RingLoader from 'react-spinners/RingLoader'
 
 function venueShow() {
   const [venue, setVenue] = React.useState([])
 
   const isLoggedIn = isAuthenticated()
   
-  const { formdata, handleChange } = useForm({
+  // Tried to add error handling to review form, but no luck - PJ
+  const { formdata, handleChange, errors, setErrors  } = useForm({
     text: '', 
     rating: '',
     owner: {}
   })
+
+  const stars = []
+
+  for (let i = 0; i < venue.avgRating; i++) {
+    stars.push('★')
+  }
 
   const history = useHistory()
   const { id } = useParams()
@@ -34,6 +42,22 @@ function venueShow() {
 
   // De-structured fields from the event object
   const { name, city, country, venueImage } = venue
+
+  // GET EVENTS:
+  const [events, setEvents] = React.useState([])
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await getAllEvents()
+        setEvents(data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+  }, [])
+  
 
   // AB - also having issues with adding events taking place at the venue
 
@@ -55,11 +79,10 @@ function venueShow() {
       window.location.reload()
       // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
-      console.log(err)
+      setErrors(err.response.data.errors)
     }
   }
 
-  console.log(venue.comments)
   return (
     <main>
       <section className="event-detail">
@@ -70,13 +93,30 @@ function venueShow() {
         </figure>
         {venue.owner && venue ?
           isOwner(venue.owner._id) && 
-          <button className="delete-btn" onClick={handleDelete}>Delete</button>
+          <div>
+            <Link to={`${venue._id}/edit`}><button className="edit-btn">Edit</button></Link>
+            <button className="delete-btn" onClick={handleDelete}>Delete</button>
+          </div>
           :
-          <div>Loading...</div>
+          <div className="ring-loader">
+            <RingLoader color="purple" size={60} />
+          </div>
         }
       </section>
+      <div>
+        <h4>Events at this venue:</h4>
+        {venue && events ? 
+          events.map(event => {
+            if (event.venue.name === venue.name) {
+              return <div><Link to={`/events/${event._id}`}>{event.name}</Link></div>
+            }
+          })
+          :
+          <div>No events at this venue.</div>
+        }
+      </div>
       <hr />
-      <section className="reviews">
+      <section className="add-review">
         <h3>Review {venue.name}</h3>
         {isLoggedIn ? 
           <form onSubmit={handleSubmit}>
@@ -96,17 +136,14 @@ function venueShow() {
                 <input onClick={handleChange} type="radio" id="star1" name="rating" value="1" />
                 <label htmlFor="star1" title="text">1</label>
               </div>
+              {errors ? 
+                <div>
+                  {errors.rating && <p className="error-message">{errors.rating}</p>}
+                </div>
+                :
+                <div></div>
+              }
             </section>
-            <br />
-            <br />
-            <section className="avgRating">
-              <div>
-                <label>Average Rating:</label>
-                <div>{venue.avgRating}</div>
-              </div>
-            </section>
-            <br />
-            <br />
             <section className="text-review">
               <div>
                 <label>Write Your Review</label>
@@ -117,34 +154,53 @@ function venueShow() {
                 onChange={handleChange}
                 value={formdata.text}
               />
+              {errors ? 
+                <div>
+                  {errors.text && <p className="error-message">{errors.text}</p>}
+                </div>
+                :
+                <div></div>
+              }
               <button type="submit" className="submit-btn">Submit</button>
             </section>
           </form>
           : 
-          
-          <h2><Link to='/register'>Register</Link> or <Link to='/login'>Login</Link> to leave a review!</h2>
-                
+          <h2><Link to='/register'>Register</Link> or <Link to='/login'>Login</Link> to leave a review!</h2>   
         }
-        {venue && venue.comments ?
-          <div>
-            <h1>Reviews:</h1>
-            {venue.comments.map(comment => {
-              return (
-                <div key={comment._id}>
-                  <h3>{comment.owner.username}</h3>
-                  <h5>{comment.text}</h5>
-                  <h5>{comment.rating} ⭐️</h5>
-                </div>
-              )
+        <div className="reviews-and-ratings-wrapper">
+          <section className="reviews">
+            {venue && venue.comments && venue.comments.length > 0 ?
+              <div>
+                <h3>Reviews:</h3>
+                {venue.comments.map(comment => {
+                  return (
+                    <div key={comment._id} className="review">
+                      <h3>{comment.owner.username}</h3>
+                      <h5>{comment.text}</h5>
+                      <h5>{comment.rating} ⭐️</h5>
+                    </div>
+                  )
+                }
+                )}
+              </div>
+              :
+              <div>
+                <h3>Reviews:</h3>
+                <p>Be the first to review this event!</p>
+              </div>
+            } 
+          </section>
+          <section className="avgRating">
+            <h3>Average Rating:</h3>
+            {stars.length > 0 ?
+              <div>{stars.map(star => star)}</div>
+              :
+              <div>Be the first to rate this event!</div>
             }
-            )}
-          </div>
-          :
-          <h6>No comments</h6>
-        }
+          </section>
+        </div>
       </section>
     </main>
-    
   )
 }
 

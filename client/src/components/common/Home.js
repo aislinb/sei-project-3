@@ -34,10 +34,25 @@ function Home() {
 
             />
             <img
-              src="https://vanani.com/wp-content/uploads/2015/07/Tomorrowland-festival-HD-Wallpapers-7.jpg"
+              src="https://www.wallpapertip.com/wmimgs/22-222923_for-further-information-about-infiled-and-our-products.jpg"
+            />
+            <img
+              src="https://en.as.com/futbol/imagenes/2020/04/04/primera/1586009963_035624_1586010049_noticia_normal.jpg"
             />
             <img
               src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fstatic.dezeen.com%2Fuploads%2F2018%2F04%2Fphillip-k-smith-reflection-field-installation-coachella_dezeen_hero.jpg"
+            />
+            <img
+              src="https://eu-cdn.rugbypass.com/wp/wp-content/uploads/2020/01/New-Zealand-All-Blacks-Haka.jpg"
+            />
+            <img
+              src="https://wallpapercave.com/wp/wp1889479.jpg"
+            />
+            <img
+              src="https://static01.nyt.com/images/2020/10/11/sports/00nba-lakers-lebron/00nba-lakers-lebron-videoSixteenByNineJumbo1600.jpg"
+            />
+            <img
+              src="https://djmag.com/sites/default/files/article/image/newsmob_0_0_1_2.jpg"
             />
           </HeroCarousel>
         </section>

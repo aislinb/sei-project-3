@@ -9,6 +9,7 @@ import RingLoader from 'react-spinners/RingLoader'
 
 function EventShow() {
   const [event, setEvent] = React.useState([])
+  
 
   const isLoggedIn = isAuthenticated()
 
@@ -74,6 +75,8 @@ function EventShow() {
     }
   }
 
+
+
   return (
     <main>
       <section className="event-detail">
@@ -91,7 +94,10 @@ function EventShow() {
         <p>{description}</p>
         {event.owner && event ?
           isOwner(event.owner._id) && 
-          <button className="delete-btn" onClick={handleDelete}>Delete</button>
+          <div>
+            <Link to={`${event._id}/edit`}><button className="edit-btn">Edit</button></Link>
+            <button className="delete-btn" onClick={handleDelete}>Delete</button>
+          </div>
           :
           <div className="ring-loader">
             <RingLoader color="purple" size={60} />
@@ -133,11 +139,15 @@ function EventShow() {
               />
               <button type="submit" className="submit-btn">Submit</button>
             </section>
+            <section>
+              <h2>Nearby Events</h2>
+              <div>
+              </div>
+            </section>
           </form>
           : 
           
-          <h2><Link to='/register'>Register</Link> or <Link to='/login'>Login</Link> to leave a review!</h2>
-                
+          <h2><Link to='/register'>Register</Link> or <Link to='/login'>Login</Link> to leave a review!</h2>       
         }
         <div className="reviews-and-ratings-wrapper">
           <section className="reviews">
@@ -163,7 +173,6 @@ function EventShow() {
               </div>
             }
           </section>
-          
           <section className="avgRating">
             <h3>Average Rating:</h3>
             {stars.length > 0 ?
