@@ -186,6 +186,17 @@ h1 {
   text-align: center;
 }
 
+.avatar {
+  width: 70px;
+  float: right;
+  margin: 10px;
+
+  img {
+    width: 100%;
+    border: 1px solid rgb(186, 186, 186);
+    border-radius: 35px;
+  }
+}
 // Nav Bar
 nav {
   display: flex;
@@ -575,6 +586,30 @@ button:hover {
 }
 
 // PROFILE PAGE
+
+ form {
+  width: 40%;
+  align-items: center;
+  justify-content: left;
+  h1 {
+    width: 100%;
+  }
+  .block-form {
+    align-items: center;
+  }
+  label {
+    display: left;
+  }
+  input {
+    width: 100%;
+  }
+  .form-submit-button {
+    width: 100%;
+  }
+  div {
+    display: center;
+  }
+}
 //errors
 .login-error {
   color: red;
@@ -585,6 +620,11 @@ button:hover {
 }
 
 .profile-show {
+  width: 50%;
+  h1 {
+    // padding: 10px;
+    // margin: 10px;
+  }
   img {
     width: 20%;
     border-radius: 10px;
@@ -610,9 +650,11 @@ footer {
   .index-list li {
     width: 49%;
   }
+  
 }
 @media only screen and (max-width: 550px) {
   .index-list li {
     width: 100%;
   }
 }
+

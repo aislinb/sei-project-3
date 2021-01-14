@@ -6,9 +6,11 @@ import useForm from '../../utils/useForm'
 import { isAuthenticated } from '../../lib/auth'
 import { Link } from 'react-router-dom'
 import RingLoader from 'react-spinners/RingLoader'
+import profilePlaceholder from '../../images/profile-placeholder.jpg'
 
 function EventShow() {
   const [event, setEvent] = React.useState([])
+  
   
 
   const isLoggedIn = isAuthenticated()
@@ -68,7 +70,9 @@ function EventShow() {
     e.preventDefault()
     try {
       await createEventComment(formdata, event._id)
-      window.location.reload()
+      const { data } = await getSingleEvent(id)
+      setEvent(data)
+      // window.location.reload() <-- Don't use this in React
       // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
       console.log(err)
@@ -158,6 +162,13 @@ function EventShow() {
                   return (
                     <div key={comment._id} className="review">
                       <h5>{comment.owner.username}</h5>
+                      <div className="avatar">
+                        {comment.owner.userImage ? 
+                          <img src={comment.owner.userImage} alt="profile pic" />
+                          :
+                          <img src={profilePlaceholder} alt="profile pic" />
+                        }
+                      </div>
                       <p><small>Reviewed {comment.updatedAt.slice(0, 10)}</small></p>
                       <p>{comment.text}</p>
                       <h5>{comment.rating} ⭐️</h5>
