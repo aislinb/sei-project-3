@@ -26,7 +26,7 @@ function EventForm({ handleChange, handleSubmit, formdata, errors }) {
     <form className="add-form" onSubmit={handleSubmit}>
       <label className="block-form">Event Name</label>
       <input 
-        className="block-form"
+        className="block-form" 
         type="text" 
         name="name"  
         placeholder="Event Name" 
