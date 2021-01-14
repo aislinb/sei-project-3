@@ -30,6 +30,10 @@ main {
 
 }
 
+#root > main > h1 {
+  text-align: center;
+}
+
 .year-2020 {
   font-family: 'Roboto', sans-serif;
 
@@ -305,10 +309,6 @@ button:hover {
   border-radius: 10px;
   height: calc(100vh - 52px);
   width: 100%;
-  img {
-    height: 50px;
-    width: 50px;
-  }
 }
 
 .ring-loader {

@@ -66,6 +66,7 @@ function eventsMapbox() {
               {events ?
                 events.map(event => (
                   <Marker
+                    className='map-markers'
                     key={event.id}
                     latitude={event.venue.latitude}
                     longitude={event.venue.longitude}
@@ -75,7 +76,7 @@ function eventsMapbox() {
                       aria-label="map-marker"
                       onClick={() => setPopup(event.venue)}
                     >
-                      🏟
+                    🏟
                     </span>
                   </Marker>
                 ))
