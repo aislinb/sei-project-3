@@ -99,8 +99,10 @@ function EventIndex() {
   }
   events.sort( compare )
 
-  const reloadPage = () => {
-    window.location.reload()
+  const handleResetSelection = async () => {
+    // window.location.reload() <-- Don't use this is React
+    const { data } = await getAllEvents()
+    setEvents(data)
   }
   
 
@@ -119,9 +121,9 @@ function EventIndex() {
           :
           <h6></h6>
         }
-        <Link to="/events/"><button className="link-button" onClick={reloadPage} >
+        <button className="link-button" onClick={handleResetSelection} >
           Reset Selection
-        </button></Link>
+        </button>
       </div>
       <div className="selects">
         <div>
