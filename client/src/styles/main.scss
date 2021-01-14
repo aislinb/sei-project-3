@@ -96,10 +96,19 @@ h1 {
   background-color: rgb(200, 0, 0);
 }
 
+//errors
+
+.border-error {
+  border-color: red;
+}
+
 .error-message {
   color: darkred;
   margin: 0;
+  font-size: 0.8rem;
+  text-align: left;
 }
+
 
 .form-heading {
   text-align: center;
@@ -159,12 +168,22 @@ nav {
     background-color: #5d2267;
   }
 
-  ul {
+  .container {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     list-style-type: none;
     width: 70%;
+    height: 100%;
     align-items: center;
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      // justify-content: space-evenly;
+    }
+    .navbar-start {
+      display: flex;
+    }
   }
 
   .nav-button {
@@ -486,27 +505,32 @@ button:hover {
 
 }
 
-// Login
-.login {
+// Login + Register
+.login-page {
+  display: flex;
   text-align: center;
-  
+  justify-content: center;
   h1 {
     font-size: 30px;
-  }
-
-  button {
-    margin-top: 10px;
-  }
-
-  label {
     padding: 10px;
+    margin-bottom: 5px;;
+  }
+  button {
+    margin-top: 20px;
+  }
+  label {
+    text-align: left;
+    padding: 10px 10px 10px 0px;
+  }
+  .form-submit-button {
+    margin-top: 20px;
   }
 }
 
 // PROFILE PAGE
 
  form {
-  width: 40%;
+  
   align-items: center;
   justify-content: left;
   h1 {
@@ -528,14 +552,6 @@ button:hover {
     display: center;
   }
 }
-//errors
-.login-error {
-  color: red;
-}
-
-.error-in-form {
-  border-color: red;
-}
 
 .profile-show {
   width: 50%;
@@ -546,6 +562,10 @@ button:hover {
   img {
     width: 20%;
     border-radius: 10px;
+  }
+
+  button {
+    width: 100%;
   }
 
 }

@@ -20,7 +20,6 @@ function Login() {
       const { data } = await loginUser(formdata)
       setToken(data.token)
       history.push('/events') //page to go to after logging in
-      window.location.reload()
     } catch (err) {
       setError(true)
     }
@@ -31,8 +30,8 @@ function Login() {
   }
 
   return (
-    <main className="login-page">
-      <section className="section">
+    <main>
+      <section className="section login-page">
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="block-form">
             <h1>Login here</h1>
@@ -57,10 +56,10 @@ function Login() {
               value={formdata.password}
               onFocus={handleFocus}
             />
-            {error && <p className="login-error">Sorry, your username or password are incorrect</p>}
+            {error && <p className="error-in-form">Sorry, your username or password are incorrect</p>}
           </div>
-          <div className="field">
-            <button type="submit" className="form-submit-button">Log In</button>
+          <div className="block-form">
+            <button type="submit" className="block-form form-submit-button">Login</button>
           </div>
         </form>
       </section>
