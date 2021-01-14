@@ -203,6 +203,10 @@ nav {
     border: 1px solid black;
     cursor: pointer;
   }
+
+  .link-button {
+    color: gold;
+  }
 }
 
 .index-list {
@@ -259,10 +263,9 @@ nav {
 }
 
 .selects {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  div {
+    margin-bottom: 5px;
+  }
 }
 
 // Events Index Mapbox
