@@ -31,14 +31,14 @@ function Login() {
   }
 
   return (
-    <main className="login">
+    <main className="login-page">
       <section className="section">
         <form className="login-form" onSubmit={handleSubmit}>
-          <div className="field">
+          <div className="block-form">
             <h1>Login here</h1>
-            <label className="label">Email:</label>
+            <label className="block-form">Email:</label>
             <input
-              className="input-field"
+              className="block-form"
               placeholder="Email"
               onChange={handleChange}
               name="email"
@@ -47,10 +47,10 @@ function Login() {
             />
           </div>
           <div className="field">
-            <label className="label">Password:</label>
+            <label className="block-form">Password:</label>
             <input
               type="password"
-              className="input-field"
+              className="block-form"
               placeholder="Password"
               onChange={handleChange}
               name="password"

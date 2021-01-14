@@ -23,34 +23,37 @@ function Register() {
     }
   }
   return (
-    <main className="login">
+    <main className="login-page">
       <h1>Register here</h1>
       <form className="login-form" onSubmit={handleSubmit}>
-        <div className="field">
-          <label className="label">Username:</label>
+        <div className="block-form">
+          <label className="block-form">Username:</label>
           <input
-            className={`input ${errors.username ? 'error-in-form' : ''}`}
+            className="block-form" {...`input ${errors && errors.username ? 'error-in-form' : ''}`}
             placeholder="Username"
             onChange={handleChange}
             name="username"
             value={formdata.username}
           />
         </div>
-        <div className="field">
-          <label className="label">Email:</label>
+        {errors.username && <p className="error-in-form">{errors.username}</p>}
+        <div className="block-form"></div>
+        <div className="block-form">
+          <label className="block-form">Email:</label>
           <input
-            className={`input ${errors.email ? 'error-in-form' : ''}`}
+            className="block-form" {...`input ${errors && errors.email ? 'error-in-form' : ''}`}
             placeholder="Email"
             onChange={handleChange}
             name="email"
             value={formdata.email}
           />
         </div>
-        <div className="field">
-          <label className="label">Password:</label>
+        {errors.email && <p className="error-in-form">{errors.email}</p>}
+        <div className="block-form">
+          <label className="block-form">Password:</label>
           <input
             type="password"
-            className={`input ${errors.password ? 'error-in-form' : ''}`}
+            className="block-form" {...`input ${errors.password ? 'error-in-form' : ''}`}
             placeholder="Password"
             onChange={handleChange}
             name="password"
@@ -58,12 +61,12 @@ function Register() {
           />
         </div>
         {errors.password && <p className="error-in-form">{errors.password}</p>}
-        <div className="field">
-          <label className="label">Password Confirmation:</label>
+        <div className="block-form">
+          <label className="block-form">Password Confirmation:</label>
           <div className="control">
             <input
               type="password"
-              className={`input ${errors.passwordConfirmation ? 'error-in-form' : ''}`}
+              className="block-form" {...`input ${errors.passwordConfirmation ? 'error-in-form' : ''}`}
               placeholder="Password Confirmation"
               onChange={handleChange}
               name="passwordConfirmation"
@@ -72,8 +75,8 @@ function Register() {
           </div>
           {errors.passwordConfirmation && <p className="error-in-form">{errors.passwordConfirmation}</p>}
         </div>
-        <div className="field">
-          <button type="submit" className="form-submit-button">Register</button>
+        <div className="block-form">
+          <button type="submit" className="block-form form-submit-button">Register</button>
         </div>
       </form>
     </main>
