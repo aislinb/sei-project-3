@@ -20,9 +20,10 @@ function EventForm({ handleChange, handleSubmit, formdata, errors }) {
     getData()
   }, [])
 
+  console.log('Errors: ', errors)
+
   return (
     <form className="add-form" onSubmit={handleSubmit}>
-      <h1>Add a 2020 Event</h1>
       <label className="block-form">Event Name</label>
       <input 
         className="block-form"
@@ -32,9 +33,13 @@ function EventForm({ handleChange, handleSubmit, formdata, errors }) {
         onChange={handleChange} 
         value={formdata.name}
       />
-      <div>
-        {errors.name && <p className="error-message">{errors.name}</p>}
-      </div>
+      {errors ? 
+        <div>
+          {errors.name && <p className="error-message">{errors.name}</p>}
+        </div>
+        :
+        <div></div>
+      }
       <label className="block-form">Event Date</label>
       <input 
         className="block-form"
@@ -43,9 +48,13 @@ function EventForm({ handleChange, handleSubmit, formdata, errors }) {
         onChange={handleChange} 
         value={formdata.date}
       />
-      <div>
-        {errors.date && <p className="error-message">{errors.date}</p>}
-      </div>
+      {errors ? 
+        <div>
+          {errors.date && <p className="error-message">{errors.date}</p>}
+        </div>
+        :
+        <div></div>
+      }
       <div className="side-note">
         <label className="block-form">Event Venue</label>
         <div className="index-header venue-not-on-list">
@@ -54,13 +63,11 @@ function EventForm({ handleChange, handleSubmit, formdata, errors }) {
             <Link to="/venues/new">Add Venue</Link>
           </button>
         </div>
-      </div>
-      
+      </div>  
       <select className="block-form"
         onChange={handleChange} 
         name="venue"
         value={formdata.venue}
-      //Need to add a function onselect to add the entire venue object to the event object
       >
         <option disabled>Select a venue</option>
         {venues ?
@@ -82,9 +89,13 @@ function EventForm({ handleChange, handleSubmit, formdata, errors }) {
         onChange={handleChange} 
         value={formdata.description}
       />
-      <div>
-        {errors.description && <p className="error-message">{errors.description}</p>}
-      </div>
+      {errors ? 
+        <div>
+          {errors.description && <p className="error-message">{errors.description}</p>}
+        </div>
+        :
+        <div></div>
+      }
       <label className="block-form">Image URL</label>
       <input 
         className="block-form"
@@ -92,11 +103,15 @@ function EventForm({ handleChange, handleSubmit, formdata, errors }) {
         name="eventImage" 
         placeholder="E.g. https://secure.i.telegraph.co.uk/multimedia/archive/02591/killers_2591613b.jpg" 
         onChange={handleChange} 
-        value={formdata.image}
+        value={formdata.eventImage}
       />
-      <div>
-        {errors.eventImage && <p className="error-message">{errors.eventImage}</p>}
-      </div>
+      {errors ? 
+        <div>
+          {errors.eventImage && <p className="error-message">{errors.eventImage}</p>}
+        </div>
+        :
+        <div></div>
+      }
       <button type="submit" className="submit-btn">Submit</button>
     </form>
   )

@@ -47,6 +47,10 @@ export function deleteVenue(id) {
   return axios.delete(`${baseUrl}/venues/${id}`, headers())
 }
 
+export function editVenue(id, formdata) {
+  return axios.put(`${baseUrl}/venues/${id}`, formdata, headers())
+}
+
 // * Comments requests:
 export function getAllComments() {
   return axios.get(`${baseUrl}/comments`)

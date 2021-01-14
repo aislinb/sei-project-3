@@ -7,6 +7,10 @@ $sig-pink: #ffeded;
 
 
 // Universal styles
+* {
+  box-sizing: border-box;
+} 
+
 body {
   height: 100%;
   min-height: 100%;
@@ -41,6 +45,50 @@ main {
 
 .submit-btn:hover {
   background: rgb(199, 151, 29);
+}
+
+
+.edit-btn {
+  font-size: 1.1rem;
+  background-color:  rgb(255, 227, 227);
+  color: rgb(200, 0, 0);
+  border: 1px solid  rgb(218, 173, 173);
+  border-radius: 7px;
+  padding: 5px 20px;
+  cursor: pointer;
+  margin-right: 10px;
+
+  a {
+    text-decoration: none;
+    color: rgb(200, 0, 0);
+  }
+}
+
+.edit-btn:hover {
+  background-color:rgb(255, 215, 215);
+}
+
+.delete-btn {
+  font-size: 1.1rem;
+  background-color: rgb(220, 0, 0);
+  color: white;
+  border: 1px solid rgb(200, 0, 0);
+  border-radius: 7px;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: rgb(200, 0, 0);
+}
+
+.error-message {
+  color: darkred;
+  margin: 0;
+}
+
+.form-heading {
+  text-align: center;
 }
 
 // Nav Bar
@@ -111,21 +159,6 @@ nav {
   }
 }
 
-// Home page
-// .hero {
-//   background-image: url('../images/astronaut.jpeg');
-//   background-size: cover;
-//   background-position: center;
-//   height: 50vh;
-//   color: white;
-//   display: flex;
-//   justify-content: center;
-//   align-items: flex-end;
-//   margin: 0;
-//   font-size: 2rem;
-//   //text-shadow: 1px 5px 1px$sig-purple;
-// }
-
 // * hugo Home Page with carousel
 .hero {
   background-size: cover;
@@ -138,7 +171,7 @@ nav {
   //text-shadow: 1px 5px 1px$sig-purple;
   div {
     margin: 0;
-    height: 500px;
+    height: 530px;
   }
 
 
@@ -186,7 +219,7 @@ nav {
     padding: 15px;
     border-radius: 7px;
     margin-bottom: 15px;
-    width: 28%;
+    width: 32.5%;
 
     h3, h5, h6 {
       margin: 10px 0;
@@ -277,20 +310,6 @@ nav {
     img {
       width: 100%;
     }
-  }
-
-  .delete-btn {
-    font-size: 1.1rem;
-    background-color: rgb(220, 0, 0);
-    color: white;
-    border: 1px solid rgb(200, 0, 0);
-    border-radius: 7px;
-    padding: 5px 20px;
-    cursor: pointer;
-  }
-
-  .delete-btn:hover {
-    background-color: rgb(200, 0, 0);
   }
   
 }
@@ -396,6 +415,8 @@ nav {
     width: 99%;
     margin: 0 auto;
     padding: 5px;
+    border-radius: 5px;
+    border: 1.5px solid rgb(100, 100, 100);
   }
   textarea {
     height: 100px;
@@ -443,7 +464,7 @@ footer {
 //media queries for index pages
 @media only screen and (max-width: 800px) {
   .index-list li {
-    width: 42%;
+    width: 49%;
   }
 }
 @media only screen and (max-width: 550px) {

@@ -1,8 +1,7 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { isAuthenticated } from '../../lib/auth'
-import { showUserProfile } from '../../lib/api'
-import { getAllEvents } from '../../lib/api'
+import { showUserProfile, getAllEvents  } from '../../lib/api'
 
 function profileShow() {
   const isLoggedIn = isAuthenticated()
@@ -95,7 +94,7 @@ function profileShow() {
             }
           </div>
           <div className="field">
-            <button>
+            <button className="edit-btn">
               <Link to={'/update-profile'} className="edit-button">Edit my profile</Link>
             </button>
           </div>
