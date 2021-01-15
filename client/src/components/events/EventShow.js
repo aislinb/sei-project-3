@@ -183,7 +183,9 @@ function EventShow() {
                       <p><small>Reviewed {comment.updatedAt.slice(0, 10)}</small></p>
                       <p>{comment.text}</p>
                       <h5>{comment.rating} ⭐️</h5>
-                      <button className="delete-btn" onClick={() => handleCommentDelete(comment._id)}>Delete</button>
+                      {isOwner(comment.owner._id) && 
+                        <button className="delete-btn" onClick={() => handleCommentDelete(comment._id)}>Delete</button>
+                      }                   
                     </div>
                   )
                 }

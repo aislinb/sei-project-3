@@ -72,6 +72,10 @@ export function deleteEventComment(id, commentId) {
   return axios.delete(`${baseUrl}/events/${id}/comments/${commentId}`, headers())
 }
 
+export function deleteVenueComment(id, commentId) {
+  return axios.delete(`${baseUrl}/events/${id}/comments/${commentId}`, headers())
+}
+
 // * Auth Requests
 
 export function registerUser(formdata) {

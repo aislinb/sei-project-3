@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { deleteVenue, getSingleVenue, createVenueComment, getAllEvents } from '../../lib/api'
+import { deleteVenue, getSingleVenue, createVenueComment, deleteVenueComment, getAllEvents } from '../../lib/api'
 import { isOwner, isAuthenticated } from '../../lib/auth'
 import useForm from '../../utils/useForm'
 import { Link } from 'react-router-dom'
@@ -67,6 +67,16 @@ function venueShow() {
     try {
       await deleteVenue(id)
       history.push('/venues')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleCommentDelete = async (commentId) => {
+    try {
+      await deleteVenueComment(id, commentId)
+      const { data } = await getSingleVenue(id)
+      setVenue(data)
     } catch (err) {
       console.log(err)
     }
@@ -212,6 +222,9 @@ function venueShow() {
                       <p><small>Reviewed {comment.updatedAt.slice(0, 10)}</small></p>
                       <p>{comment.text}</p>
                       <h5>{comment.rating} ⭐️</h5>
+                      {isOwner(comment.owner._id) && 
+                        <button className="delete-btn" onClick={() => handleCommentDelete(comment._id)}>Delete</button>
+                      }    
                     </div>
                   )
                 }
