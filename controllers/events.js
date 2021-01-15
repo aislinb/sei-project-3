@@ -79,9 +79,9 @@ async function eventCommentCreate(req, res, next) {
 async function eventCommentDelete(req, res, next) {
   const { id, commentId } = req.params
   try {
-    const event = await event.findById(id) //look up event
+    const event = await Event.findById(id).populate('venue').populate('owner').populate('comments') //look up event
     if (!event) throw new Error(notFound) // check existed
-    const commentToDelete = Event.comments.id(commentId) // look up comment
+    const commentToDelete = event.comments.id(commentId) // look up comments
     if (!commentToDelete) throw new Error(notFound) // look up exist
     if (!commentToDelete.owner.equals(req.currentUser._id)) throw new Error(forbidden) // checking if person making request is the owner of the comment
     await commentToDelete.remove()
@@ -101,5 +101,5 @@ export default {
   update: eventUpdate, 
   delete: eventDelete,
   commentCreate: eventCommentCreate,
-  commentDelete: eventCommentDelete
+  commentDelete: eventCommentDelete,
 }

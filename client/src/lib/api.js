@@ -68,8 +68,8 @@ export function createVenueComment(formdata, id) {
   return axios.post(`${baseUrl}/venues/${id}/comments`, formdata, headers())
 }
 
-export function deleteComment(id) {
-  return axios.delete(`${baseUrl}/comments/${id}`, headers())
+export function deleteEventComment(id, commentId) {
+  return axios.delete(`${baseUrl}/events/${id}/comments/${commentId}`, headers())
 }
 
 // * Auth Requests

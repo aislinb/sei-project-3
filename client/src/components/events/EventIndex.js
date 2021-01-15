@@ -57,7 +57,6 @@ function EventIndex() {
     })
     setEvents(results)
   }
-  //This function only works once
 
   const handleSelectCountry = (e) => {
     const results = events.filter(event => {
@@ -134,26 +133,18 @@ function EventIndex() {
           />
         </div>
         <div>
-          {countries.length > 0 ?
-            <Select 
-              placeholder="Select a Country..."
-              options={filteredCountries}
-              onChange={handleSelectCountry}
-            />
-            :
-            <Select />
-          }
+          <Select 
+            placeholder="Select a Country..."
+            options={filteredCountries}
+            onChange={handleSelectCountry}
+          />
         </div>
         <div>
-          {cities.length > 0 ?
-            <Select 
-              placeholder="Select a City..."
-              options={filteredCities}
-              onChange={handleSelectCity}
-            />
-            :
-            <Select />
-          }
+          <Select 
+            placeholder="Select a City..."
+            options={filteredCities}
+            onChange={handleSelectCity}
+          />
         </div>
       </div>
       <br />

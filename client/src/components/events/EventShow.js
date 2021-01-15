@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { deleteEvent, getSingleEvent, createEventComment } from '../../lib/api'
+import { deleteEventComment, getSingleEvent, createEventComment } from '../../lib/api'
 import { isOwner } from '../../lib/auth'
 import useForm from '../../utils/useForm'
 import { isAuthenticated } from '../../lib/auth'
@@ -26,7 +26,7 @@ function EventShow() {
   }
 
   const history = useHistory()
-  const { id } = useParams()
+  const { id, commentId } = useParams()
 
   React.useEffect(() => {
 
@@ -39,7 +39,7 @@ function EventShow() {
       }
     }
     getData()
-  }, [id])
+  }, [id, commentId])
 
   // De-structured fields from the event object
   const { name, date, description, eventImage } = event
@@ -58,8 +58,8 @@ function EventShow() {
   // ! DELETE Function
   const handleDelete = async () => {
     try {
-      await deleteEvent(id)
-      history.push('/events')
+      await deleteEventComment(id, commentId)
+      history.push(`/events/${id}`)
     } catch (err) {
       console.log(err)
     }
@@ -172,6 +172,7 @@ function EventShow() {
                       <p><small>Reviewed {comment.updatedAt.slice(0, 10)}</small></p>
                       <p>{comment.text}</p>
                       <h5>{comment.rating} ⭐️</h5>
+                      <button className="delete-btn" onClick={handleDelete}>Delete</button>
                     </div>
                   )
                 }
