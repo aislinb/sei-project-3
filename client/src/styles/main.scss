@@ -283,6 +283,7 @@ nav {
 
   a:hover {
     background-color: #5d2267;
+    color: white;
   }
 
   // .container {
@@ -600,6 +601,9 @@ button:hover {
     width: 400px;
     font-family: arial;
     font-size: 1rem;
+    border: 1px solid $sig-light-purple;
+    border-radius: 5px;
+    padding: 5px;
   }
 }
 
@@ -788,10 +792,7 @@ form {
       }
     }
   }
-  h1 {
-    // padding: 10px;
-    // margin: 10px;
-  }
+
   img {
     width: 20%;
     border-radius: 10px;

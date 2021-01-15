@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { deleteEventComment, getSingleEvent, createEventComment } from '../../lib/api'
+import { deleteEvent, getSingleEvent, createEventComment, deleteEventComment } from '../../lib/api'
 import { isOwner } from '../../lib/auth'
 import useForm from '../../utils/useForm'
 import { isAuthenticated } from '../../lib/auth'
@@ -26,7 +26,7 @@ function EventShow() {
   }
 
   const history = useHistory()
-  const { id, commentId } = useParams()
+  const { id } = useParams()
 
   React.useEffect(() => {
 
@@ -39,7 +39,7 @@ function EventShow() {
       }
     }
     getData()
-  }, [id, commentId])
+  }, [id])
 
   // De-structured fields from the event object
   const { name, date, description, eventImage } = event
@@ -58,12 +58,23 @@ function EventShow() {
   // ! DELETE Function
   const handleDelete = async () => {
     try {
-      await deleteEventComment(id, commentId)
-      history.push(`/events/${id}`)
+      await deleteEvent(id)
+      history.push('/events')
     } catch (err) {
       console.log(err)
     }
   }
+
+  const handleCommentDelete = async (commentId) => {
+    try {
+      await deleteEventComment(id, commentId)
+      const { data } = await getSingleEvent(id)
+      setEvent(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
 
   // * Submit Reviews
   const handleSubmit = async (e) => {
@@ -172,7 +183,7 @@ function EventShow() {
                       <p><small>Reviewed {comment.updatedAt.slice(0, 10)}</small></p>
                       <p>{comment.text}</p>
                       <h5>{comment.rating} ⭐️</h5>
-                      <button className="delete-btn" onClick={handleDelete}>Delete</button>
+                      <button className="delete-btn" onClick={() => handleCommentDelete(comment._id)}>Delete</button>
                     </div>
                   )
                 }
