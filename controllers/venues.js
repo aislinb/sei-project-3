@@ -96,5 +96,5 @@ export default {
   update: venueUpdate, 
   delete: venueDelete,
   commentCreate: venueCommentCreate,
-  commentDelete: venueCommentDelete
+  commentDelete: venueCommentDelete,
 }
