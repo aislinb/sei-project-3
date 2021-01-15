@@ -79,6 +79,8 @@ function venueShow() {
       await createVenueComment(formdata, venue._id)
       const { data } = await getSingleVenue(id)
       setVenue(data)
+      formdata.text = ''
+      e.target[5].value = ''
       // window.location.reload() <-- Don't use this in React
       // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
@@ -106,18 +108,39 @@ function venueShow() {
           </div>
         }
       </section>
-      <div>
-        <h4>Events at this venue:</h4>
+      <h4 className="events-at-this-venue-header">Events at this venue:</h4>
+      <section className="events-at-this-venue">
         {venue && events ? 
           events.map(event => {
+            const { _id, name, date, eventImage } = event
+            // Convert ISO date into JS format date
+            const jsDate = new Date(date)
+            // Get the day of the month
+            const day = jsDate.getDate()
+            // Get the actual month - months begin at 0
+            let month = jsDate.getMonth()
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+            month = months[month]
+            // Get the year
+            const year = jsDate.getFullYear()
             if (event.venue.name === venue.name) {
-              return <div><Link to={`/events/${event._id}`}>{event.name}</Link></div>
+              return (
+                <div className="event-preview">
+                  <Link to={`/events/${_id}`}>
+                    <h5>{name}</h5>
+                    <p>{day} {month} {year}</p>
+                    <figure>
+                      <img src={eventImage} alt={name} />
+                    </figure>
+                  </Link>
+                </div>
+              )
             }
           })
           :
           <div>No events at this venue.</div>
         }
-      </div>
+      </section>
       <hr />
       <section className="add-review">
         <h3>Review {venue.name}</h3>
@@ -125,7 +148,7 @@ function venueShow() {
           <form onSubmit={handleSubmit}>
             <section className="rate-event">
               <div>
-                <label>Rate This Venue (1 to 5) 💉 :</label>
+                <label>Rate This Venue (1 to 5):</label>
               </div>
               <div className="rate">
                 <input onClick={handleChange} type="radio" id="star5" name="rating" value="5" />

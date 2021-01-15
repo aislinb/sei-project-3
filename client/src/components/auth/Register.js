@@ -1,7 +1,7 @@
 import React from 'react'
 import useForm from '../../utils/useForm'
 import { registerUser } from '../../lib/api'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 function Register() {
   const history = useHistory()
@@ -77,6 +77,9 @@ function Register() {
           </div>
           <div className="block-form">
             <button type="submit" className="block-form form-submit-button">Register</button>
+          </div>
+          <div className="block-form account-already">
+            Already have an account? <Link to="/login">Log In.</Link>
           </div>
         </form>
       </section>

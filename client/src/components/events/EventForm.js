@@ -55,15 +55,7 @@ function EventForm({ handleChange, handleSubmit, formdata, errors }) {
         :
         <div></div>
       }
-      <div className="side-note">
-        <label className="block-form">Event Venue</label>
-        <div className="index-header venue-not-on-list">
-          <p>Don&apos;t see your venue on this list?</p>
-          <button>
-            <Link to="/venues/new">Add Venue</Link>
-          </button>
-        </div>
-      </div>  
+      <label className="block-form">Event Venue</label>
       <select className="block-form"
         onChange={handleChange} 
         name="venue"
@@ -80,6 +72,14 @@ function EventForm({ handleChange, handleSubmit, formdata, errors }) {
           <option>No options available</option>
         }
       </select>
+      <div className="side-note">
+        <div className="index-header venue-not-on-list">
+          <p>Don&apos;t see your venue on this list?</p>
+          <button>
+            <Link to="/venues/new">Add Venue</Link>
+          </button>
+        </div>
+      </div>
       <label className="block-form">Event Description</label>
       <textarea 
         className="block-form"

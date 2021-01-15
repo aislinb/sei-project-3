@@ -56,7 +56,14 @@ function Home() {
             />
           </HeroCarousel>
         </section>
-        <h1><span className="year-2020">2020</span> Reimagined</h1>
+        <section className="header-image">
+          <h1>
+            <div className="extra-gap">2020</div>
+            <div>
+              <span>Reimagined</span>
+            </div>
+          </h1>
+        </section>
         <p>Reimagining the events we missed in 2020 as if COVID were non-existent. In an alternate reality, thousands of people attended events across the world in 2020 living their best lives. Let us know what your 2020 self thought, as you partied, supported and travelled to these incredible events.</p>
         <div>
           <h2>Highest Rated Events</h2>
@@ -66,21 +73,23 @@ function Home() {
               <li>Tokyo Summer Olympics 2020</li>
               <li>Burning Man</li> */}
               {events.map(item => {
-                // De-structured fields from the event object
+              // De-structured fields from the event object
                 const { _id, name, date, eventImage } = item
                 // Convert ISO date into JS format date
                 const jsDate = new Date(date)
                 // Get the day of the month
                 const day = jsDate.getDate()
                 // Get the actual month - months begin at 0
-                const month = jsDate.getMonth() + 1
+                let month = jsDate.getMonth()
+                const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                month = months[month]
                 // Get the year
                 const year = jsDate.getFullYear()
                 return (
                   <li key={_id}>
                     <Link to={`/events/${_id}`}>
                       <h3>{name}</h3>
-                      <h5>{day}/{month}/{year}</h5>
+                      <h5>{day} {month} {year}</h5>
                       {item.venue ? 
                         <h6>{item.venue.name}, {item.venue.city}, {item.venue.country}</h6>
                         : 

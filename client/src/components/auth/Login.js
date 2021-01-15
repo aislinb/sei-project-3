@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import useForm from '../../utils/useForm'
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
@@ -20,6 +20,7 @@ function Login() {
       const { data } = await loginUser(formdata)
       setToken(data.token)
       history.push('/events') //page to go to after logging in
+      // window.location.reload()
     } catch (err) {
       setError(true)
     }
@@ -59,8 +60,16 @@ function Login() {
             {error && <p className="error-in-form">Sorry, your username or password are incorrect</p>}
           </div>
           <div className="block-form">
-            <button type="submit" className="block-form form-submit-button">Login</button>
+            <button type="submit" className="block-form form-submit-button">Log In</button>
           </div>
+          <div className="block-form">
+            <p>or</p>
+          </div>
+          <Link to="/register">
+            <div className="block-form">
+              <button className="block-form">Create New Account</button>
+            </div>
+          </Link>
         </form>
       </section>
     </main>

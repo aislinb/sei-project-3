@@ -46,7 +46,7 @@ function eventsMapbox() {
 
   return (
     <main>
-      <h1>View Events by Location</h1>
+      <h1 className="map-title">View Events by Location</h1>
       <h4>Click on the icon to reveal the event(s) at this venue:</h4>
       <section>
         <div className="map-container">
@@ -66,6 +66,7 @@ function eventsMapbox() {
               {events ?
                 events.map(event => (
                   <Marker
+                    className='map-markers'
                     key={event.id}
                     latitude={event.venue.latitude}
                     longitude={event.venue.longitude}
@@ -75,7 +76,7 @@ function eventsMapbox() {
                       aria-label="map-marker"
                       onClick={() => setPopup(event.venue)}
                     >
-                      🏟
+                    🏟
                     </span>
                   </Marker>
                 ))

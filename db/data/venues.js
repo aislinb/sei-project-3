@@ -18,24 +18,6 @@ export default [
     longitude: -0.341505
   },
   {
-    name: 'Merton Farm',
-    city: 'Canterbury', 
-    country: 'United Kingdom', 
-    continent: 'Europe',
-    venueImage: 'https://bigseventravel.com/wp-content/uploads/2019/10/def.jpg',
-    latitude: 51.2504,
-    longitude: 1.0781
-  },
-  {
-    name: 'Christchurch Arena',
-    city: 'Canterbury', 
-    country: 'New Zealand', 
-    continent: 'Australasia',
-    venueImage: 'https://www.theconstructionindex.co.uk/assets/news_articles/2020/03/1583225393_03mar20-canterbury-multi-use-arena.jpg',
-    latitude: 43.5458,
-    longitude: 172.6013
-  },
-  {
     name: 'Birmingham Arena',
     city: 'Birmingham', 
     country: 'United Kingdom', 

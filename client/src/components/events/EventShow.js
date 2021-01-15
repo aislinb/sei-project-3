@@ -11,11 +11,9 @@ import profilePlaceholder from '../../images/profile-placeholder.jpg'
 function EventShow() {
   const [event, setEvent] = React.useState([])
   
-  
-
   const isLoggedIn = isAuthenticated()
 
-  const { formdata, handleChange } = useForm({
+  const { formdata, handleChange, errors, setErrors } = useForm({
     text: '', 
     rating: '',
     owner: {}
@@ -51,7 +49,9 @@ function EventShow() {
   // Get the day of the month
   const day = jsDate.getDate()
   // Get the actual month - months begin at 0
-  const month = jsDate.getMonth() + 1
+  let month = jsDate.getMonth()
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  month = months[month]
   // Get the year
   const year = jsDate.getFullYear()
 
@@ -72,10 +72,12 @@ function EventShow() {
       await createEventComment(formdata, event._id)
       const { data } = await getSingleEvent(id)
       setEvent(data)
+      formdata.text = ''
+      e.target[5].value = ''
       // window.location.reload() <-- Don't use this in React
       // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
-      console.log(err)
+      setErrors(err.response.data.errors)
     }
   }
 
@@ -85,7 +87,7 @@ function EventShow() {
     <main>
       <section className="event-detail">
         <h1>{name}</h1>
-        <h5>{day}/{month}/{year}</h5>
+        <h5>{day} {month} {year}</h5>
         {event.venue ?
           <h6><Link to={`/venues/${event.venue.id}`}>{event.venue.name}</Link>, {event.venue.city}, {event.venue.country}</h6>
           :
@@ -116,7 +118,7 @@ function EventShow() {
           <form onSubmit={handleSubmit}>
             <section className="rate-event">
               <div>
-                <label>Rate Event (1 to 5) 💉 :</label>
+                <label>Rate Event (1 to 5):</label>
               </div>
               <div className="rate">
                 <input onClick={handleChange} type="radio" id="star5" name="rating" value="5" />
@@ -130,23 +132,21 @@ function EventShow() {
                 <input onClick={handleChange} type="radio" id="star1" name="rating" value="1" />
                 <label htmlFor="star1" title="text">1</label>
               </div>
+              {errors.rating && <p className="error-in-form error-message">{errors.rating}</p>}
             </section>
             <section className="text-review">
               <div>
                 <label>Write Your Review</label>
               </div>
-              <textarea 
+              <textarea
+                className="block-form" {...`input ${errors.text ? 'error-in-form' : ''}`}
                 name="text"
                 placeholder="Tell us what you thought..."
                 onChange={handleChange}
                 value={formdata.text}
               />
+              {errors.text && <p className="error-in-form error-message">{errors.text}</p>}
               <button type="submit" className="submit-btn">Submit</button>
-            </section>
-            <section>
-              <h2>Nearby Events</h2>
-              <div>
-              </div>
             </section>
           </form>
           : 

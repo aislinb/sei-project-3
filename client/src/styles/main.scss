@@ -4,6 +4,18 @@ $sig-purple: #48194f;
 $sig-light-purple: rgb(221, 199, 255);
 $sig-very-light-purple: rgb(238, 230, 250);
 $sig-pink: #ffeded;
+//
+
+
+  // @keyframes glow {
+  //   from {
+  //     text-shadow: 2px 2px 10px purple;
+  //   }
+  //   to {
+  //     text-shadow: 2px 2px 20px purple, 2px 2px 10px purple;
+  //   }
+  // }
+// }
 
 
 // Universal styles
@@ -30,11 +42,111 @@ main {
 
 }
 
-.year-2020 {
-  font-family: 'Roboto', sans-serif;
-
-  //font-family: Arial, Helvetica, sans-serif;
+#root > main > form > div.side-note > div > button {
+    
+  // background: linear-gradient($sig-purple, $sig-light-purple, $sig-purple);
+  background-color: white;
+  border-radius: 5px;
+  padding: 7px 25px;
+  font-size: 1rem;
+  border: 3px solid $sig-purple;
+  cursor: pointer;
+  transition-duration: 0.4s;;
+  font-family: 'Josefin Sans', sans-serif;
 }
+
+
+
+main {
+  a {
+    text-decoration: none;
+    color: purple;
+    font-weight: bold;
+    padding: 10px 0px;
+  }
+  
+  a:hover {
+  
+    color: $sig-purple;
+    border-radius: 6px;
+  }
+  }
+
+
+#root > main > h1 {
+  text-align: center;
+}
+
+.header-image {
+  @import url('https://fonts.googleapis.com/css?family=Roboto:300');
+  h1 {
+    margin: 0;
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 1;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 3.3rem;
+    text-transform: uppercase;
+    // animation: glow 2s ease-in-out infinite alternate;
+    text-align: center;
+  }
+  div {
+    display:inline-block;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  
+  div:first-of-type {  
+    font-family: 'Roboto', sans-serif; 
+    animation: showup 7s infinite;
+    margin-bottom: 4px;
+  }
+  
+  .extra-gap {
+    margin-right: 10px;
+  }
+  
+  div:last-of-type {
+    width:0px;
+    animation: reveal 7s infinite;
+  }
+  
+  div:last-of-type span {
+    width: 200px;
+    margin-left:-355px;
+    animation: slidein 7s infinite;
+  }
+  
+  @keyframes showup {
+      0% {opacity:0;}
+      20% {opacity:1;}
+      80% {opacity:1;}
+      100% {opacity:0;}
+  }
+  
+  @keyframes slidein {
+      0% { margin-left:-800px; }
+      20% { margin-left:-800px; }
+      35% { margin-left:0px; }
+      100% { margin-left:0px; }
+  }
+  
+  @keyframes reveal {
+      0% {opacity:0;width:0px;}
+      20% {opacity:1;width:0px;}
+      30% {width:355px;}
+      80% {opacity:1;}
+      100% {opacity:0;width:355px;}
+  }
+  
+  
+  p {
+    font-size:12px;
+    color:#999;
+    margin-top:200px;
+  }
+  }
+  
 
 h1 {
   font-family: 'Josefin Sans', sans-serif;
@@ -112,6 +224,10 @@ h1 {
 
 .form-heading {
   text-align: center;
+}
+
+.year-2020 {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
 .avatar {
@@ -236,6 +352,11 @@ nav {
   }
 }
 
+#root > main > p {
+  margin-top: -15px;
+  margin-bottom: 40px;
+}
+
 // Events index
 .index-header {
   display: flex;
@@ -329,16 +450,14 @@ button:hover {
 }
 
 // Events Index Mapbox
+
+
 .map-container {
   margin: auto auto;
   border: 10px solid $sig-purple;
   border-radius: 10px;
   height: calc(100vh - 52px);
   width: 100%;
-  img {
-    height: 50px;
-    width: 50px;
-  }
 }
 
 .ring-loader {
@@ -350,8 +469,12 @@ button:hover {
 }
 
 // Event Show
-.event-detail {
+.events-at-this-venue-header {
+  margin-top: -30px;
+  font-size: 1.5rem;
+}
 
+.event-detail {
   margin: 5%;
   h1 {
     text-align: center;
@@ -378,6 +501,48 @@ button:hover {
   }
   
 }
+
+//Show Pages
+.events-at-this-venue {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+
+.event-preview {
+  box-shadow: 1px 1px 5px 3px rgba(67, 67, 67, 0.2);
+  padding: 10px;
+  border-radius: 7px;
+  width: 32%;
+  margin-bottom: 1rem;
+
+  h5, p {
+    font-size: 1rem;
+    margin: 5px auto;
+    text-align: center;
+  }
+
+  p {
+    font-size: 0.85rem;
+  }
+  
+  a {
+    text-decoration: none;
+    color: $sig-purple;
+  }
+  
+  figure {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+
 
 
 .reviews-and-ratings-wrapper {
@@ -517,6 +682,7 @@ button:hover {
   }
   button {
     margin-top: 20px;
+    width: 100%;
   }
   label {
     text-align: left;
@@ -525,12 +691,15 @@ button:hover {
   .form-submit-button {
     margin-top: 20px;
   }
+  .account-already {
+    font-size: 14px;;
+  }
 }
 
 // PROFILE PAGE
 
- form {
-  
+form {
+  width: 40%;
   align-items: center;
   justify-content: left;
   h1 {
@@ -554,7 +723,57 @@ button:hover {
 }
 
 .profile-show {
-  width: 50%;
+  width:60%;
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    h3 {
+      align-items: left;
+      width: 100%;
+    }
+    .top-half {
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: row;
+      width: 100%;
+      
+      .half-width {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        .right {
+          width: 100%;
+          .profile-image .not-yet {
+            height: 100px;
+            width: 100px;
+            border: grey;
+            border-width: 1px;
+            font-style: italic;
+          }
+        }
+        // .left {
+        //   margin-left: 20px;
+        // }
+      }
+      // .right {
+      //   display: flex;
+      //   flex-direction: column;
+      // }
+    }
+    .bottom-half {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .full-width {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+      }
+    }
+  }
   h1 {
     // padding: 10px;
     // margin: 10px;
@@ -568,6 +787,16 @@ button:hover {
     width: 100%;
   }
 
+}
+
+#root > main > h1 {
+  margin-top: 70px;
+
+}
+
+#root > main > form > div.side-note > div > button:hover {
+  background-color: $sig-purple; /* Green */
+  color: white;
 }
 
 
