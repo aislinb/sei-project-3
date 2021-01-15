@@ -373,7 +373,7 @@ export default [
     date: '2020-08-30', 
     description: 'J. Balvin brought a latin reggae flair to this year\'s ever-dramatic MTV Music Awards.',
     eventImage: 'https://consequenceofsound.net/wp-content/uploads/2019/05/jbalvin-Arcoiris-Tour-dates-tickets-north-america.png?w=807',
-    venueRef: 'Barlcays Center',
+    venueRef: 'Barclays Center',
     // Brooklyn, NY
   },
   {

@@ -706,7 +706,7 @@ export default [
     city: 'Rabat', 
     country: 'Morocco', 
     continent: 'Africa',
-    venueImage: 'https://media.istockphoto.com/photos/chellah-in-rabat-picture-id843015930',
+    venueImage: 'Chellah of Rabat',
     latitude: 33.966669,
     longitude: -6.846677
   }
