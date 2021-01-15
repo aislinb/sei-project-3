@@ -45,9 +45,9 @@ function Nav() {
               </>
               :
               <>
-                <button className="nav-button">
-                  <Link to="/profile">My Profile</Link>
-                </button>
+                <Link to="/profile">
+                  <button className="nav-button">My Profile</button>
+                </Link>
                 <button className="nav-button" onClick={handleLogout}>Log Out</button>
               </>
             }

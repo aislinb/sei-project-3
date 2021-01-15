@@ -1,8 +1,8 @@
 // A signature light grey that can be used throughout the site
 $sig-grey: rgb(235, 235, 235);
 $sig-purple: #48194f;
-$sig-light-purple: rgb(221, 199, 255);
-$sig-very-light-purple: rgb(238, 230, 250);
+$sig-light-purple: rgb(150, 74, 150);
+$sig-very-light-purple: #c9a3ce;
 $sig-pink: #ffeded;
 //
 
@@ -25,11 +25,12 @@ $sig-pink: #ffeded;
 
 body {
   height: 100%;
+  width: 100%;
   min-height: 100%;
   line-height: 1.5;
   font-family: 'Avenir', Helvetica, sans-serif;
   //font-family: 'Josefin Sans', sans-serif;
-  margin: 0;
+  margin: 0 auto;
   color: $sig-purple;
 
 }
@@ -63,7 +64,7 @@ main {
 main {
   a {
     text-decoration: none;
-    color: purple;
+    color: $sig-light-purple;
     font-weight: bold;
     padding: 10px 0px;
   }
@@ -286,6 +287,12 @@ nav {
     align-items: center;
   }
 
+  .buttons {
+    a:hover {
+      background-color: transparent;
+    }
+  }
+
   .nav-button {
     color: $sig-purple;
     background-color: white;
@@ -298,16 +305,11 @@ nav {
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-left: 5px;
-    a {
-      color: $sig-purple;
-    }
-    a:hover {
-      background-color: transparent;
-    }
 
   }
   .nav-button:hover {
     background-color: $sig-very-light-purple;
+    color: $sig-purple;
   }
 }
 
@@ -352,6 +354,9 @@ nav {
     color: $sig-purple;
     font-family: 'Josefin Sans', sans-serif;
   }
+  .link-button:hover {
+    color: white;
+  } 
 }
 
 button {
@@ -457,9 +462,10 @@ button:hover {
 }
 
 .event-detail {
-  margin: 5%;
+  margin: 3rem auto;
   h1 {
     text-align: center;
+    margin-top: 5rem;
   }
 
   h5 {
@@ -470,6 +476,7 @@ button:hover {
   h6 {
     font-size: 1rem;
     text-align: center;
+    margin-top: 0rem;
   }
 
   figure {
@@ -734,11 +741,16 @@ footer {
   .index-list li {
     width: 49%;
   }
-  
+  nav ul {
+    width: 100%;
+  }
 }
 @media only screen and (max-width: 550px) {
   .index-list li {
     width: 100%;
+  }
+  nav ul, nav .nav-button {
+    font-size: 0.6rem;
   }
 }
 
