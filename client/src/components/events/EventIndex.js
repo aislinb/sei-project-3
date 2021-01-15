@@ -99,7 +99,6 @@ function EventIndex() {
   events.sort( compare )
 
   const handleResetSelection = async () => {
-    // window.location.reload() <-- Don't use this is React
     const { data } = await getAllEvents()
     setEvents(data)
   }

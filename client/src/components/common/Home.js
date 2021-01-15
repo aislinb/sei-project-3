@@ -95,7 +95,6 @@ function Home() {
                         : 
                         <div>Loading events...</div>
                       }
-                      {/* <p>{description}</p> */}
                       <figure>
                         <img src={eventImage} alt={name} />
                       </figure>

@@ -20,8 +20,6 @@ function eventNew() {
     try {
       const { data } = await createVenue(formdata)
       history.push(`/venues/${data._id}`)
-      // un-comment below to test data you are submitting
-      //window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
       setErrors(err.response.data.errors)
     }

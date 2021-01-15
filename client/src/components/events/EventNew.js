@@ -22,8 +22,6 @@ function eventNew() {
     try {
       const { data } = await createEvent(formdata)
       history.push(`/events/${data._id}`)
-      // un-comment below to test data you are submitting
-      //window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
       setErrors(err.response.data.errors)
     }

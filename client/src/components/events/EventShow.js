@@ -85,8 +85,6 @@ function EventShow() {
       setEvent(data)
       formdata.text = ''
       e.target[5].value = ''
-      // window.location.reload() <-- Don't use this in React
-      // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
       setErrors(err.response.data.errors)
     }

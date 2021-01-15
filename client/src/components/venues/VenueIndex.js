@@ -97,7 +97,6 @@ function venueIndex() {
   venues.sort( compare )
 
   const handleResetSelection = async () => {
-    // window.location.reload() <-- Don't use this is React
     const { data } = await getAllVenues()
     setVenues(data)
   }

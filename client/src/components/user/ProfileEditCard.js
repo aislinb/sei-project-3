@@ -26,8 +26,6 @@ function ProfileEditCard() {
 
   const handleSubmit = async event => {
     event.preventDefault()
-    // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
-    
 
     try {
       await editUserProfile(formdata)

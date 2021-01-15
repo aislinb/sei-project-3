@@ -40,18 +40,12 @@ function profileShow() {
     getData()
   }, [])
 
-  // // De-structured fields from the event object
-  // const { username, email } = user
-
   return (
     <main className="profile-show">
       {isLoggedIn ?
         <>
           <div className="profile-container block-form">
             <h1>Welcome, {user.username}!</h1>
-            {/* <div>
-              <h3>Account details:</h3>
-            </div> */}
             <div className="block-form top-half">
               <div className="block-form half-width left">
                 <div className="block-form half-width left">

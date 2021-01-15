@@ -12,7 +12,6 @@ function venueShow() {
 
   const isLoggedIn = isAuthenticated()
   
-  // Tried to add error handling to review form, but no luck - PJ
   const { formdata, handleChange, errors, setErrors  } = useForm({
     text: '', 
     rating: '',
@@ -60,8 +59,6 @@ function venueShow() {
   }, [])
   
 
-  // AB - also having issues with adding events taking place at the venue
-
   // ! DELETE Function
   const handleDelete = async () => {
     try {
@@ -81,8 +78,6 @@ function venueShow() {
       setVenue(data)
       formdata.text = ''
       e.target[5].value = ''
-      // window.location.reload() <-- Don't use this in React
-      // window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
     } catch (err) {
       setErrors(err.response.data.errors)
     }
