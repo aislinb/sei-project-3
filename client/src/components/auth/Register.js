@@ -17,7 +17,7 @@ function Register() {
 
     try {
       await registerUser(formdata)
-      history.push('/login') // is registration successful => login
+      history.push('/login') // if is registration successful => login
     } catch (err) {
       setErrors(err.response.data.errors)
     }
