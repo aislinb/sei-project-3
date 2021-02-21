@@ -1,4 +1,4 @@
-#  🎉 *2020 Reimagined - A Fullstack MERN App*
+#  🎉 *2020 Reimagined - A Fullstack MERN App*🎉
 
 A one-week group project for General Assembly’s Software Engineering Immersive course, built using React, Express, Mongo, and Node.
 
@@ -8,7 +8,7 @@ A one-week group project for General Assembly’s Software Engineering Immersive
 * Penny Jungreis -  [GitHub](https://github.com/penelopecj) 
 * Hugo Kinahan -  [GitHub](https://github.com/hugokinahan) 
 
-![Homepage](homepage.gif)(./client/src/images/homepage.gif)
+![Homepage](./client/src/images/homepage.gif)
 
 
 ### Deployment
