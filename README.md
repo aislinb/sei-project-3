@@ -29,12 +29,12 @@ Requirements:
 
 
 ### Technologies We Used
-* **Backend**:
+* **Back-End**:
 	* Express
 	* MongoDB
 	* Node.js
 
-* **Frontend**:
+* **Front-End**:
 	* CSS3 + SASS
 	* HTML5
 	* JavaScript (ES6)
@@ -69,10 +69,10 @@ Requirements:
 
 
 ### Wireframes
-**Backend Wireframe**
-![Back-end Wireframe](./client/src/images/backend-wireframe.png)
-**Frontend Wireframe**
-![Front-end Wireframe](./client/src/images/frontend-wireframe.png)
+**Back-End Wireframe**
+![Back-End Wireframe](./client/src/images/backend-wireframe.png)
+**Front-End Wireframe**
+![Front-End Wireframe](./client/src/images/frontend-wireframe.png)
 
 ### Concept
 The idea from this project arose out of the frustrations of suffering through the third lockdown of the pandemic.  We decided to create an idealised, alternate version of the year 2020: The Year That Would Have Been. 
@@ -85,7 +85,7 @@ Our application was a space where users could share their reviews of the brighte
 
 * Once deciding on the theme and overall functionality we wanted to create for our app, we then moved on to planning out what our Minimum Viable Product would look like.
 * As a group we made sure to work out everything using a Trello board with clear labels, updating each other on everything that was in the project pipeline, who was responsible for what and what the timeframes were. 
-* We used Slack and Zoom to communicate throughout, often sharing one persons screen to work on the backend set-up, or any challenges any of us were facing, as a team.
+* We used Slack and Zoom to communicate throughout, often sharing one person's screen to group-code or troubleshoot challenges any of us were facing as a team.
 * This communication helped hugely when it came to using Git and GitHub,  ensuring we committed our individual branches regularly and merged the development branch from the repository, in order to avoid any big merge conflicts.
 
 ### Process
