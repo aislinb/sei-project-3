@@ -88,27 +88,33 @@ export function getBounds(points: Point[]): { min: Point, max: Point} {
 }
 
 /**
- * Converts a AABB into a closed polygon with clockwise winding order.
+ * Converts a AABB into a polygon with clockwise winding order.
  *
- * @param {Point} min
- * @param {Point} max
- * @param {number} [buffer=0]
- * @returns {Point[]}
+ * @param {Point} min The top left point.
+ * @param {Point} max The bottom right point.
+ * @param {number} [buffer=0] The buffer width.
+ * @param {boolean} [close=true] Whether to close the polygon or not.
+ * @returns {Point[]} The polygon.
  */
-export function polygonizeBounds(min: Point, max: Point, buffer: number = 0): Point[] {
+export function polygonizeBounds(min: Point, max: Point, buffer: number = 0, close: boolean = true): Point[] {
     const offset = new Point(buffer, buffer);
     const minBuf = min.sub(offset);
     const maxBuf = max.add(offset);
-    return [minBuf, new Point(maxBuf.x, minBuf.y), maxBuf, new Point(minBuf.x, maxBuf.y), minBuf];
+    const polygon = [minBuf, new Point(maxBuf.x, minBuf.y), maxBuf, new Point(minBuf.x, maxBuf.y)];
+
+    if (close) {
+        polygon.push(minBuf);
+    }
+    return polygon;
 }
 
 /**
- * Takes a convex ring and applies and expands it outward by applying a buffer around it.
+ * Takes a convex ring and expands it outward by applying a buffer around it.
  * This function assumes that the ring is in clockwise winding order.
  *
- * @param {Point[]} ring
- * @param {number} buffer
- * @returns {Point[]}
+ * @param {Point[]} ring The input ring.
+ * @param {number} buffer The buffer width.
+ * @returns {Point[]} The expanded ring.
  */
 export function bufferConvexPolygon(ring: Point[], buffer: number): Point[] {
     assert(ring.length > 2, 'bufferConvexPolygon requires the ring to have atleast 3 points');

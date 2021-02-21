@@ -1,23 +1,7 @@
-// @flow
+import * as React from 'react';
+import {createContext, useState, useContext} from 'react';
 
-import {createContext} from 'react';
-
-import type {WebMercatorViewport} from 'viewport-mercator-project';
-
-export type MapContextProps = {
-  viewport: ?WebMercatorViewport,
-
-  map: any,
-  mapContainer: null | HTMLDivElement,
-
-  onViewStateChange: ?Function,
-  onViewportChange: ?Function,
-
-  isDragging: boolean,
-  eventManager: any
-};
-
-export default createContext<MapContextProps>({
+const MapContext = createContext({
   /* Map context */
 
   // Viewport
@@ -25,14 +9,34 @@ export default createContext<MapContextProps>({
   // mapboxgl.Map instance
   map: null,
   // DOM element that contains the map
-  mapContainer: null,
+  container: null,
 
-  /* Interactive-only context */
+  /* Interaction callbacks */
   onViewportChange: null,
   onViewStateChange: null,
 
   // EventManager instance
-  eventManager: null,
-  // whether the map is being dragged
-  isDragging: false
+  eventManager: null
 });
+
+// Save the original Provider component
+export const MapContextProvider = MapContext.Provider;
+
+// And replace Provider with our own
+function WrappedProvider({value, children}) {
+  const [map, setMap] = useState(null);
+  const context = useContext(MapContext);
+
+  value = {
+    setMap,
+    ...context,
+    map: (context && context.map) || map,
+    ...value
+  };
+
+  return <MapContextProvider value={value}>{children}</MapContextProvider>;
+}
+
+MapContext.Provider = WrappedProvider;
+
+export default MapContext;

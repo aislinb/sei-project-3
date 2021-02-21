@@ -99,6 +99,7 @@ type MapOptions = {
     zoom?: number,
     bearing?: number,
     pitch?: number,
+    optimizeForTerrain?: boolean,
     renderWorldCopies?: boolean,
     maxTileCacheSize?: number,
     transformRequest?: RequestTransformFunction,
@@ -145,10 +146,12 @@ const defaultOptions = {
     failIfMajorPerformanceCaveat: false,
     preserveDrawingBuffer: false,
     trackResize: true,
+    optimizeForTerrain: true,
     renderWorldCopies: true,
     refreshExpiredTiles: true,
     maxTileCacheSize: null,
     localIdeographFontFamily: 'sans-serif',
+    localFontFamily: null,
     transformRequest: null,
     accessToken: null,
     fadeDuration: 300,
@@ -228,6 +231,7 @@ const defaultOptions = {
  * @param {number} [options.pitch=0] The initial pitch (tilt) of the map, measured in degrees away from the plane of the screen (0-85). If `pitch` is not specified in the constructor options, Mapbox GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `0`.
  * @param {LngLatBoundsLike} [options.bounds] The initial bounds of the map. If `bounds` is specified, it overrides `center` and `zoom` constructor options.
  * @param {Object} [options.fitBoundsOptions] A {@link Map#fitBounds} options object to use _only_ when fitting the initial `bounds` provided above.
+ * @param {boolean} [options.optimizeForTerrain=true] With terrain on, if `true`, the map will render for performance priority, which may lead to layer reordering allowing to maximize performance (layers that are draped over terrain will be drawn first, including fill, line, background, hillshade and raster). Otherwise, if set to `false`, the map will always be drawn for layer order priority.
  * @param {boolean} [options.renderWorldCopies=true]  If `true`, multiple copies of the world will be rendered side by side beyond -180 and 180 degrees longitude. If set to `false`:
  * - When the map is zoomed out far enough that a single representation of the world does not fill the map's entire
  * container, there will be blank space beyond 180 and -180 degrees longitude.
@@ -239,6 +243,9 @@ const defaultOptions = {
  *   In these ranges, font settings from the map's style will be ignored, except for font-weight keywords (light/regular/medium/bold).
  *   Set to `false`, to enable font settings from the map's style for these glyph ranges.  Note that [Mapbox Studio](https://studio.mapbox.com/) sets this value to `false` by default.
  *   The purpose of this option is to avoid bandwidth-intensive glyph server requests. (See [Use locally generated ideographs](https://www.mapbox.com/mapbox-gl-js/example/local-ideographs).)
+ * @param {string} [options.localFontFamily=false] Defines a CSS
+ *   font-family for locally overriding generation of all glyphs. Font settings from the map's style will be ignored, except for font-weight keywords (light/regular/medium/bold).
+ *   If set, this option override the setting in localIdeographFontFamily
  * @param {RequestTransformFunction} [options.transformRequest=null] A callback run before the Map makes a request for an external URL. The callback can be used to modify the url, set headers, or set the credentials property for cross-origin requests.
  *   Expected to return an object with a `url` property and optionally `headers` and `credentials` properties.
  * @param {boolean} [options.collectResourceTiming=false] If `true`, Resource Timing API information will be collected for requests made by GeoJSON and Vector Tile web workers (this information is normally inaccessible from the main Javascript thread). Information will be returned in a `resourceTiming` property of relevant `data` events.
@@ -306,11 +313,13 @@ class Map extends Camera {
     _crossSourceCollisions: boolean;
     _crossFadingFactor: number;
     _collectResourceTiming: boolean;
+    _optimizeForTerrain: boolean;
     _renderTaskQueue: TaskQueue;
     _controls: Array<IControl>;
     _logoControl: IControl;
     _mapId: number;
     _localIdeographFontFamily: string;
+    _localFontFamily: string;
     _requestManager: RequestManager;
     _locale: Object;
     _removed: boolean;
@@ -403,6 +412,7 @@ class Map extends Camera {
         this._crossSourceCollisions = options.crossSourceCollisions;
         this._crossFadingFactor = 1;
         this._collectResourceTiming = options.collectResourceTiming;
+        this._optimizeForTerrain = options.optimizeForTerrain;
         this._renderTaskQueue = new TaskQueue();
         this._controls = [];
         this._mapId = uniqueId();
@@ -471,8 +481,10 @@ class Map extends Camera {
 
         this.resize();
 
+        this._localFontFamily = options.localFontFamily;
         this._localIdeographFontFamily = options.localIdeographFontFamily;
-        if (options.style) this.setStyle(options.style, {localIdeographFontFamily: options.localIdeographFontFamily});
+
+        if (options.style) this.setStyle(options.style, {localFontFamily: this._localFontFamily, localIdeographFontFamily: this._localIdeographFontFamily});
 
         if (options.attributionControl)
             this.addControl(new AttributionControl({customAttribution: options.customAttribution}));
@@ -1087,10 +1099,11 @@ class Map extends Camera {
      * @memberof Map
      * @instance
      * @param {string} type The event type to add a listener for.
-     * @param {Function} listener The function to be called when the event is fired.
+     * @param {Function} listener (optional) The function to be called when the event is fired once.
      *   The listener function is called with the data object passed to `fire`,
-     *   extended with `target` and `type` properties.
-     * @returns {Map} `this`
+     *   extended with `target` and `type` properties. If the listener is not provided,
+     *   returns a Promise that will be resolved when the event is fired once.
+     * @returns {Map} `this` | Promise
      */
 
     /**
@@ -1343,13 +1356,16 @@ class Map extends Camera {
      * @see [Change a map's style](https://www.mapbox.com/mapbox-gl-js/example/setstyle/)
      */
     setStyle(style: StyleSpecification | string | null, options?: {diff?: boolean} & StyleOptions) {
-        options = extend({}, {localIdeographFontFamily: this._localIdeographFontFamily}, options);
+        options = extend({}, {localIdeographFontFamily: this._localIdeographFontFamily, localFontFamily: this._localFontFamily}, options);
 
-        if ((options.diff !== false && options.localIdeographFontFamily === this._localIdeographFontFamily) && this.style && style) {
+        if ((options.diff !== false &&
+            options.localIdeographFontFamily === this._localIdeographFontFamily &&
+            options.localFontFamily === this._localFontFamily) && this.style && style) {
             this._diffStyle(style, options);
             return this;
         } else {
             this._localIdeographFontFamily = options.localIdeographFontFamily;
+            this._localFontFamily = options.localFontFamily;
             return this._updateStyle(style, options);
         }
     }
@@ -2150,6 +2166,7 @@ class Map extends Camera {
      * @param {string} feature.source The id of the vector or GeoJSON source for the feature.
      * @param {string} [feature.sourceLayer] (optional) *For vector tile sources, `sourceLayer` is required.*
      * @param {Object} state A set of key-value pairs. The values should be valid JSON types.
+     * @returns {Map} The map object.
      *
      * @example
      * // When the mouse moves over the `my-layer` layer, update

@@ -1,4 +1,3 @@
-// @flow
 // Copyright (c) 2015 Uber Technologies, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,12 +19,13 @@
 // THE SOFTWARE.
 
 /* global window, process, HTMLCanvasElement */
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import {document} from '../utils/globals';
+import {normalizeStyle} from '../utils/style-utils';
 
 function noop() {}
 
-function defaultOnError(event?: {error: any}) {
+function defaultOnError(event) {
   if (event) {
     console.error(event.error); // eslint-disable-line
   }
@@ -47,6 +47,8 @@ const propTypes = {
     PropTypes.string,
     PropTypes.object
   ]) /** The Mapbox style. A string url to a MapboxGL style */,
+  preventStyleDiffing:
+    PropTypes.bool /** There are known issues with style diffing. As stopgap, add option to prevent style diffing. */,
 
   visible: PropTypes.bool /** Whether the map is visible */,
   asyncRender: PropTypes.bool /** Whether mapbox should manage its own render cycle */,
@@ -78,6 +80,7 @@ const defaultProps = {
   reuseMaps: false,
   mapOptions: {},
   mapStyle: 'mapbox://styles/mapbox/light-v8',
+  preventStyleDiffing: false,
 
   visible: true,
   asyncRender: false,
@@ -95,51 +98,8 @@ const defaultProps = {
   altitude: 1.5
 };
 
-type MapboxGL = {
-  version: string,
-  accessToken: string,
-  baseApiUrl: string,
-  Map: Function
-};
-
-export type ViewState = {
-  longitude: number,
-  latitude: number,
-  zoom: number,
-  bearing: number,
-  pitch: number,
-  altitude?: number
-};
-
-type Props = {
-  mapboxgl?: MapboxGL,
-  container: any,
-  gl?: any,
-  mapboxApiAccessToken: string,
-  mapboxApiUrl: string,
-  attributionControl: boolean,
-  preserveDrawingBuffer: boolean,
-  onLoad: Function,
-  onError: Function,
-  reuseMaps: boolean,
-  transformRequest?: Function,
-  mapStyle: any,
-  visible: boolean,
-  asyncRender: boolean,
-  width: number,
-  height: number,
-  viewState?: ViewState,
-  longitude: number,
-  latitude: number,
-  zoom: number,
-  bearing: number,
-  pitch: number,
-  altitude?: number,
-  mapOptions: any
-};
-
 // Try to get access token from URL, env, local storage or config
-export function getAccessToken(): string {
+export function getAccessToken() {
   let accessToken = null;
 
   if (typeof window !== 'undefined' && window.location) {
@@ -172,12 +132,12 @@ function checkPropTypes(props, component = 'component') {
 // - Provides support for specifying tokens during development
 
 export default class Mapbox {
-  static initialized: boolean = false;
-  static propTypes: any = propTypes;
-  static defaultProps: any = defaultProps;
-  static savedMap: any = null;
+  static initialized = false;
+  static propTypes = propTypes;
+  static defaultProps = defaultProps;
+  static savedMap = null;
 
-  constructor(props: Props) {
+  constructor(props) {
     if (!props.mapboxgl) {
       throw new Error('Mapbox not available');
     }
@@ -188,7 +148,6 @@ export default class Mapbox {
       Mapbox.initialized = true;
 
       // Version detection using babel plugin
-      // $FlowFixMe
       // const VERSION = typeof __VERSION__ !== 'undefined' ? __VERSION__ : 'untranspiled source';
       // TODO - expose version for debug
 
@@ -198,27 +157,17 @@ export default class Mapbox {
     this._initialize(props);
   }
 
-  mapboxgl: MapboxGL;
-  props: Props = defaultProps;
-  _map: any = null;
-  width: number = 0;
-  height: number = 0;
+  props = defaultProps;
+  width = 0;
+  height = 0;
 
   finalize() {
     this._destroy();
     return this;
   }
 
-  setProps(props: Props) {
+  setProps(props) {
     this._update(this.props, props);
-    return this;
-  }
-
-  // Mapbox's map.resize() reads size from DOM, so DOM element must already be resized
-  // In a system like React we must wait to read size until after render
-  // (e.g. until "componentDidUpdate")
-  resize() {
-    this._map.resize();
     return this;
   }
 
@@ -248,13 +197,14 @@ export default class Mapbox {
 
   // PRIVATE API
   _fireLoadEvent = () => {
+    // @ts-ignore
     this.props.onLoad({
       type: 'load',
       target: this._map
     });
   };
 
-  _reuse(props: Props) {
+  _reuse(props) {
     this._map = Mapbox.savedMap;
     // When reusing the saved map, we need to reparent the map(canvas) and other child nodes
     // intoto the new container from the props.
@@ -271,7 +221,7 @@ export default class Mapbox {
 
     // Step3: update style and call onload again
     if (props.mapStyle) {
-      this._map.setStyle(props.mapStyle, {
+      this._map.setStyle(normalizeStyle(props.mapStyle), {
         // From the user's perspective, there's no "diffing" on initialization
         // We always rebuild the style from scratch when creating a new Mapbox instance
         diff: false
@@ -286,7 +236,7 @@ export default class Mapbox {
     }
   }
 
-  _create(props: Props) {
+  _create(props) {
     // Reuse a saved map, if available
     if (props.reuseMaps && Mapbox.savedMap) {
       this._reuse(props);
@@ -295,23 +245,21 @@ export default class Mapbox {
         const getContext = HTMLCanvasElement.prototype.getContext;
         // Hijack canvas.getContext to return our own WebGLContext
         // This will be called inside the mapboxgl.Map constructor
-        // $FlowFixMe
         HTMLCanvasElement.prototype.getContext = () => {
           // Unhijack immediately
-          // $FlowFixMe
           HTMLCanvasElement.prototype.getContext = getContext;
           return props.gl;
         };
       }
 
-      const mapOptions: any = {
+      const mapOptions = {
         container: props.container,
         center: [0, 0],
         zoom: 8,
         pitch: 0,
         bearing: 0,
         maxZoom: 24,
-        style: props.mapStyle,
+        style: normalizeStyle(props.mapStyle),
         interactive: false,
         trackResize: false,
         attributionControl: props.attributionControl,
@@ -350,7 +298,7 @@ export default class Mapbox {
     this._map = null;
   }
 
-  _initialize(props: Props) {
+  _initialize(props) {
     props = Object.assign({}, defaultProps, props);
     checkPropTypes(props, 'Mapbox');
 
@@ -364,15 +312,11 @@ export default class Mapbox {
     // This eliminates the timing issue between calling resize() and DOM update
     /* eslint-disable accessor-pairs */
     const {container} = props;
-    // $FlowFixMe
     Object.defineProperty(container, 'offsetWidth', {get: () => this.width});
-    // $FlowFixMe
     Object.defineProperty(container, 'clientWidth', {get: () => this.width});
-    // $FlowFixMe
     Object.defineProperty(container, 'offsetHeight', {
       get: () => this.height
     });
-    // $FlowFixMe
     Object.defineProperty(container, 'clientHeight', {
       get: () => this.height
     });
@@ -389,7 +333,7 @@ export default class Mapbox {
     this.props = props;
   }
 
-  _update(oldProps: Props, newProps: Props) {
+  _update(oldProps, newProps) {
     if (!this._map) {
       return;
     }
@@ -399,6 +343,7 @@ export default class Mapbox {
 
     const viewportChanged = this._updateMapViewport(oldProps, newProps);
     const sizeChanged = this._updateMapSize(oldProps, newProps);
+    this._updateMapStyle(oldProps, newProps);
 
     if (!newProps.asyncRender && (viewportChanged || sizeChanged)) {
       this.redraw();
@@ -407,18 +352,27 @@ export default class Mapbox {
     this.props = newProps;
   }
 
+  _updateMapStyle(oldProps, newProps) {
+    const styleChanged = oldProps.mapStyle !== newProps.mapStyle;
+    if (styleChanged) {
+      this._map.setStyle(normalizeStyle(newProps.mapStyle), {
+        diff: !newProps.preventStyleDiffing
+      });
+    }
+  }
+
   // Note: needs to be called after render (e.g. in componentDidUpdate)
-  _updateMapSize(oldProps: any, newProps: Props) {
+  _updateMapSize(oldProps, newProps) {
     const sizeChanged = oldProps.width !== newProps.width || oldProps.height !== newProps.height;
     if (sizeChanged) {
       this.width = newProps.width;
       this.height = newProps.height;
-      this.resize();
+      this._map.resize();
     }
     return sizeChanged;
   }
 
-  _updateMapViewport(oldProps: any, newProps: Props) {
+  _updateMapViewport(oldProps, newProps) {
     const oldViewState = this._getViewState(oldProps);
     const newViewState = this._getViewState(newProps);
 
@@ -441,13 +395,13 @@ export default class Mapbox {
     return viewportChanged;
   }
 
-  _getViewState(props: Props): ViewState {
+  _getViewState(props) {
     const {longitude, latitude, zoom, pitch = 0, bearing = 0, altitude = 1.5} =
       props.viewState || props;
     return {longitude, latitude, zoom, pitch, bearing, altitude};
   }
 
-  _checkStyleSheet(mapboxVersion: string = '0.47.0') {
+  _checkStyleSheet(mapboxVersion = '0.47.0') {
     if (typeof document === 'undefined') {
       return;
     }
@@ -476,7 +430,7 @@ export default class Mapbox {
     }
   }
 
-  _viewStateToMapboxProps(viewState: ViewState) {
+  _viewStateToMapboxProps(viewState) {
     return {
       center: [viewState.longitude, viewState.latitude],
       zoom: viewState.zoom,

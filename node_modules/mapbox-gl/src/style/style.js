@@ -7,7 +7,7 @@ import StyleLayer from './style_layer';
 import createStyleLayer from './create_style_layer';
 import loadSprite from './load_sprite';
 import ImageManager from '../render/image_manager';
-import GlyphManager from '../render/glyph_manager';
+import GlyphManager, {LocalGlyphMode} from '../render/glyph_manager';
 import Light from './light';
 import Terrain from './terrain';
 import LineAtlas from '../render/line_atlas';
@@ -99,12 +99,17 @@ const empty = emptyStyle();
 
 export type StyleOptions = {
     validate?: boolean,
+    localFontFamily?: string,
     localIdeographFontFamily?: string
 };
 
 export type StyleSetterOptions = {
     validate?: boolean
 };
+
+// Symbols are draped only for specific cases: see isLayerDraped
+const drapedLayers = {'fill': true, 'line': true, 'background': true, "hillshade": true, "raster": true};
+
 /**
  * @private
  */
@@ -122,8 +127,11 @@ class Style extends Evented {
     _spriteRequest: ?Cancelable;
     _layers: {[_: string]: StyleLayer};
     _num3DLayers: number;
+    _numSymbolLayers: number;
+    _numCircleLayers: number;
     _serializedLayers: {[_: string]: Object};
     _order: Array<string>;
+    _drapedFirstOrder: Array<string>;
     _sourceCaches: {[_: string]: SourceCache};
     _otherSourceCaches: {[_: string]: SourceCache};
     _symbolSourceCaches: {[_: string]: SourceCache};
@@ -156,20 +164,27 @@ class Style extends Evented {
         this.dispatcher = new Dispatcher(getWorkerPool(), this);
         this.imageManager = new ImageManager();
         this.imageManager.setEventedParent(this);
-        this.glyphManager = new GlyphManager(map._requestManager, options.localIdeographFontFamily);
+        this.glyphManager = new GlyphManager(map._requestManager,
+            options.localFontFamily ?
+                LocalGlyphMode.all :
+                (options.localIdeographFontFamily ? LocalGlyphMode.ideographs : LocalGlyphMode.none),
+            options.localFontFamily || options.localIdeographFontFamily);
         this.lineAtlas = new LineAtlas(256, 512);
         this.crossTileSymbolIndex = new CrossTileSymbolIndex();
 
         this._layers = {};
         this._num3DLayers = 0;
+        this._numSymbolLayers = 0;
+        this._numCircleLayers = 0;
         this._serializedLayers = {};
-        this._order  = [];
         this._sourceCaches = {};
         this._otherSourceCaches = {};
         this._symbolSourceCaches = {};
         this.zoomHistory = new ZoomHistory();
         this._loaded = false;
         this._availableImages = [];
+        this._order  = [];
+        this._drapedFirstOrder = [];
 
         this._resetUpdates();
 
@@ -253,6 +268,20 @@ class Style extends Evented {
         this._load(empty, false);
     }
 
+    _updateLayerCount(layer: StyleLayer, add: boolean) {
+        // Typed layer bookkeeping
+        const count = add ? 1 : -1;
+        if (layer.is3D()) {
+            this._num3DLayers += count;
+        }
+        if (layer.type === 'circle') {
+            this._numCircleLayers += count;
+        }
+        if (layer.type === 'symbol') {
+            this._numSymbolLayers += count;
+        }
+    }
+
     _load(json: StyleSpecification, validate: boolean) {
         if (validate && emitValidationErrors(this, validateStyle(json))) {
             return;
@@ -269,6 +298,7 @@ class Style extends Evented {
             this._loadSprite(json.sprite);
         } else {
             this.imageManager.setLoaded(true);
+            this.dispatcher.broadcast('spriteLoaded', true);
         }
 
         this.glyphManager.setURL(json.glyphs);
@@ -284,9 +314,7 @@ class Style extends Evented {
             layer.setEventedParent(this, {layer: {id: layer.id}});
             this._layers[layer.id] = layer;
             this._serializedLayers[layer.id] = layer.serialize();
-            if (layer.is3D()) {
-                this._num3DLayers++;
-            }
+            this._updateLayerCount(layer, true);
         }
         this.dispatcher.broadcast('setLayers', this._serializeLayers(this._order));
 
@@ -294,6 +322,7 @@ class Style extends Evented {
         if (this.stylesheet.terrain) {
             this._createTerrain(this.stylesheet.terrain);
         }
+        this._updateDrapeFirstLayers();
 
         this.fire(new Event('data', {dataType: 'style'}));
         this.fire(new Event('style.load'));
@@ -313,6 +342,7 @@ class Style extends Evented {
             this.imageManager.setLoaded(true);
             this._availableImages = this.imageManager.listImages();
             this.dispatcher.broadcast('setImages', this._availableImages);
+            this.dispatcher.broadcast('spriteLoaded', true);
             this.fire(new Event('data', {dataType: 'style'}));
         });
     }
@@ -383,6 +413,19 @@ class Style extends Evented {
         }
 
         return false;
+    }
+
+    get order(): Array<string> {
+        if (this.map._optimizeForTerrain && this.terrain) {
+            assert(this._drapedFirstOrder.length === this._order.length);
+            return this._drapedFirstOrder;
+        }
+        return this._order;
+    }
+
+    isLayerDraped(layer: StyleLayer): boolean {
+        if (!this.terrain) return false;
+        return drapedLayers[layer.type];
     }
 
     _checkLoaded() {
@@ -475,7 +518,6 @@ class Style extends Evented {
         if (changed) {
             this.fire(new Event('data', {dataType: 'style'}));
         }
-
     }
 
     /*
@@ -743,9 +785,7 @@ class Style extends Evented {
 
             layer.setEventedParent(this, {layer: {id}});
             this._serializedLayers[layer.id] = layer.serialize();
-            if (layer.is3D()) {
-                this._num3DLayers++;
-            }
+            this._updateLayerCount(layer, true);
         }
 
         const index = before ? this._order.indexOf(before) : this._order.length;
@@ -782,6 +822,8 @@ class Style extends Evented {
         if (layer.onAdd) {
             layer.onAdd(this.map);
         }
+
+        this._updateDrapeFirstLayers();
     }
 
     /**
@@ -815,6 +857,8 @@ class Style extends Evented {
         this._order.splice(newIndex, 0, id);
 
         this._layerOrderChanged = true;
+
+        this._updateDrapeFirstLayers();
     }
 
     /**
@@ -836,9 +880,7 @@ class Style extends Evented {
 
         layer.setEventedParent(null);
 
-        if (layer.is3D()) {
-            this._num3DLayers--;
-        }
+        this._updateLayerCount(layer, false);
 
         const index = this._order.indexOf(id);
         this._order.splice(index, 1);
@@ -854,6 +896,8 @@ class Style extends Evented {
         if (layer.onRemove) {
             layer.onRemove(this.map);
         }
+
+        this._updateDrapeFirstLayers();
     }
 
     /**
@@ -874,6 +918,22 @@ class Style extends Evented {
      */
     hasLayer(id: string): boolean {
         return id in this._layers;
+    }
+
+    /**
+     * checks if a specific layer type is present within the style.
+     *
+     * @param {string} type - type of the desired layer
+     * @returns {boolean} a boolean specifying if the given layer type is present
+     */
+    hasLayerType(type: string): boolean {
+        for (const layerId in this._layers) {
+            const layer = this._layers[layerId];
+            if (layer.type === type) {
+                return true;
+            }
+        }
+        return false;
     }
 
     setLayerZoomRange(layerId: string, minzoom: ?number, maxzoom: ?number) {
@@ -1351,6 +1411,25 @@ class Style extends Evented {
                 }
             }
         }
+
+        this._updateDrapeFirstLayers();
+    }
+
+    _updateDrapeFirstLayers() {
+        if (!this.map._optimizeForTerrain || !this.terrain) {
+            return;
+        }
+
+        const draped = this._order.filter((id) => {
+            return this.isLayerDraped(this._layers[id]);
+        });
+
+        const nonDraped = this._order.filter((id) => {
+            return !this.isLayerDraped(this._layers[id]);
+        });
+        this._drapedFirstOrder = [];
+        this._drapedFirstOrder.push(...draped);
+        this._drapedFirstOrder.push(...nonDraped);
     }
 
     _createTerrain(terrainOptions: TerrainSpecification) {
@@ -1472,6 +1551,10 @@ class Style extends Evented {
         // tiles will fully display symbols in their first frame
         forceFullPlacement = forceFullPlacement || this._layerOrderChanged || fadeDuration === 0;
 
+        if (this._layerOrderChanged) {
+            this.fire(new Event('neworder'));
+        }
+
         if (forceFullPlacement || !this.pauseablePlacement || (this.pauseablePlacement.isDone() && !this.placement.stillRecent(browser.now(), transform.zoom))) {
             this.pauseablePlacement = new PauseablePlacement(transform, this._order, forceFullPlacement, showCollisionBoxes, fadeDuration, crossSourceCollisions, this.placement);
             this._layerOrderChanged = false;
@@ -1574,6 +1657,14 @@ class Style extends Evented {
 
     has3DLayers(): boolean {
         return this._num3DLayers > 0;
+    }
+
+    hasSymbolLayers(): boolean {
+        return this._numSymbolLayers > 0;
+    }
+
+    hasCircleLayers(): boolean {
+        return this._numCircleLayers > 0;
     }
 }
 

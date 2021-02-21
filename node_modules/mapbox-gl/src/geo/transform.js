@@ -20,7 +20,7 @@ import type {PaddingOptions} from './edge_insets';
 const NUM_WORLD_COPIES = 3;
 const DEFAULT_MIN_ZOOM = 0;
 
-type RayIntersectionResult = { p0: vec4, p1: vec4, t: number };
+type RayIntersectionResult = { p0: vec4, p1: vec4, t: number};
 type ElevationReference = "sea" | "ground";
 
 /**
@@ -71,6 +71,7 @@ class Transform {
     _alignedPosMatrixCache: {[_: number]: Float32Array};
     _camera: FreeCamera;
     _centerAltitude: number;
+    _horizonShift: number;
 
     constructor(minZoom: ?number, maxZoom: ?number, minPitch: ?number, maxPitch: ?number, renderWorldCopies: boolean | void) {
         this.tileSize = 512; // constant
@@ -99,6 +100,9 @@ class Transform {
         this._camera = new FreeCamera();
         this._centerAltitude = 0;
         this.cameraElevationReference = "ground";
+
+        // Move the horizon closer to the center. 0 would not shift the horizon. 1 would put the horizon at the center.
+        this._horizonShift = 0.1;
     }
 
     clone(): Transform {
@@ -331,7 +335,8 @@ class Transform {
 
     /**
      * Computes a zoom value relative to a map plane that goes through the provided mercator position.
-     * @param {*} position A position defining the altitude of the the map plane
+     * @param {MercatorCoordinate} position A position defining the altitude of the the map plane.
+     * @returns {number} The zoom value.
      */
     computeZoomRelativeTo(position: MercatorCoordinate): number {
         // Find map center position on the target plane by casting a ray from screen center towards the plane.
@@ -447,10 +452,10 @@ class Transform {
     }
 
     /**
-     * Returns if the padding params match
+     * Returns true if the padding options are equal.
      *
-     * @param {PaddingOptions} padding
-     * @returns {boolean}
+     * @param {PaddingOptions} padding The padding options to compare.
+     * @returns {boolean} True if the padding options are equal.
      * @memberof Transform
      */
     isPaddingEqual(padding: PaddingOptions): boolean {
@@ -458,10 +463,11 @@ class Transform {
     }
 
     /**
-     * Helper method to upadte edge-insets inplace
+     * Helper method to update edge-insets inplace.
      *
-     * @param {PaddingOptions} target
-     * @param {number} t
+     * @param {PaddingOptions} start The initial padding options.
+     * @param {PaddingOptions} target The target padding options.
+     * @param {number} t The interpolation variable.
      * @memberof Transform
      */
     interpolatePadding(start: PaddingOptions, target: PaddingOptions, t: number) {
@@ -1224,9 +1230,9 @@ class Transform {
 
     /**
      * Returns the minimum zoom at which `this.width` can fit `this.lngRange`
-     * and `this.height` can fit `this.latRange`
+     * and `this.height` can fit `this.latRange`.
      *
-     * @returns {number}
+     * @returns {number} The zoom value.
      */
     _minZoomForBounds(): number {
         const minZoomForDim = (dim: number, range: [number, number]): number => {
@@ -1251,7 +1257,7 @@ class Transform {
      * `this.width` can fit `this.lngRange` and `this.height` can fit `this.latRange`.
      * In mercator units.
      *
-     * @returns {number}
+     * @returns {number} The mercator z coordinate.
      */
     _maxCameraBoundsDistance(): number {
         return this._mercatorZfromZoom(this._minZoomForBounds());
@@ -1282,7 +1288,10 @@ class Transform {
         // Calculate z distance of the farthest fragment that should be rendered.
         const furthestDistance = Math.cos(Math.PI / 2 - this._pitch) * topHalfSurfaceDistance + cameraToSeaLevelDistance;
         // Add a bit extra to avoid precision problems when a fragment's distance is exactly `furthestDistance`
-        const farZ = furthestDistance * 1.01;
+
+        const horizonDistance = cameraToSeaLevelDistance * (1 / this._horizonShift);
+
+        const farZ = Math.min(furthestDistance * 1.01, horizonDistance);
 
         // The larger the value of nearZ is
         // - the more depth precision is available for features (good)
@@ -1318,9 +1327,11 @@ class Transform {
         mat4.rotateZ(view, view, this.angle);
 
         const projection = mat4.perspective(new Float32Array(16), this._fov, this.width / this.height, nearZ, farZ);
+        // The distance in pixels the skybox needs to be shifted down by to meet the shifted horizon.
+        const skyboxHorizonShift = (Math.PI / 2 - this._pitch) * (this.height / this._fov) * this._horizonShift;
         // Apply center of perspective offset to skybox projection
         projection[8] = -offset.x * 2 / this.width;
-        projection[9] = offset.y * 2 / this.height;
+        projection[9] = (offset.y + skyboxHorizonShift) * 2 / this.height;
         this.skyboxMatrix = mat4.multiply(view, projection, view);
 
         // Make a second projection matrix that is aligned to a pixel grid for rendering raster tiles.
@@ -1389,7 +1400,7 @@ class Transform {
      * Apply a 3d translation to the camera position, but clamping it so that
      * it respects the bounds set by `this.latRange` and `this.lngRange`.
      *
-     * @param {vec3} translation
+     * @param {vec3} translation The translation vector.
      */
     _translateCameraConstrained(translation: vec3) {
         const maxDistance = this._maxCameraBoundsDistance();
@@ -1508,9 +1519,10 @@ class Transform {
     }
 
     /**
-     * Converts a zoom delta value into a physical distance travelled in web mercator coordinates
+     * Converts a zoom delta value into a physical distance travelled in web mercator coordinates.
      * @param {vec3} center Destination mercator point of the movement.
-     * @param {number} zoomDelta Change in the zoom value
+     * @param {number} zoomDelta Change in the zoom value.
+     * @returns {number} The distance in mercator coordinates.
      */
     zoomDeltaToMovement(center: vec3, zoomDelta: number): number {
         const distance = vec3.length(vec3.sub([], this._camera.position, center));
