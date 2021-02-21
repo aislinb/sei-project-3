@@ -70,9 +70,9 @@ Requirements:
 
 ### Wireframes
 **Backend Wireframe**
-![Back-end Wireframe](backend-wireframe.png)
+![Back-end Wireframe](./client/src/images/backend-wireframe.png)
 **Frontend Wireframe**
-![Front-end Wireframe](frontend-wireframe.png)
+![Front-end Wireframe](./client/src/images/frontend-wireframe.png)
 
 ### Concept
 The idea from this project arose out of the frustrations of suffering through the third lockdown of the pandemic.  We decided to create an idealised, alternate version of the year 2020: The Year That Would Have Been. 
@@ -81,7 +81,7 @@ Our application was a space where users could share their reviews of the brighte
 
 ### Planning
 
-![Trello](trello.png)
+![Trello](./client/src/images/trello.png)
 
 * Once deciding on the theme and overall functionality we wanted to create for our app, we then moved on to planning out what our Minimum Viable Product would look like.
 * As a group we made sure to work out everything using a Trello board with clear labels, updating each other on everything that was in the project pipeline, who was responsible for what and what the timeframes were. 
@@ -221,15 +221,15 @@ function Register() {
 
 The main challenge with this section was making sure the error handling was correct, ensuring the page didn’t error out if the form was not filled in correctly and didn’t correspond to the user model requirements in the back-end:
 
-![Registration page](registrationpage.png)
+![Registration page](./client/src/images/registrationpage.png)
 
 As well as responsive design, I made sure to provide a more general error message for the login page, not specifying which field was filled in incorrectly, so as not to give out user information unnecessarily:
 
-![Login Page](loginpage1.png)
+![Login Page](./client/src/images/loginpage1.png)
 
 I also created a user profile page, where our users could view and edit their profile details, and add further info about themselves like a profile image (using Cloudinary) which would then display next to their comments and ratings on the event and venue pages.  I think this added an important feel of community to the application which was primarily an events reviewing platform. 
 
-![Comment](reviewwithcomment.png)
+![Comment](./client/src/images/reviewwithcomment.png)
 
 Users could also view all events that they had created in list form.
 
@@ -241,7 +241,7 @@ We approached the commenting on events and venues functionality together as we k
 * Map View Page:
 This page shows the exact latitude and longitude of each venue using Mapbox as well as a popup on each venue which shows you all of the events taking place there:
 
-![Events map](eventsmappage.png)
+![Events map](./client/src/images/eventsmappage.png)
 
 This includes newly added events and venues (as long as the latitude and longitude have been added!)
 
@@ -322,7 +322,7 @@ const handleSelectContinent = (e) => {
 ```
 
 
-![Filter Index Page](filteronindex.png)
+![Filter Index Page](./client/src/images/filteronindex.png)
 
 ### Key Learnings
 * Properly learning to use Git and GitHub to handle merge conflicts.
