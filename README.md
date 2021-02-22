@@ -12,7 +12,7 @@ A one-week group project for General Assembly’s Software Engineering Immersive
 
 
 ### Deployment
-This website was deployed using Heroku and is available  [here](https://reimagined2020.herokuapp.com/) . 
+This website was deployed using Heroku and is available  [here](https://my-2020-reimagined-ab.herokuapp.com/) . 
 Please allow a minute or two for the free servers to wake up..!
 
 ### Brief
@@ -336,7 +336,7 @@ const handleSelectContinent = (e) => {
 * Limit top-rated events to only 3
 
 ### Want to contribute?
-If you have suggestions for improving this project, please let me know on GitHub .
+If you have suggestions for improving this project, please let me know on GitHub.
 
 ### License & copyright
 This project was built for educational purposes - all info is fictional
